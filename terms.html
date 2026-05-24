@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms · BlackStack Studio</title>
+    <meta name="description" content="Условия работы BlackStack Studio. Шорт-форм правил, по которым студия берёт и ведёт проекты." />
+    <link rel="icon" href="assets/logo.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+        .terms-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px var(--pad-x);
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--c-line);
+        }
+        .terms-nav__logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+        .terms-nav__mark {
+            display: block;
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            flex-shrink: 0;
+            border-radius: 6px;
+        }
+        .terms-nav__text {
+            font-family: var(--f-mono);
+            font-size: 11px;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--c-fg-dim);
+        }
+        .terms-nav__back {
+            font-family: var(--f-mono);
+            font-size: 12px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--c-fg-dim);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: color .25s var(--ease-out), transform .25s var(--ease-out);
+        }
+        .terms-nav__back:hover {
+            color: #fff;
+            transform: translateX(-3px);
+        }
+        .terms-nav__back-arrow {
+            display: inline-block;
+            transition: transform .25s var(--ease-out);
+        }
+        .terms-nav__back:hover .terms-nav__back-arrow {
+            transform: translateX(-4px);
+        }
+
+        .terms-page {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: clamp(80px, 12vh, 140px) var(--pad-x) clamp(60px, 10vh, 120px);
+        }
+
+        .terms-hero {
+            border-bottom: 1px solid var(--c-line);
+            padding-bottom: clamp(48px, 7vh, 80px);
+            margin-bottom: clamp(48px, 7vh, 80px);
+        }
+        .terms-hero__eyebrow {
+            font-family: var(--f-mono);
+            font-size: 11px;
+            letter-spacing: 0.34em;
+            text-transform: uppercase;
+            color: var(--c-fg-mute);
+            display: block;
+            margin-bottom: 28px;
+        }
+        .terms-hero__title {
+            font-family: var(--f-display);
+            font-weight: 800;
+            font-size: clamp(48px, 8vw, 96px);
+            line-height: 0.94;
+            letter-spacing: -0.04em;
+            color: #fff;
+            margin-bottom: 18px;
+        }
+        .terms-hero__sub {
+            font-family: var(--f-display);
+            font-weight: 400;
+            font-size: clamp(22px, 2.6vw, 32px);
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+            color: var(--c-fg-dim);
+            margin-bottom: 36px;
+        }
+        .terms-hero__meta {
+            font-family: var(--f-mono);
+            font-size: 12px;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--c-fg-mute);
+        }
+
+        .terms-block {
+            padding: clamp(28px, 4vh, 48px) 0;
+            border-bottom: 1px solid var(--c-line);
+            display: grid;
+            grid-template-columns: 72px 1fr;
+            gap: clamp(20px, 3vw, 40px);
+            align-items: start;
+        }
+        .terms-block:last-of-type {
+            border-bottom: none;
+        }
+        .terms-block__num {
+            font-family: var(--f-mono);
+            font-size: 13px;
+            letter-spacing: 0.18em;
+            color: var(--c-fg-mute);
+            padding-top: 8px;
+        }
+        .terms-block__body {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .terms-block__title {
+            font-family: var(--f-display);
+            font-weight: 700;
+            font-size: clamp(24px, 3vw, 34px);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #fff;
+        }
+        .terms-block__body p {
+            font-family: var(--f-mono);
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--c-fg-dim);
+        }
+        .terms-block__body p strong {
+            color: #fff;
+            font-weight: 500;
+        }
+        .terms-block__body a {
+            color: #fff;
+            border-bottom: 1px solid var(--c-line-2);
+            transition: border-color .25s var(--ease-out), color .25s var(--ease-out);
+        }
+        .terms-block__body a:hover {
+            border-bottom-color: #fff;
+        }
+        .terms-block__list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-family: var(--f-mono);
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--c-fg-dim);
+        }
+        .terms-block__list li {
+            padding-left: 22px;
+            position: relative;
+        }
+        .terms-block__list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 8px;
+            height: 1px;
+            background: var(--c-fg-mute);
+        }
+
+        .terms-end {
+            margin-top: clamp(60px, 9vh, 100px);
+            padding-top: clamp(40px, 6vh, 64px);
+            border-top: 1px solid var(--c-line);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .terms-end__label {
+            font-family: var(--f-mono);
+            font-size: 11px;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--c-fg-mute);
+        }
+        .terms-end__line {
+            font-family: var(--f-display);
+            font-weight: 600;
+            font-size: clamp(22px, 2.8vw, 30px);
+            line-height: 1.2;
+            letter-spacing: -0.015em;
+            color: #fff;
+        }
+        .terms-end__line a {
+            color: #fff;
+            border-bottom: 1px solid var(--c-line-2);
+        }
+        .terms-end__line a:hover {
+            border-bottom-color: #fff;
+        }
+
+        @media (max-width: 640px) {
+            .terms-block {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .terms-block__num {
+                padding-top: 0;
+            }
+            .terms-nav__text {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="noise" aria-hidden="true"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <canvas class="cursor-trail" id="cursorTrail"></canvas>
+
+    
+    <header class="terms-nav">
+        <a href="index.html" class="terms-nav__logo" data-cursor="hover" aria-label="BlackStack Studio">
+            <img class="terms-nav__mark" src="assets/logo.png" alt="" width="32" height="32" decoding="async" />
+            <span class="terms-nav__text">BlackStack Studio</span>
+        </a>
+        <a href="index.html" class="terms-nav__back" data-cursor="hover">
+            <span class="terms-nav__back-arrow">←</span>
+            <span>Назад</span>
+        </a>
+    </header>
+
+    
+    <main class="terms-page">
+
+        
+        <section class="terms-hero">
+            <span class="terms-hero__eyebrow">Документ 01 / правила работы</span>
+            <h1 class="terms-hero__title">Terms of Work</h1>
+            <p class="terms-hero__sub">Условия работы со студией BlackStack</p>
+            <p class="terms-hero__meta">Последнее обновление · 17 мая 2026</p>
+        </section>
+
+        
+        <section class="terms-block">
+            <span class="terms-block__num">01</span>
+            <div class="terms-block__body">
+                <h2 class="terms-block__title">О чём этот документ</h2>
+                <p>Это не оферта и не публичный контракт. Это шорт-форм правил, по которым мы работаем с клиентами и берём проекты в работу.</p>
+                <p>Любой полноценный договор мы подписываем отдельным документом. Эта страница даёт понять, как устроена кухня, чтобы вы знали правила игры до первого созвона.</p>
+            </div>
+        </section>
+
+        
+        <section class="terms-block">
+            <span class="terms-block__num">02</span>
+            <div class="terms-block__body">
+                <h2 class="terms-block__title">Кто мы</h2>
+                <p><strong>BlackStack Studio</strong> — цифровая студия из четырёх человек: два бэкенда, фронтенд, дизайнер. Без аккаунт-менеджеров, без посредников, без прокладок.</p>
+                <p>Связь напрямую с командой. Почта <a href="#" data-email-link>blackstackst@gmail.com</a>. Telegram <a href="#" data-tg-link>@blackstackstudio1</a>.</p>
+            </div>
+        </section>
+
+        
+        <section class="terms-block">
+            <span class="terms-block__num">03</span>
+            <div class="terms-block__body">
+                <h2 class="terms-block__title">Как мы соглашаемся работать</h2>
+                <p>Сначала бриф — 30 минут. Дальше фиксируем scope в коротком документе или прямо в Telegram-чате. Без многослойных коммерческих предложений и недельной переписки.</p>
+                <p>Оплата: 50% предоплата, 50% после релиза. На крупных проектах разбиваем по этапам. Счёт выставляем после подтверждения scope, не раньше.</p>
+            </div>
+        </section>
+
+        
+        <section class="terms-block">
+            <span class="terms-block__num">04</span>
+            <div class="terms-block__body">
+                <h2 class="terms-block__title">Что мы делаем</h2>
+                <ul class="terms-block__list">
+                    <li>Веб-продукты под ключ: от прототипа до прода</li>
+                    <li>Автоматизация процессов и внутренних инструментов</li>
+                    <li>AI-агенты и LLM-интеграции в существующие системы</li>
+                    <li>Интерфейсы, дизайн-системы, продуктовый UX</li>
+                    <li>Кастом, если задача интересная и попадает в стек</li>
+                </ul>
+                <p>Если задача не наша, говорим об этом прямо до брифа, чтобы не тратить ваше время.</p>
+            </div>
+        </section>
+
+        
+        <section class="terms-block">
+            <span class="terms-block__num">05</span>
+            <div class="terms-block__body">
+                <h2 class="terms-block__title">Что мы не делаем</h2>
+                <p>Не работаем над проектами, построенными на обмане пользователей. Никаких казино, гэмблинга, скам-схем, серой рекламы, фишинга, накруток и всего, что прячется от закона.</p>
+                <p>Имеем право отказать без объяснения причин. Деньги в этом случае не берём и до брифа не доходим.</p>
+            </div>
+        </section>
+
+        
+        <section class="terms-block">
+            <span class="terms-block__num">06</span>
+            <div class="terms-block__body">
+                <h2 class="terms-block__title">Сроки</h2>
+                <p>Сроки фиксируем на первом созвоне и пишем в scope-документ. Дальше держим их.</p>
+                <p>Если двигаем мы, делаем это за свой счёт без увеличения чека. Если двигаете вы из-за смены требований или новых вводных, это платный re-scope с пересчётом цены и графика.</p>
+            </div>
+        </section>
+
+        
+        <section class="terms-block">
+            <span class="terms-block__num">07</span>
+            <div class="terms-block__body">
+                <h2 class="terms-block__title">Авторские права</h2>
+                <p>Весь код, дизайн, исходники и артефакты переходят к вам с момента финальной оплаты. Полностью, без оговорок и без скрытых лицензий.</p>
+                <p>До финальной оплаты вы получаете ограниченную лицензию на тестовое использование результата. Запускать в прод и эксплуатировать коммерчески до закрытия оплаты нельзя.</p>
+            </div>
+        </section>
+
+        
+        <section class="terms-block">
+            <span class="terms-block__num">08</span>
+            <div class="terms-block__body">
+                <h2 class="terms-block__title">NDA</h2>
+                <p>Если на этапе брифа попросите подписать стандартное NDA, подпишем. Свой шаблон тоже принимаем, если в нём нет нездоровых пунктов.</p>
+                <p>Кейс в портфолио публикуем только с вашего согласия. Без согласия проект остаётся закрытым навсегда, включая упоминания на сайте и в соцсетях.</p>
+            </div>
+        </section>
+
+        
+        <section class="terms-block">
+            <span class="terms-block__num">09</span>
+            <div class="terms-block__body">
+                <h2 class="terms-block__title">Возврат</h2>
+                <p>Деньги не возвращаются. Вместо возврата мы делаем итерации до релиза, пока результат не совпадает со scope, который мы зафиксировали на старте.</p>
+                <p>Если хотите остановить проект на середине, забираете всё, что уже готово, в текущем состоянии. Дальше идёте с этим куда хотите.</p>
+            </div>
+        </section>
+
+        
+        <section class="terms-block">
+            <span class="terms-block__num">10</span>
+            <div class="terms-block__body">
+                <h2 class="terms-block__title">Связь и поддержка</h2>
+                <p>На каждый проект заводим общий Telegram-канал с командой. Никаких тикет-систем, никакой переписки через менеджера, никаких звонков в рабочее время другой стороны.</p>
+                <p>После релиза — 60 дней поддержки в подарок. Внутри этого окна правим баги и помогаем с настройкой. Дальше работаем по retainer или закрываем проект окончательно.</p>
+            </div>
+        </section>
+
+        
+        <div class="terms-end">
+            <span class="terms-end__label">Дальше</span>
+            <p class="terms-end__line">Вопросы по этим условиям пишите на <a href="#" data-email-link>blackstackst@gmail.com</a> или в Telegram <a href="#" data-tg-link>@blackstackstudio1</a>.</p>
+        </div>
+
+    </main>
+
+    
+    <footer class="footer">
+        <div class="footer__top">
+            <div class="footer__brand">
+                <span class="footer__mark">BS</span>
+                <span class="footer__studio">BlackStack Studio</span>
+                <span class="footer__tag">Цифровая студия · est. 2024</span>
+            </div>
+
+            <div class="footer__cols">
+                <div class="footer__col">
+                    <span class="footer__col-h">Что мы делаем</span>
+                    <a href="index.html#expertise" data-cursor="hover">Веб-продукты</a>
+                    <a href="index.html#expertise" data-cursor="hover">Автоматизация</a>
+                    <a href="index.html#expertise" data-cursor="hover">Интерфейсы</a>
+                    <a href="index.html#expertise" data-cursor="hover">Кастомные системы</a>
+                </div>
+                <div class="footer__col">
+                    <span class="footer__col-h">Студия</span>
+                    <a href="index.html#manifesto" data-cursor="hover">Манифест</a>
+                    <a href="index.html#process" data-cursor="hover">Процесс</a>
+                    <a href="index.html#projects" data-cursor="hover">Кейсы</a>
+                    <a href="index.html#team" data-cursor="hover">Операторы</a>
+                </div>
+                <div class="footer__col">
+                    <span class="footer__col-h">Связь</span>
+                    <a href="#" data-cursor="hover" data-tg-link>@blackstackstudio1</a>
+                    <a href="#" data-cursor="hover" data-email-link>Email</a>
+                    <a href="index.html#contact" data-cursor="hover">Бриф на сайте</a>
+                    <a href="#" data-cursor="hover" data-tg-link>Запустить проект</a>
+                </div>
+                <div class="footer__col">
+                    <span class="footer__col-h">Юридическое</span>
+                    <a href="privacy.html" data-cursor="hover">Privacy</a>
+                    <a href="terms.html" data-cursor="hover">Terms</a>
+                    <a href="#" data-cursor="hover" data-email-link data-email-subject="NDA — BlackStack Studio">NDA по запросу</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer__bot">
+            <span class="footer__copy">© 2024–2026 BlackStack Studio · Все права защищены</span>
+            <div class="footer__live">
+                <span class="footer__live-lbl">Ваше время</span>
+                <span class="footer__time" id="footerTime">— : — : —</span>
+                <span class="footer__city" id="footerCity">—</span>
+            </div>
+            <span class="footer__loc">Async · Worldwide</span>
+        </div>
+    </footer>
+
+    <script src="js/site.js"></script>
+    <script src="js/cursor.js"></script>
+
+    <script>
+        (function () {
+            const timeEl = document.getElementById("footerTime");
+            const cityEl = document.getElementById("footerCity");
+            if (!timeEl) return;
+
+            function tick() {
+                const d = new Date();
+                const hh = String(d.getHours()).padStart(2, "0");
+                const mm = String(d.getMinutes()).padStart(2, "0");
+                const ss = String(d.getSeconds()).padStart(2, "0");
+                timeEl.textContent = `${hh} : ${mm} : ${ss}`;
+                if (cityEl) {
+                    try {
+                        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+                        cityEl.textContent = tz.split("/").pop().replace(/_/g, " ") || "Local";
+                    } catch (e) {
+                        cityEl.textContent = "Local";
+                    }
+                }
+            }
+            tick();
+            setInterval(tick, 1000);
+        })();
+    </script>
+</body>
+</html>

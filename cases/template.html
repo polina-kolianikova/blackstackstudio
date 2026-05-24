@@ -1,0 +1,249 @@
+<!--
+=========================================================
+  ШАБЛОН КЕЙСА
+  Чтобы создать новый кейс:
+    1. Скопируйте этот файл в cases/название-проекта.html
+    2. Замените текст между ←НАЧАЛО→ и ←КОНЕЦ→ маркерами
+    3. Замените заголовок <title> и значения data-i18n
+    4. При необходимости добавьте свои изображения в /assets
+       и подключите их вместо .case-placeholder
+=========================================================
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ←НАЧАЛО ШАПКИ→ -->
+    <title>Название кейса — BlackStack Studio</title>
+    <meta name="description" content="Описание кейса для соцсетей и поиска." />
+    <!-- ←КОНЕЦ ШАПКИ→ -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+    <!-- общие стили лежат на уровень выше -->
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+    <!-- ШУМ + КУРСОР (как на главной) -->
+    <div class="noise" aria-hidden="true"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <canvas class="cursor-trail" id="cursorTrail"></canvas>
+
+    <!-- НАВИГАЦИЯ КЕЙСА: только "Назад" и переключатель языка -->
+    <header class="case-nav">
+        <a href="../index.html" class="case-back" data-cursor="hover">
+            <span class="case-back__arrow">←</span>
+            <span data-i18n="case.back">Назад на главную</span>
+        </a>
+
+        <div class="lang-switch" id="langSwitch" data-cursor="hover">
+            <button class="lang-switch__btn is-active" data-lang="ru">RU</button>
+            <button class="lang-switch__btn" data-lang="en">EN</button>
+            <button class="lang-switch__btn" data-lang="uk">UK</button>
+            <span class="lang-switch__pill" id="langPill"></span>
+        </div>
+    </header>
+
+    <!-- ============ HERO КЕЙСА ============ -->
+    <section class="case-hero">
+        <!-- ←НАЧАЛО HERO→ -->
+        <span class="case-hero__tag" data-reveal>Категория · Год</span>
+        <h1 class="case-hero__title" data-reveal>Название проекта</h1>
+        <p class="case-hero__lead" data-reveal>
+            Одно-два предложения, которые объясняют, что это за продукт и зачем
+            мы его построили. Здесь — суть в одной фразе.
+        </p>
+        <!-- ←КОНЕЦ HERO→ -->
+    </section>
+
+    <!-- ============ МЕТА (роль, срок, стек) ============ -->
+    <section class="case-meta">
+        <!-- ←НАЧАЛО МЕТА→ -->
+        <div class="case-meta__cell">
+            <span class="case-meta__lbl">Клиент</span>
+            <span class="case-meta__val">Acme Inc.</span>
+        </div>
+        <div class="case-meta__cell">
+            <span class="case-meta__lbl">Год</span>
+            <span class="case-meta__val">2025</span>
+        </div>
+        <div class="case-meta__cell">
+            <span class="case-meta__lbl">Роль</span>
+            <span class="case-meta__val">Дизайн · Разработка</span>
+        </div>
+        <div class="case-meta__cell">
+            <span class="case-meta__lbl">Стек</span>
+            <span class="case-meta__val">Next.js · Postgres</span>
+        </div>
+        <!-- ←КОНЕЦ МЕТА→ -->
+    </section>
+
+    <!-- ============ КОНТЕКСТ / ЗАДАЧА ============ -->
+    <section class="case-section">
+        <span class="case-section__num" data-reveal>01 / Контекст</span>
+        <h2 class="case-section__title" data-reveal>Задача</h2>
+        <div class="case-section__body" data-reveal>
+            <!-- ←НАЧАЛО ТЕКСТА→ -->
+            <p>Опишите ситуацию клиента до проекта. Что было сломано, что было
+            неэффективно, что не работало.</p>
+
+            <p>Второй абзац может развивать масштаб задачи или ограничения,
+            с которыми вы столкнулись.</p>
+            <!-- ←КОНЕЦ ТЕКСТА→ -->
+        </div>
+
+        <!-- Замените .case-placeholder на <img src="../assets/your-image.jpg"> -->
+        <div class="case-placeholder">Скриншот · 16:9</div>
+    </section>
+
+    <!-- ============ ПРОЦЕСС / РЕШЕНИЕ ============ -->
+    <section class="case-section">
+        <span class="case-section__num" data-reveal>02 / Процесс</span>
+        <h2 class="case-section__title" data-reveal>Что мы сделали</h2>
+        <div class="case-section__body" data-reveal>
+            <!-- ←НАЧАЛО ТЕКСТА→ -->
+            <p>Опишите ваш подход. Как декомпозировали задачу, какие приняли
+            архитектурные решения, что было важно сохранить.</p>
+
+            <p>Можно добавить пункты о ключевых компонентах: дизайн-система,
+            кастомные интеграции, оптимизация, тесты.</p>
+            <!-- ←КОНЕЦ ТЕКСТА→ -->
+        </div>
+
+        <div class="case-placeholder">Скриншот · 16:9</div>
+        <div class="case-placeholder">Скриншот · 16:9</div>
+    </section>
+
+    <!-- ============ РЕЗУЛЬТАТЫ (метрики) ============ -->
+    <section class="case-section">
+        <span class="case-section__num" data-reveal>03 / Результаты</span>
+        <h2 class="case-section__title" data-reveal>Цифры</h2>
+
+        <div class="case-results">
+            <!-- ←НАЧАЛО МЕТРИК→ -->
+            <div class="case-result">
+                <span class="case-result__num">+240%</span>
+                <span class="case-result__lbl">Рост ключевой метрики</span>
+            </div>
+            <div class="case-result">
+                <span class="case-result__num">12×</span>
+                <span class="case-result__lbl">Ускорение операции</span>
+            </div>
+            <div class="case-result">
+                <span class="case-result__num">99.9%</span>
+                <span class="case-result__lbl">Доступность сервиса</span>
+            </div>
+            <div class="case-result">
+                <span class="case-result__num">6 нед.</span>
+                <span class="case-result__lbl">От идеи до запуска</span>
+            </div>
+            <!-- ←КОНЕЦ МЕТРИК→ -->
+        </div>
+    </section>
+
+    <!-- ============ СЛЕДУЮЩИЙ ШАГ ============ -->
+    <section class="case-next">
+        <a href="../index.html#projects" class="btn btn--ghost magnetic" data-cursor="hover">
+            <span data-i18n="case.next">Все проекты</span>
+            <span class="btn__arrow">→</span>
+        </a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer__col">
+            <span class="footer__mark">BS</span>
+            <span class="footer__copy" data-i18n="footer.copy">© 2024–2026 BlackStack Studio</span>
+        </div>
+        <div class="footer__col footer__col--right">
+            <span class="footer__loc" data-i18n="footer.loc">Земля · Удалённо</span>
+        </div>
+    </footer>
+
+    <!-- кастомный курсор без 3D-сцены (она нужна только на главной) -->
+    <script src="../js/cursor.js"></script>
+
+    <!-- встроенный мини-i18n для шаблона кейса -->
+    <script>
+        (function () {
+            const I18N = {
+                ru: {
+                    "case.back": "Назад на главную",
+                    "case.next": "Все проекты",
+                    "footer.copy": "© 2024–2026 BlackStack Studio",
+                    "footer.loc":  "Земля · Удалённо",
+                },
+                en: {
+                    "case.back": "Back to home",
+                    "case.next": "All projects",
+                    "footer.copy": "© 2024–2026 BlackStack Studio",
+                    "footer.loc":  "Earth · Remote",
+                },
+                uk: {
+                    "case.back": "Назад на головну",
+                    "case.next": "Усі проєкти",
+                    "footer.copy": "© 2024–2026 BlackStack Studio",
+                    "footer.loc":  "Земля · Віддалено",
+                },
+            };
+
+            const KEY = "bs.lang";
+            let lang = localStorage.getItem(KEY) || "ru";
+            if (!I18N[lang]) lang = "ru";
+
+            function apply() {
+                document.documentElement.lang = lang;
+                document.querySelectorAll("[data-i18n]").forEach((el) => {
+                    const k = el.getAttribute("data-i18n");
+                    if (I18N[lang] && I18N[lang][k]) el.textContent = I18N[lang][k];
+                });
+                document.querySelectorAll("#langSwitch [data-lang]").forEach((b) =>
+                    b.classList.toggle("is-active", b.dataset.lang === lang)
+                );
+                positionPill();
+            }
+
+            function positionPill() {
+                const wrap = document.getElementById("langSwitch");
+                const pill = document.getElementById("langPill");
+                if (!wrap || !pill) return;
+                const active = wrap.querySelector(".lang-switch__btn.is-active");
+                if (!active) return;
+                const rect = active.getBoundingClientRect();
+                const parentRect = wrap.getBoundingClientRect();
+                pill.style.width = rect.width + "px";
+                pill.style.transform = `translateX(${rect.left - parentRect.left - 4}px)`;
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                document.querySelectorAll("#langSwitch [data-lang]").forEach((b) => {
+                    b.addEventListener("click", () => {
+                        lang = b.dataset.lang;
+                        localStorage.setItem(KEY, lang);
+                        apply();
+                    });
+                });
+
+                apply();
+
+                // простая reveal-анимация на скролл
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) {
+                            e.target.classList.add("is-in");
+                            io.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.15 });
+                document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+            });
+
+            window.addEventListener("resize", positionPill);
+        })();
+    </script>
+</body>
+</html>
