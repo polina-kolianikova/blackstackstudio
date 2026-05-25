@@ -32,9 +32,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="css/style.css?v=7" />
+    <link rel="stylesheet" href="css/style.css?v=36" />
 </head>
 <body>
 
@@ -92,8 +92,8 @@
 
     
     <section class="hero" id="hero">
-        <canvas class="hero__canvas" id="heroCanvas"></canvas>
-        <div class="hero__vignette"></div>
+        <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+        <div class="hero__vignette" aria-hidden="true"></div>
 
         <div class="hero__content">
             <div class="hero__mark" data-reveal>
@@ -108,19 +108,21 @@
             <p class="hero__sub" id="typewriter"></p>
 
             <div class="hero__meta" data-reveal>
-                <div class="hero__meta-item">
-                    <span class="hero__meta-num" data-count="47" data-suffix="+">47+</span>
-                    <span class="hero__meta-lbl" data-i18n="hero.meta2">Успешных запусков</span>
-                </div>
-                <div class="hero__meta-divider"></div>
-                <div class="hero__meta-item">
-                    <span class="hero__meta-num">04</span>
-                    <span class="hero__meta-lbl" data-i18n="hero.meta1">Создателей</span>
-                </div>
-                <div class="hero__meta-divider"></div>
-                <div class="hero__meta-item">
-                    <span class="hero__meta-num">2024</span>
-                    <span class="hero__meta-lbl" data-i18n="hero.meta3">На рынке с</span>
+                <div class="hero__meta-strip">
+                    <div class="hero__meta-item">
+                        <span class="hero__meta-num" data-count="47" data-suffix="+">47+</span>
+                        <span class="hero__meta-lbl" data-i18n="hero.meta2">Успешных запусков</span>
+                    </div>
+                    <div class="hero__meta-divider" aria-hidden="true"></div>
+                    <div class="hero__meta-item">
+                        <span class="hero__meta-num" data-count="4" data-prefix="0">04</span>
+                        <span class="hero__meta-lbl" data-i18n="hero.meta1">Создателей</span>
+                    </div>
+                    <div class="hero__meta-divider" aria-hidden="true"></div>
+                    <div class="hero__meta-item">
+                        <span class="hero__meta-num" data-count="2024" data-decimals="0">2024</span>
+                        <span class="hero__meta-lbl" data-i18n="hero.meta3">На рынке с</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -204,7 +206,7 @@
             </article>
             <article class="member" data-cursor="hover">
                 <div class="member__avatar member__avatar--photo member__avatar--contain">
-                    <img class="member__photo member__photo--ilya" src="assets/team/ilya-d.png" alt="Илья Д." width="1000" height="1000" loading="lazy" decoding="async" />
+                    <img class="member__photo member__photo--ilya" src="assets/team/ilya-d.png?v=6" alt="Илья Д." width="1000" height="1000" loading="lazy" decoding="async" />
                 </div>
                 <div class="member__info">
                     <h3 class="member__name glitch" data-text="Илья Д." data-i18n-attr="data-text" data-i18n="m4.name">Илья Д.</h3>
@@ -554,7 +556,7 @@
             <div class="contact__socials" data-reveal>
                 <a href="#" class="social magnetic" data-cursor="hover" data-tg-link>
                     <span class="social__lbl">Telegram</span>
-                    <span class="social__val" data-i18n="contact.tg">@blackstackstudio1</span>
+                    <span class="social__val" data-i18n="contact.tg">@blackstackstudio</span>
                 </a>
                 <a href="#" class="social magnetic" data-cursor="hover" data-ig-link>
                     <span class="social__lbl">Instagram</span>
@@ -592,7 +594,7 @@
                     </div>
                     <div class="footer__col">
                         <span class="footer__col-h" data-i18n="footer.col3">Связь</span>
-                        <a href="#" data-cursor="hover" data-tg-link data-i18n="contact.tg">@blackstackstudio1</a>
+                        <a href="#" data-cursor="hover" data-tg-link data-i18n="contact.tg">@blackstackstudio</a>
                         <a href="#" data-cursor="hover" data-ig-link data-i18n="footer.col3.2">Instagram</a>
                         <a href="#" data-cursor="hover" data-email-link data-i18n="footer.col3.3">Email</a>
                         <a href="#" data-cursor="hover" data-tg-link data-i18n="footer.col3.4">Запустить проект</a>
@@ -620,7 +622,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="js/site.js"></script>
     <script src="js/cursor.js"></script>
-    <script src="js/three-scene.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/three-scene.js?v=12"></script>
+    <script src="js/main.js?v=2"></script>
 </body>
 </html>

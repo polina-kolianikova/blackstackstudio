@@ -1,4 +1,3 @@
-
 (function () {
     if (typeof THREE === "undefined") {
         console.warn("Three.js failed to load.");
@@ -13,8 +12,9 @@
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
     const isNarrow = window.matchMedia("(max-width: 600px)").matches;
-    const lowMem = (navigator.deviceMemory && navigator.deviceMemory < 4);
-    const lowCpu = (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4);
+    const lowMem = navigator.deviceMemory && navigator.deviceMemory < 4;
+    const lowCpu = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+
     if (reduced || (isTouch && isNarrow) || (lowMem && lowCpu)) {
         canvas.style.display = "none";
         if (heroEl) {
@@ -53,7 +53,7 @@
     rimLight.position.set(-6, -3, -4);
     scene.add(rimLight);
 
-    const pointGlow = new THREE.PointLight(0xffffff, 1.5, 14);
+    const pointGlow = new THREE.PointLight(0xffffff, 1.85, 16);
     pointGlow.position.set(0, 0, 4);
     scene.add(pointGlow);
 
@@ -65,7 +65,7 @@
         color: 0xffffff,
         wireframe: true,
         transparent: true,
-        opacity: 0.18,
+        opacity: 0.16,
     });
     const outerSphere = new THREE.Mesh(sphereGeo, sphereMat);
     construct.add(outerSphere);
@@ -75,7 +75,7 @@
         color: 0xffffff,
         wireframe: true,
         transparent: true,
-        opacity: 0.35,
+        opacity: 0.30,
     });
     const innerShape = new THREE.Mesh(innerGeo, innerMat);
     construct.add(innerShape);
@@ -90,7 +90,11 @@
         roughness: 0.18,
         emissive: 0x111111,
     });
-    const cubeEdgeMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.65 });
+    const cubeEdgeMat = new THREE.LineBasicMaterial({
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.65,
+    });
 
     const offsets = [
         [-0.5, -0.5, -0.5], [0.5, -0.5, -0.5], [-0.5, 0.5, -0.5], [0.5, 0.5, -0.5],
@@ -106,11 +110,11 @@
         const edges = new THREE.LineSegments(new THREE.EdgesGeometry(cubeGeo), cubeEdgeMat);
         m.add(edges);
 
-        cubes.push({ mesh: m, base: m.position.clone(), phase: i * 0.7 });
+        cubes.push({ mesh: m, phase: i * 0.7 });
     });
 
     const ringGeo = new THREE.TorusGeometry(2.0, 0.008, 8, 120);
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.42 });
     const ring = new THREE.Mesh(ringGeo, ringMat);
     ring.rotation.x = Math.PI / 2.3;
     construct.add(ring);
@@ -124,18 +128,15 @@
     const particleGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(PARTICLE_COUNT * 3);
     const sizes = new Float32Array(PARTICLE_COUNT);
-    const seeds = new Float32Array(PARTICLE_COUNT);
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-
         const r = 3 + Math.pow(Math.random(), 0.5) * 18;
         const theta = Math.random() * Math.PI * 2;
         const phi = Math.acos(2 * Math.random() - 1);
-        positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+        positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
         positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
         positions[i * 3 + 2] = r * Math.cos(phi);
         sizes[i] = Math.random() * 1.5 + 0.3;
-        seeds[i] = Math.random() * 1000;
     }
     particleGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     particleGeo.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
@@ -167,28 +168,87 @@
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
+    function fillEllipseGlow(cx, centerX, centerY, radiusX, radiusY, stops) {
+        cx.save();
+        cx.translate(centerX, centerY);
+        cx.scale(radiusX, radiusY);
+        const g = cx.createRadialGradient(0, 0, 0, 0, 0, 1);
+        stops.forEach(([offset, color]) => g.addColorStop(offset, color));
+        cx.fillStyle = g;
+        cx.fillRect(-1.4, -1.4, 2.8, 2.8);
+        cx.restore();
+    }
+
     function makeGlowTexture() {
         const c = document.createElement("canvas");
-        c.width = c.height = 256;
+        c.width = c.height = 512;
         const cx = c.getContext("2d");
-        const g = cx.createRadialGradient(128, 128, 0, 128, 128, 128);
-        g.addColorStop(0, "rgba(255,255,255,0.6)");
-        g.addColorStop(0.3, "rgba(255,255,255,0.25)");
+        const g = cx.createRadialGradient(256, 256, 0, 256, 256, 256);
+        g.addColorStop(0, "rgba(255,255,255,0.60)");
+        g.addColorStop(0.18, "rgba(255,255,255,0.36)");
+        g.addColorStop(0.38, "rgba(255,255,255,0.18)");
+        g.addColorStop(0.62, "rgba(255,255,255,0.06)");
+        g.addColorStop(0.84, "rgba(255,255,255,0.012)");
         g.addColorStop(1, "rgba(255,255,255,0)");
         cx.fillStyle = g;
-        cx.fillRect(0, 0, 256, 256);
-        return new THREE.CanvasTexture(c);
+        cx.fillRect(0, 0, 512, 512);
+        const t = new THREE.CanvasTexture(c);
+        t.minFilter = THREE.LinearFilter;
+        t.magFilter = THREE.LinearFilter;
+        return t;
     }
+
+    function makeGlowFeatherTexture() {
+        const c = document.createElement("canvas");
+        c.width = c.height = 2048;
+        const cx = c.getContext("2d");
+        fillEllipseGlow(cx, 1044, 1018, 930, 760, [
+            [0, "rgba(255,255,255,0.020)"],
+            [0.24, "rgba(255,255,255,0.015)"],
+            [0.52, "rgba(255,255,255,0.009)"],
+            [0.82, "rgba(255,255,255,0.0025)"],
+            [1, "rgba(255,255,255,0)"],
+        ]);
+        fillEllipseGlow(cx, 972, 1078, 760, 980, [
+            [0, "rgba(255,255,255,0.015)"],
+            [0.30, "rgba(255,255,255,0.012)"],
+            [0.58, "rgba(255,255,255,0.007)"],
+            [0.86, "rgba(255,255,255,0.0018)"],
+            [1, "rgba(255,255,255,0)"],
+        ]);
+        fillEllipseGlow(cx, 1120, 980, 680, 620, [
+            [0, "rgba(255,255,255,0.010)"],
+            [0.34, "rgba(255,255,255,0.008)"],
+            [0.68, "rgba(255,255,255,0.0035)"],
+            [1, "rgba(255,255,255,0)"],
+        ]);
+        const t = new THREE.CanvasTexture(c);
+        t.minFilter = THREE.LinearFilter;
+        t.magFilter = THREE.LinearFilter;
+        return t;
+    }
+
     const glowSprite = new THREE.Sprite(new THREE.SpriteMaterial({
         map: makeGlowTexture(),
         transparent: true,
-        opacity: 0.9,
+        opacity: 0.88,
         depthWrite: false,
         blending: THREE.AdditiveBlending,
     }));
-    glowSprite.scale.set(8, 8, 1);
-    glowSprite.position.z = -1;
+    glowSprite.scale.set(8.4, 8.4, 1);
+    glowSprite.position.z = -0.95;
     scene.add(glowSprite);
+
+    const glowFeatherSprite = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: makeGlowFeatherTexture(),
+        transparent: true,
+        opacity: 0.14,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+    }));
+    glowFeatherSprite.scale.set(18.5, 18.5, 1);
+    glowFeatherSprite.position.set(0.06, -0.02, -1.2);
+    scene.add(glowFeatherSprite);
 
     let pointer = { x: 0, y: 0 };
     let target = { x: 0, y: 0 };
@@ -227,7 +287,7 @@
         cubeGroup.rotation.y -= dt * 0.6;
         cubeGroup.rotation.x += dt * 0.25;
 
-        cubes.forEach((c, i) => {
+        cubes.forEach((c) => {
             const k = 1 + Math.sin(t * 1.4 + c.phase) * 0.04;
             c.mesh.scale.setScalar(k);
         });
@@ -236,13 +296,14 @@
         const p = Math.min(scrollY / heroH, 1);
         construct.position.y = -p * 2;
         construct.position.z = -p * 3;
-        glowSprite.material.opacity = 0.9 * (1 - p * 0.7);
+        glowSprite.material.opacity = (0.84 + Math.sin(t * 0.72) * 0.06) * (1 - p * 0.68);
+        glowFeatherSprite.material.opacity = (0.13 + Math.cos(t * 0.45) * 0.02) * (1 - p * 0.48);
 
         particles.rotation.y += dt * 0.02;
         particles.rotation.x += dt * 0.008;
 
-        ring.material.opacity = 0.4 + Math.sin(t * 1.2) * 0.15;
-        ring2.material.opacity = 0.4 + Math.cos(t * 1.4) * 0.15;
+        ring.material.opacity = 0.34 + Math.sin(t * 1.2) * 0.11;
+        ring2.material.opacity = 0.32 + Math.cos(t * 1.4) * 0.10;
 
         camera.position.x += (pointer.x * 0.4 - camera.position.x) * 0.04;
         camera.position.y += (pointer.y * 0.3 - camera.position.y) * 0.04;
@@ -251,5 +312,6 @@
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
     }
+
     animate();
 })();
