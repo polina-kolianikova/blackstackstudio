@@ -35,7 +35,7 @@ const I18N = {
 
         "expertise.num":   "01 / Что строим",
         "expertise.title": "Делаем продукты, которые приносят деньги во сне",
-        "expertise.lead":  "Попроси сделать то же самое, только лучше. Не получится. У нас получается — мы делаем сами: senior-инженеры, огромный опыт в проде и масштаб, на котором мелкие студии не вывозят.",
+        "expertise.lead":  "Попроси ИИ сделать то же самое, только лучше. Не получится. У нас получается — мы делаем сами: senior-инженеры, огромный опыт в проде и масштаб, на котором мелкие студии не вывозят.",
 
         "card1.title": "Веб-продукты",
         "card1.text":  "React, Next.js, Node. Не сайты, а машины конверсии. LCP меньше секунды, измеримая воронка, продакшен за 4–8 недель.",
@@ -67,7 +67,7 @@ const I18N = {
         "stats.c1":    "Проектов в продакшене",
         "stats.c2":    "Стран аудитории",
         "stats.c3":    "Релизов без отката",
-        "stats.c4":    "Средняя скорость сайтов",
+        "stats.c4":    "Ответ по правкам",
         "stats.c5":    "Пользователей у клиентов",
         "stats.c6":    "Дней поддержки после релиза",
 
@@ -178,7 +178,7 @@ const I18N = {
 
         "expertise.num":   "01 / What we build",
         "expertise.title": "We build products that earn while you sleep",
-        "expertise.lead":  "Ask anyone to match us and do it better. They won't. We deliver because we build it ourselves — senior engineers, deep production experience, and scale small studios can't carry.",
+        "expertise.lead":  "Ask AI to do the same, only better. It won't. We deliver because we build it ourselves — senior engineers, deep production experience, and scale small studios can't carry.",
 
         "card1.title": "Web Products",
         "card1.text":  "React, Next.js, Node. Not websites, but conversion machines. Sub-1s LCP, a measurable funnel, production in 4–8 weeks.",
@@ -210,7 +210,7 @@ const I18N = {
         "stats.c1":    "Projects in production",
         "stats.c2":    "Countries reached",
         "stats.c3":    "Releases without rollback",
-        "stats.c4":    "Average page load",
+        "stats.c4":    "Feedback turnaround",
         "stats.c5":    "Users on client products",
         "stats.c6":    "Days of post-launch support",
 
@@ -321,7 +321,7 @@ const I18N = {
 
         "expertise.num":   "01 / Що будуємо",
         "expertise.title": "Робимо продукти, що приносять гроші уві сні",
-        "expertise.lead":  "Попросіть зробити те саме, тільки краще. Не вийде. У нас виходить — ми робимо самі: senior-інженери, величезний досвід у проді і масштаб, який малі студії не тягнуть.",
+        "expertise.lead":  "Попросіть ШІ зробити те саме, тільки краще. Не вийде. У нас виходить — ми робимо самі: senior-інженери, величезний досвід у проді і масштаб, який малі студії не тягнуть.",
 
         "card1.title": "Веб-продукти",
         "card1.text":  "React, Next.js, Node. Не сайти, а машини конверсії. LCP менше секунди, вимірювана воронка, продакшн за 4–8 тижнів.",
@@ -353,7 +353,7 @@ const I18N = {
         "stats.c1":    "Проєктів у продакшні",
         "stats.c2":    "Країн аудиторії",
         "stats.c3":    "Релізів без відкату",
-        "stats.c4":    "Середня швидкість сайтів",
+        "stats.c4":    "Відповідь на правки",
         "stats.c5":    "Користувачів у клієнтів",
         "stats.c6":    "Днів підтримки після релізу",
 
