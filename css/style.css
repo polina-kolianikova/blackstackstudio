@@ -2101,6 +2101,15 @@ img, svg {
 }
 
 @media (max-width: 600px) {
+    .hero__content {
+        justify-content: flex-start;
+        padding-top: clamp(132px, 18vh, 172px);
+    }
+
+    .hero__meta {
+        margin-top: 28px;
+    }
+
     .stats__grid { grid-template-columns: 1fr; }
     .footer__cols { grid-template-columns: 1fr; }
     .manifesto__quote { font-size: clamp(40px, 14vw, 80px); }
