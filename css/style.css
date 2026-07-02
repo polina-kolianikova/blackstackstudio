@@ -891,7 +891,7 @@ img, svg {
 
 .team__grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(260px, 0.78fr)) minmax(320px, 1fr);
     gap: 1px;
     background: var(--c-line);
     border: 1px solid var(--c-line);
@@ -970,6 +970,76 @@ img, svg {
     letter-spacing: 0.2em;
     color: var(--c-fg-mute);
     text-transform: uppercase;
+}
+
+.team__capacity {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 100%;
+    padding: clamp(32px, 4vw, 56px);
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.08), transparent 34%),
+        var(--c-bg);
+    overflow: hidden;
+}
+
+.team__capacity::before {
+    content: "";
+    position: absolute;
+    inset: 32px;
+    border: 1px solid var(--c-line);
+    pointer-events: none;
+}
+
+.team__capacity-label {
+    position: relative;
+    margin-bottom: 18px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: var(--c-fg-mute);
+    text-transform: uppercase;
+}
+
+.team__capacity-title {
+    position: relative;
+    max-width: 12ch;
+    margin: 0;
+    font-family: var(--f-display);
+    font-size: clamp(32px, 4.2vw, 60px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: #fff;
+}
+
+.team__capacity-text {
+    position: relative;
+    max-width: 58ch;
+    margin: 24px 0 0;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--c-fg-soft);
+}
+
+.team__capacity-tags {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+}
+
+.team__capacity-tags span {
+    padding: 9px 12px;
+    border: 1px solid var(--c-line);
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--c-fg-mute);
+    background: rgba(255,255,255,0.03);
 }
 
 .member__no {
@@ -2059,6 +2129,11 @@ img, svg {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .team__capacity {
+        grid-column: 1 / -1;
+        min-height: 440px;
+    }
+
     .nav__links {
         display: none;
     }
@@ -2117,6 +2192,16 @@ img, svg {
     .footer__cols { grid-template-columns: 1fr; }
     .manifesto__quote { font-size: clamp(40px, 14vw, 80px); }
     .team__grid { grid-template-columns: 1fr; }
+    .team__capacity {
+        grid-column: auto;
+        min-height: 0;
+        padding: 32px;
+    }
+    .team__capacity::before { inset: 20px; }
+    .team__capacity-title {
+        max-width: 100%;
+        font-size: clamp(30px, 12vw, 44px);
+    }
 }
 
 @media (max-width: 600px) {
