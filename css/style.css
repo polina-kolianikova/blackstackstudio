@@ -931,7 +931,11 @@ img, svg {
     object-fit: cover;
 }
 
-.member__photo--dmitry { object-position: center 4%; }
+.member__photo--dmitry {
+    object-position: center 4%;
+    transform: translateY(8%) scale(1.08);
+    transform-origin: center center;
+}
 .member__photo--polya { object-position: center 8%; }
 .member__photo--anastasia { object-position: center 24%; }
 .member__photo--ilya { object-position: center center; }
