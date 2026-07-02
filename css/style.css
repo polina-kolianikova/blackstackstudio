@@ -1005,11 +1005,11 @@ img, svg {
 
 .team__capacity-title {
     position: relative;
-    max-width: 16ch;
+    max-width: 100%;
     margin: 0;
     font-family: var(--f-display);
-    font-size: clamp(30px, 3.3vw, 48px);
-    line-height: 1.04;
+    font-size: clamp(28px, 2.4vw, 38px);
+    line-height: 1.08;
     letter-spacing: 0;
     color: #fff;
     overflow-wrap: normal;
