@@ -1005,13 +1005,14 @@ img, svg {
 
 .team__capacity-title {
     position: relative;
-    max-width: 12ch;
+    max-width: 16ch;
     margin: 0;
     font-family: var(--f-display);
-    font-size: clamp(32px, 4.2vw, 60px);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
+    font-size: clamp(30px, 3.3vw, 48px);
+    line-height: 1.04;
+    letter-spacing: 0;
     color: #fff;
+    overflow-wrap: normal;
 }
 
 .team__capacity-text {
@@ -2200,7 +2201,7 @@ img, svg {
     .team__capacity::before { inset: 20px; }
     .team__capacity-title {
         max-width: 100%;
-        font-size: clamp(30px, 12vw, 44px);
+        font-size: clamp(28px, 10vw, 40px);
     }
 }
 
