@@ -2231,6 +2231,38 @@ img, svg {
     }
 }
 
+/* Keep iOS/WKWebView on a lightweight compositing path. The animated fixed
+   turbulence layer is especially expensive in embedded Safari browsers. */
+@media (max-width: 900px), (pointer: coarse) {
+    .noise,
+    .hero__canvas {
+        display: none !important;
+    }
+
+    .hero__mark-letter,
+    .marquee__track {
+        animation: none !important;
+        will-change: auto;
+    }
+
+    .nav.is-scrolled,
+    .hero__meta,
+    .case-nav {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+
+    .card,
+    .case-card,
+    .case-card__media,
+    .nav__cta,
+    .btn,
+    .social {
+        will-change: auto;
+        transform-style: flat;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;

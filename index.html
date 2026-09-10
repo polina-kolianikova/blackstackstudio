@@ -13,8 +13,8 @@
     <meta property="og:site_name" content="BlackStack Studio" />
     <meta property="og:title" content="BlackStack Studio · цифровая студия" />
     <meta property="og:description" content="Веб-продукты, автоматизация, AI-агенты, интерфейсы. Продакшен за 30 дней. Два главных создателя и штат специалистов под любые задачи." />
-    <meta property="og:url" content="https://blackstack.studio/" />
-    <meta property="og:image" content="https://blackstack.studio/assets/og.png" />
+    <meta property="og:url" content="https://blackstackstudio.com/" />
+    <meta property="og:image" content="https://blackstackstudio.com/assets/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="ru_RU" />
@@ -25,16 +25,36 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="BlackStack Studio" />
     <meta name="twitter:description" content="Digital studio · Web, automation, interfaces · Production in 30 days." />
-    <meta name="twitter:image" content="https://blackstack.studio/assets/og.png" />
+    <meta name="twitter:image" content="https://blackstackstudio.com/assets/og.png" />
 
-    <link rel="canonical" href="https://blackstack.studio/" />
+    <link rel="canonical" href="https://blackstackstudio.com/" />
     <link rel="icon" href="assets/logo.png" type="image/png" />
+
+    <script>
+        window.__bsLoaderDeadline = window.setTimeout(function () {
+            var loader = document.getElementById("loader");
+            if (loader) loader.classList.add("is-done");
+            if (document.body) document.body.classList.add("is-loaded");
+            var hiddenContent = document.querySelectorAll("[data-reveal], [data-split]");
+            for (var i = 0; i < hiddenContent.length; i += 1) {
+                hiddenContent[i].classList.add("is-in");
+            }
+        }, 3200);
+    </script>
+    <noscript>
+        <style>
+            #loader { display: none !important; }
+            [data-reveal] { opacity: 1 !important; transform: none !important; }
+            .split-text .char { transform: none !important; }
+        </style>
+    </noscript>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,400&family=Syne:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
 
-    <link rel="stylesheet" href="css/style.css?v=41" />
+    <link rel="stylesheet" href="css/style.css?v=42" />
 </head>
 <body>
 
@@ -616,10 +636,9 @@
     </section>
 
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="js/site.js?v=4"></script>
-    <script src="js/cursor.js"></script>
-    <script src="js/three-scene.js?v=12"></script>
-    <script src="js/main.js?v=4"></script>
+    <script defer src="js/site.js?v=5"></script>
+    <script defer src="js/cursor.js"></script>
+    <script defer src="js/three-scene.js?v=13"></script>
+    <script defer src="js/main.js?v=5"></script>
 </body>
 </html>

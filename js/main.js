@@ -458,7 +458,12 @@ const I18N = {
 };
 
 const STORAGE_KEY = "bs.lang";
-let currentLang = localStorage.getItem(STORAGE_KEY) || "ru";
+let currentLang = "ru";
+try {
+    currentLang = localStorage.getItem(STORAGE_KEY) || "ru";
+} catch (error) {
+    currentLang = "ru";
+}
 if (!I18N[currentLang]) currentLang = "ru";
 
 function t(key) {
@@ -492,7 +497,10 @@ function initLangSwitch() {
             const lang = btn.dataset.lang;
             if (!I18N[lang] || lang === currentLang) return;
             currentLang = lang;
-            localStorage.setItem(STORAGE_KEY, lang);
+            try {
+                localStorage.setItem(STORAGE_KEY, lang);
+            } catch (error) {
+            }
 
             wrap.querySelectorAll("[data-lang]").forEach((b) =>
                 b.classList.toggle("is-active", b.dataset.lang === lang)
@@ -526,25 +534,36 @@ function runLoader() {
     if (!loader) return Promise.resolve();
 
     return new Promise((resolve) => {
-        let p = 0;
+        let finished = false;
         const start = performance.now();
         const minDuration = 1500;
 
+        function finish() {
+            if (finished) return;
+            finished = true;
+            if (window.__bsLoaderDeadline) {
+                clearTimeout(window.__bsLoaderDeadline);
+                window.__bsLoaderDeadline = null;
+            }
+            loader.classList.add("is-done");
+            document.body.classList.add("is-loaded");
+            resolve();
+        }
+
+        const safetyTimer = setTimeout(finish, 2400);
+
         function step(now) {
             const elapsed = now - start;
-            const target = Math.min(100, (elapsed / minDuration) * 100);
-            p += (target - p) * 0.18;
-            const display = Math.min(100, Math.round(p));
+            const display = Math.min(100, Math.round((elapsed / minDuration) * 100));
             if (fill) fill.style.width = display + "%";
             if (pct) pct.textContent = display;
-            if (display < 100) {
+            if (display < 100 && !finished) {
                 requestAnimationFrame(step);
             } else {
                 setTimeout(() => {
-                    loader.classList.add("is-done");
-                    document.body.classList.add("is-loaded");
-                    resolve();
-                }, 280);
+                    clearTimeout(safetyTimer);
+                    finish();
+                }, 160);
             }
         }
         requestAnimationFrame(step);
@@ -620,6 +639,12 @@ function refreshSplitInView() {
 let revealIO = null;
 
 function observeReveal(splitOnly = false) {
+    const selector = splitOnly ? "[data-split]" : "[data-reveal], [data-split]";
+    if (typeof window.IntersectionObserver !== "function") {
+        document.querySelectorAll(selector).forEach((el) => el.classList.add("is-in"));
+        return;
+    }
+
     if (!revealIO) {
         revealIO = new IntersectionObserver(
             (entries) => {
@@ -634,7 +659,6 @@ function observeReveal(splitOnly = false) {
         );
     }
 
-    const selector = splitOnly ? "[data-split]" : "[data-reveal], [data-split]";
     document.querySelectorAll(selector).forEach((el) => {
         if (el.hasAttribute("data-split") && el.classList.contains("is-in")) return;
         revealIO.observe(el);
@@ -779,6 +803,11 @@ function initStats() {
         requestAnimationFrame(step);
     };
 
+    if (typeof window.IntersectionObserver !== "function") {
+        stats.forEach(animate);
+        return;
+    }
+
     const io = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
             if (e.isIntersecting) {
@@ -792,17 +821,23 @@ function initStats() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    initLangSwitch();
-    applyTranslations();
+    const loaderReady = runLoader();
 
-    navScroll();
-    parallaxMark();
-    tilt();
-    magnetic();
-    startClock();
-    initStats();
+    try {
+        initLangSwitch();
+        applyTranslations();
 
-    runLoader().then(() => {
+        navScroll();
+        parallaxMark();
+        tilt();
+        magnetic();
+        startClock();
+        initStats();
+    } catch (error) {
+        console.error("Page initialization failed.", error);
+    }
+
+    loaderReady.then(() => {
         observeReveal();
 
         setTimeout(restartTypewriter, 300);

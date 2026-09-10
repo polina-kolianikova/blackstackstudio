@@ -1,21 +1,10 @@
 (function () {
-    if (typeof THREE === "undefined") {
-        console.warn("Three.js failed to load.");
-        return;
-    }
-
     const canvas = document.getElementById("heroCanvas");
     if (!canvas) return;
 
     const heroEl = document.getElementById("hero");
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isTouch = window.matchMedia("(pointer: coarse)").matches;
-    const isNarrow = window.matchMedia("(max-width: 600px)").matches;
-    const lowMem = navigator.deviceMemory && navigator.deviceMemory < 4;
-    const lowCpu = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
-
-    if (reduced || (isTouch && isNarrow) || (lowMem && lowCpu)) {
+    function useStaticBackground() {
         canvas.style.display = "none";
         if (heroEl) {
             heroEl.style.background =
@@ -23,8 +12,26 @@
                 "radial-gradient(ellipse 800px 600px at 20% 80%, rgba(255,255,255,0.04) 0%, transparent 60%), " +
                 "#000";
         }
+    }
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    const isNarrow = window.matchMedia("(max-width: 900px)").matches;
+    const lowMem = navigator.deviceMemory && navigator.deviceMemory < 4;
+    const lowCpu = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+
+    if (reduced || isTouch || isNarrow || (lowMem && lowCpu)) {
+        useStaticBackground();
         return;
     }
+
+    function startScene() {
+        if (typeof THREE === "undefined") {
+            useStaticBackground();
+            return;
+        }
+
+        try {
 
     const renderer = new THREE.WebGLRenderer({
         canvas,
@@ -314,4 +321,21 @@
     }
 
     animate();
+        } catch (error) {
+            console.warn("WebGL scene disabled.", error);
+            useStaticBackground();
+        }
+    }
+
+    if (typeof THREE !== "undefined") {
+        startScene();
+        return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
+    script.async = true;
+    script.onload = startScene;
+    script.onerror = useStaticBackground;
+    document.head.appendChild(script);
 })();
