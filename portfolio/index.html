@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="color-scheme" content="dark" />
+  <title>BlackStack Studio · Design</title>
+  <meta name="description" content="Студия дизайна BlackStack. Логотипы и знаки, реклама, ролики, персонажи, экраны продукта и стикеры. Карточки товара, упаковку, коммерческие и презентации рисуют те же дизайнеры. Отвечаем в течение часа." />
+  <link rel="icon" href="/portfolio/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="/portfolio/assets/index-BxB7g4ku.js"></script>
+  <link rel="stylesheet" crossorigin href="/portfolio/assets/index-zhpOMY9o.css">
+</head>
+<body>
+  <div class="loader" id="loader">
+    <div class="loader__inner">
+      <div class="loader__logo">
+        <img src="/portfolio/logo.png" alt="BlackStack Studio" width="88" height="88" />
+      </div>
+      <div class="loader__bar"><div class="loader__bar-fill" id="loaderBarFill"></div></div>
+      <div class="loader__text"><span id="loaderPercent">0</span>%</div>
+      <div class="loader__label">СОБИРАЕМ РАБОТЫ</div>
+    </div>
+  </div>
+
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <canvas class="cursor-trail" id="cursorTrail"></canvas>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <header class="nav" id="nav">
+    <a href="#hero" class="nav__logo" data-cursor="hover">
+      <img class="nav__logo-mark" src="/portfolio/logo.png" alt="" width="32" height="32" />
+      <span class="nav__logo-text">BlackStack</span>
+      <span class="nav__logo-slash">/</span>
+      <span class="nav__logo-desk">Design</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#motion" data-cursor="hover">Ролики</a>
+      <a href="#identity" data-cursor="hover">Логотипы</a>
+      <a href="#campaigns" data-cursor="hover">Реклама</a>
+      <a href="#stickers" data-cursor="hover">Стикеры</a>
+      <a href="#contact" data-cursor="hover">Заказать</a>
+    </nav>
+    <div class="nav__right">
+      <a href="https://blackstackstudio.com/" class="nav__ghost" data-cursor="hover">Студия</a>
+      <a href="https://t.me/blackstackmng" class="nav__cta magnetic" data-cursor="hover">
+        <span class="nav__cta-full">Кинуть задачу</span>
+        <span class="nav__cta-short">Задача</span>
+        <span class="nav__cta-arrow">-></span>
+      </a>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero__stage" aria-hidden="true">
+      <video class="hero__vid hero__vid--a" src="/portfolio/media/blinchik.mp4" poster="/portfolio/media/posters/blinchik.webp" muted loop playsinline autoplay></video>
+      <video class="hero__vid hero__vid--b" src="/portfolio/media/lezo.mp4" poster="/portfolio/media/posters/lezo.webp" muted loop playsinline autoplay></video>
+      <video class="hero__vid hero__vid--c" src="/portfolio/media/aezakmi.mp4" poster="/portfolio/media/posters/aezakmi.webp" muted loop playsinline autoplay></video>
+      <img class="hero__still hero__still--a" src="/portfolio/media/gamumu.webp" alt="" />
+      <img class="hero__still hero__still--b" src="/portfolio/media/panda-1.webp" alt="" />
+      <img class="hero__still hero__still--c" src="/portfolio/media/fastmoney.webp" alt="" />
+      <img class="hero__still hero__still--d" src="/portfolio/media/fightclub.webp" alt="" />
+    </div>
+    <div class="hero__vignette"></div>
+
+    <div class="hero__content">
+      <div class="hero__mark" data-reveal>
+        <span class="hero__mark-letter">B</span><span class="hero__mark-letter">S</span>
+      </div>
+      <h1 class="hero__title" data-split>Дизайн, который продаёт</h1>
+      <p class="hero__sub" id="heroSub"></p>
+      <div class="hero__meta" data-reveal>
+        <div class="hero__meta-strip">
+          <div><strong>07</strong><span>роликов</span></div>
+          <div><strong>12</strong><span>кадров</span></div>
+          <div><strong>03</strong><span>пака</span></div>
+        </div>
+      </div>
+      <a href="#motion" class="hero__scroll" data-cursor="hover">работы ниже</a>
+    </div>
+  </section>
+
+  <section class="now" id="now">
+    <div class="now__inner">
+      <div class="now__label"><span class="now__dot"></span>ЧТО ЛЕЖИТ НА ЭТОЙ СТРАНИЦЕ</div>
+      <ul class="now__list">
+        <li class="now__item"><span class="now__val">07</span><span class="now__lbl">Ролики</span></li>
+        <li class="now__item"><span class="now__val">07</span><span class="now__lbl">Логотипы</span></li>
+        <li class="now__item"><span class="now__val">12</span><span class="now__lbl">Реклама</span></li>
+        <li class="now__item"><span class="now__val">03</span><span class="now__lbl">Стикеры</span></li>
+        <li class="now__item"><span class="now__val">1ч</span><span class="now__lbl">Ответ на задачу</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="intro" id="intro">
+    <div class="intro__grid">
+      <p class="eyebrow" data-reveal>уровень</p>
+      <h2 class="intro__h" data-reveal>Посмотри работы,<br />потом кидай свою задачу</h2>
+      <p class="intro__p" data-reveal>
+        Ниже ролики, логотипы, реклама и стикеры. Своего формата ты тут можешь не найти, и это нормально, мы просто не всё выкладываем. Карточки товара, одежду, упаковку, коммерческое, презентацию и меню рисуют эти же дизайнеры и с той же плотностью. Прислать задачу можно голосом, скриншотом или одним абзацем, структуру доберём сами.
+      </p>
+    </div>
+    <p class="scope__lead" data-reveal>чаще всего кидают это</p>
+    <ul class="scope" data-reveal>
+      <li>карточки товара</li>
+      <li>карточки одежды</li>
+      <li>коммерческие предложения</li>
+      <li>презентации</li>
+      <li>упаковка и этикетка</li>
+      <li>обложки и баннеры</li>
+      <li>меню и гайды</li>
+      <li>логотипы и знаки</li>
+      <li>персонажи и ролики</li>
+      <li>стикеры и эмодзи</li>
+      <li>постеры и наружка</li>
+      <li>экраны продукта</li>
+    </ul>
+  </section>
+
+  <section class="motion" id="motion">
+    <div class="section-head">
+      <p class="eyebrow" data-reveal>01 / ролики</p>
+      <h2 data-reveal>Ролики, которые уже сданы клиентам</h2>
+      <p data-reveal>Нажми на превью, ролик откроется крупно, звук включается кнопкой.</p>
+    </div>
+
+    <div class="stage" id="motionStage">
+      <video id="stageVideo" src="/portfolio/media/blinchik.mp4" poster="/portfolio/media/posters/blinchik.webp" muted loop playsinline autoplay></video>
+      <div class="stage__meta">
+        <span class="stage__index" id="stageIndex">01 / 07</span>
+        <div>
+          <h3 id="stageTitle">Blinchik The Design</h3>
+          <p id="stageTag">интро знака</p>
+        </div>
+        <button class="stage__play" id="stageMute" type="button" data-cursor="hover">звук</button>
+      </div>
+    </div>
+
+    <div class="reel" id="reel">
+      <button class="reel__item is-active" data-src="/media/blinchik.mp4" data-poster="/media/posters/blinchik.webp" data-title="Blinchik The Design" data-tag="интро знака" data-cursor="case">
+        <video src="/portfolio/media/blinchik.mp4" poster="/portfolio/media/posters/blinchik.webp" muted loop playsinline></video>
+        <span>Blinchik</span>
+      </button>
+      <button class="reel__item" data-src="/media/aezakmi.mp4" data-poster="/media/posters/aezakmi.webp" data-title="Aezakmi" data-tag="глитч интро" data-cursor="case">
+        <video src="/portfolio/media/aezakmi.mp4" poster="/portfolio/media/posters/aezakmi.webp" muted loop playsinline></video>
+        <span>Aezakmi</span>
+      </button>
+      <button class="reel__item" data-src="/media/lezo.mp4" data-poster="/media/posters/lezo.webp" data-title="LEZO Group" data-tag="3D раскрытие знака" data-cursor="case">
+        <video src="/portfolio/media/lezo.mp4" poster="/portfolio/media/posters/lezo.webp" muted loop playsinline></video>
+        <span>LEZO</span>
+      </button>
+      <button class="reel__item" data-src="/media/boys.mp4" data-poster="/media/posters/boys.webp" data-title="Boys From The Street" data-tag="баннер 16 на 9" data-cursor="case">
+        <video src="/portfolio/media/boys.mp4" poster="/portfolio/media/posters/boys.webp" muted loop playsinline></video>
+        <span>Street</span>
+      </button>
+      <button class="reel__item" data-src="/media/fable.mp4" data-poster="/media/posters/fable.webp" data-title="Fable Telecom" data-tag="петля персонажа" data-cursor="case">
+        <video src="/portfolio/media/fable.mp4" poster="/portfolio/media/posters/fable.webp" muted loop playsinline></video>
+        <span>Fable</span>
+      </button>
+      <button class="reel__item" data-src="/media/mcd.mp4" data-poster="/media/posters/mcd.webp" data-title="Money Sleep" data-tag="комикс в движении" data-cursor="case">
+        <video src="/portfolio/media/mcd.mp4" poster="/portfolio/media/posters/mcd.webp" muted loop playsinline></video>
+        <span>Comic</span>
+      </button>
+      <button class="reel__item" data-src="/media/anim-logo.mp4" data-poster="/media/posters/anim-logo.webp" data-title="Fable Telecom" data-tag="анимация знака" data-cursor="case">
+        <video src="/portfolio/media/anim-logo.mp4" poster="/portfolio/media/posters/anim-logo.webp" muted loop playsinline></video>
+        <span>Anim</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="panda" id="panda">
+    <div class="panda__copy">
+      <p class="eyebrow" data-reveal>02 / персонаж</p>
+      <h2 data-reveal>Одна панда на бота, баннеры и ролики</h2>
+      <p data-reveal>
+        Персонажа рисовали сразу под все носители, поэтому бот, баннеры и ролики выглядят одним продуктом, а не работой трёх разных подрядчиков. Так же собираем персонажа под магазин, канал или упаковку.
+      </p>
+      <ul class="chips">
+        <li>персонаж</li>
+        <li>баннеры</li>
+        <li>бот</li>
+        <li>стикеры</li>
+      </ul>
+    </div>
+    <div class="panda__media">
+      <video class="panda__wide" src="/portfolio/media/panda-2.mp4" poster="/portfolio/media/posters/panda-2.webp" muted loop playsinline autoplay></video>
+      <div class="panda__stack">
+        <img src="/portfolio/media/panda-1.webp" alt="Panda VPN banner" />
+        <img src="/portfolio/media/panda-4.webp" alt="Panda VPN search" />
+        <video src="/portfolio/media/panda-3.mp4" poster="/portfolio/media/posters/panda-3.webp" muted loop playsinline autoplay></video>
+      </div>
+    </div>
+  </section>
+
+  <section class="identity" id="identity">
+    <div class="section-head">
+      <p class="eyebrow" data-reveal>03 / логотипы</p>
+      <h2 data-reveal>Знаки от буквы до объёма</h2>
+      <p data-reveal>Один знак должен читаться и в шапке канала, и на упаковке, и на карточке товара.</p>
+    </div>
+    <div class="id-grid">
+      <article class="id-card id-card--wide" data-cursor="case" data-lightbox="/media/blinchik-b.webp">
+        <img src="/portfolio/media/blinchik-b.webp" alt="Blinchik chrome B" />
+        <div class="id-card__meta"><span>01</span><b>Blinchik B</b><em>хром знак</em></div>
+      </article>
+      <article class="id-card" data-cursor="case" data-lightbox="/media/blinchik-mark.webp">
+        <img src="/portfolio/media/blinchik-mark.webp" alt="BL mark" />
+        <div class="id-card__meta"><span>02</span><b>BL mark</b><em>словесный знак</em></div>
+      </article>
+      <article class="id-card" data-cursor="case" data-lightbox="/media/atlanta-1.webp">
+        <img src="/portfolio/media/atlanta-1.webp" alt="Atlanta Crypt" />
+        <div class="id-card__meta"><span>03</span><b>Atlanta Crypt</b><em>система знака</em></div>
+      </article>
+      <article class="id-card" data-cursor="case" data-lightbox="/media/fastmoney.webp">
+        <img src="/portfolio/media/fastmoney.webp" alt="FastMoney24" />
+        <div class="id-card__meta"><span>04</span><b>FastMoney24</b><em>3D знак</em></div>
+      </article>
+      <article class="id-card id-card--tall" data-cursor="case" data-lightbox="/media/gamumu.webp">
+        <img src="/portfolio/media/gamumu.webp" alt="Gamumu" />
+        <div class="id-card__meta"><span>05</span><b>Gamumu</b><em>персонаж</em></div>
+      </article>
+      <article class="id-card" data-cursor="case" data-lightbox="/media/atlanta-2.webp">
+        <img src="/portfolio/media/atlanta-2.webp" alt="Atlanta Crypt variant" />
+        <div class="id-card__meta"><span>06</span><b>Atlanta</b><em>вариант знака</em></div>
+      </article>
+      <article class="id-card" data-cursor="case" data-lightbox="/media/atlanta-3.webp">
+        <img src="/portfolio/media/atlanta-3.webp" alt="Atlanta Crypt lockup" />
+        <div class="id-card__meta"><span>07</span><b>Atlanta</b><em>сборка знака</em></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <div class="marquee__track">
+        <span>карточки товара</span><span>●</span><span>одежда</span><span>●</span>
+        <span>коммерческие</span><span>●</span><span>упаковка</span><span>●</span>
+        <span>презентации</span><span>●</span><span>меню</span><span>●</span>
+        <span>логотипы</span><span>●</span><span>реклама</span><span>●</span>
+        <span>карточки товара</span><span>●</span><span>одежда</span><span>●</span>
+        <span>коммерческие</span><span>●</span><span>упаковка</span><span>●</span>
+        <span>презентации</span><span>●</span><span>меню</span><span>●</span>
+        <span>логотипы</span><span>●</span><span>реклама</span><span>●</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="campaigns" id="campaigns">
+    <div class="section-head">
+      <p class="eyebrow" data-reveal>04 / реклама</p>
+      <h2 data-reveal>Кадры для рекламы, наружки и превью</h2>
+      <p data-reveal>Та же логика работает и на карточке товара, кадр должен объяснять продукт без текста.</p>
+    </div>
+    <div class="camp-grid">
+      <article class="camp camp--hero" data-cursor="case" data-lightbox="/media/trump.webp">
+        <img src="/portfolio/media/trump.webp" alt="Blinchik Design campaign" />
+        <div class="camp__cap"><b>Blinchik Design</b><span>главный кадр кампании</span></div>
+      </article>
+      <article class="camp" data-cursor="case" data-lightbox="/media/billboard.webp">
+        <img src="/portfolio/media/billboard.webp" alt="Billboard" />
+        <div class="camp__cap"><b>Щит</b><span>наружная реклама</span></div>
+      </article>
+      <article class="camp" data-cursor="case" data-lightbox="/media/giveaway.webp">
+        <img src="/portfolio/media/giveaway.webp" alt="Giveaway" />
+        <div class="camp__cap"><b>Розыгрыш</b><span>промо для поста</span></div>
+      </article>
+      <article class="camp" data-cursor="case" data-lightbox="/media/giveaway-shoes.webp">
+        <img src="/portfolio/media/giveaway-shoes.webp" alt="Sneaker giveaway" />
+        <div class="camp__cap"><b>Airstep x Чортус</b><span>розыгрыш кроссовок</span></div>
+      </article>
+      <article class="camp" data-cursor="case" data-lightbox="/media/yt-1.webp">
+        <img src="/portfolio/media/yt-1.webp" alt="YouTube thumbnail" />
+        <div class="camp__cap"><b>YouTube</b><span>превью ролика</span></div>
+      </article>
+      <article class="camp" data-cursor="case" data-lightbox="/media/yt-2.webp">
+        <img src="/portfolio/media/yt-2.webp" alt="YouTube thumbnail 2" />
+        <div class="camp__cap"><b>YouTube</b><span>обложка ролика</span></div>
+      </article>
+      <article class="camp camp--poster" data-cursor="case" data-lightbox="/media/fightclub.webp">
+        <img src="/portfolio/media/fightclub.webp" alt="Fight Club poster" />
+        <div class="camp__cap"><b>Fight Club</b><span>постер</span></div>
+      </article>
+      <article class="camp camp--poster" data-cursor="case" data-lightbox="/media/knight.webp">
+        <img src="/portfolio/media/knight.webp" alt="The Knight poster" />
+        <div class="camp__cap"><b>The Knight</b><span>постер</span></div>
+      </article>
+      <article class="camp" data-cursor="case" data-lightbox="/media/secret-team.webp">
+        <img src="/portfolio/media/secret-team.webp" alt="Secret Team" />
+        <div class="camp__cap"><b>Secret Team</b><span>арт для канала</span></div>
+      </article>
+      <article class="camp" data-cursor="case" data-lightbox="/media/info-scream.webp">
+        <img src="/portfolio/media/info-scream.webp" alt="Info banner" />
+        <div class="camp__cap"><b>Инфо</b><span>баннер канала</span></div>
+      </article>
+      <article class="camp camp--wide" data-cursor="case" data-lightbox="/media/photo-11.webp">
+        <img src="/portfolio/media/photo-11.webp" alt="Start deal banner" />
+        <div class="camp__cap"><b>Начать сделку</b><span>кадр для запуска</span></div>
+      </article>
+      <article class="camp camp--wide" data-cursor="case" data-lightbox="/media/comics-series.webp">
+        <img src="/portfolio/media/comics-series.webp" alt="Comics series" />
+        <div class="camp__cap"><b>Комиксы</b><span>серия из 30 кадров</span></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="pitch" data-reveal>
+    <p>Нужен такой же кадр под свой товар или услугу, покажи, что есть сейчас, и получишь вариант от этих же дизайнеров.</p>
+    <a href="https://t.me/blackstackmng" data-cursor="hover">написать в Telegram -></a>
+  </div>
+
+  <section class="ui" id="ui">
+    <div class="section-head">
+      <p class="eyebrow" data-reveal>05 / экраны</p>
+      <h2 data-reveal>Экраны продукта, от админки до кошелька</h2>
+      <p data-reveal>Админка, профиль, заказы и кошелёк собраны в одной сетке, поэтому человек не ищет, куда нажать. Из этой же сетки собираются презентации и коммерческие.</p>
+    </div>
+    <div class="ui-board">
+      <img src="/portfolio/media/ui-admin-1.webp" alt="Админ панель" />
+      <img src="/portfolio/media/ui-profile-1.webp" alt="Профиль" />
+      <img src="/portfolio/media/ui-orders-1.webp" alt="Заказы" />
+      <img src="/portfolio/media/ui-wallet-1.webp" alt="Кошелёк" />
+      <img src="/portfolio/media/ui-admin-2.webp" alt="Админ панель alt" />
+      <img src="/portfolio/media/ui-profile-2.webp" alt="Профиль alt" />
+      <img src="/portfolio/media/ui-orders-2.webp" alt="Заказы alt" />
+      <img src="/portfolio/media/ui-wallet-2.webp" alt="Кошелёк alt" />
+    </div>
+  </section>
+
+  <div class="pitch" data-reveal>
+    <p>Если вместо экранов у тебя карточки для маркетплейса, логика та же, сначала разбираем, что человек видит первым, потом рисуем.</p>
+    <a href="#contact" data-cursor="hover">кинуть задачу -></a>
+  </div>
+
+  <section class="stickers" id="stickers">
+    <div class="section-head">
+      <p class="eyebrow" data-reveal>06 / телеграм</p>
+      <h2 data-reveal>Стикеры и эмодзи для Telegram</h2>
+      <p data-reveal>Паки ниже ставятся в один клик. Свой набор под бренд рисуем так же, от эскиза до загрузки.</p>
+    </div>
+    <div class="sticker-grid">
+      <a class="sticker" href="https://t.me/addstickers/SideGroups1" target="_blank" rel="noreferrer" data-cursor="hover">
+        <div class="sticker__preview sticker__preview--side">Side Groups</div>
+        <h3>Side Groups</h3>
+        <p>5 стикеров, бесплатно</p>
+        <span>поставить пак -></span>
+      </a>
+      <a class="sticker" href="https://t.me/addemoji/blinchikgfx" target="_blank" rel="noreferrer" data-cursor="hover">
+        <img src="/portfolio/media/emoji-blinchik.webp" alt="blinchik emoji pack" />
+        <h3>blinchik @soduck7</h3>
+        <p>11 эмодзи, премиум</p>
+        <span>поставить пак -></span>
+      </a>
+      <a class="sticker" href="https://t.me/addstickers/epiclegends" target="_blank" rel="noreferrer" data-cursor="hover">
+        <img src="/portfolio/media/emoji-epic.webp" alt="Epic Legends pack" />
+        <h3>Epic Legends</h3>
+        <p>стикеры и эмодзи</p>
+        <span>поставить пак -></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <p class="eyebrow">если своего формата нет</p>
+    <blockquote>Своего примера выше можно не найти, студию менять смысла нет</blockquote>
+    <p class="manifesto__note">Работы на этой странице показывают руку и вкус. Карточки товара, упаковку, коммерческое, презентацию или меню рисуют те же дизайнеры и в том же качестве. Отказ бывает по срокам, а не по формату.</p>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="eyebrow">07 / заказать</p>
+    <h2>Кидай задачу как есть</h2>
+    <p>Готовое ТЗ не нужно и похожий пример выше искать не нужно. Напиши в Telegram или на почту, приложи фото товара, старые макеты или просто скажи словами, что нужно. Отвечаем в течение часа, оценку и срок присылаем за 48 часов.</p>
+    <div class="contact__row">
+      <a class="nav__cta magnetic" href="https://t.me/blackstackmng" data-cursor="hover">Telegram @blackstackmng <span>-></span></a>
+      <a class="contact__link" href="https://instagram.com/blackstack_studio" data-cursor="hover">Instagram</a>
+      <a class="contact__link" href="mailto:blackstackst@gmail.com" data-cursor="hover">blackstackst@gmail.com</a>
+    </div>
+    <p class="contact__foot">BlackStack Studio. Дизайн и разработка</p>
+  </section>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox__close" id="lightboxClose" type="button">закрыть</button>
+    <img id="lightboxImg" alt="" />
+  </div>
+
+</body>
+</html>
