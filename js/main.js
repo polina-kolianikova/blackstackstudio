@@ -5,6 +5,7 @@ const I18N = {
 
         "nav.expertise": "Что строим",
         "nav.projects":  "Кейсы",
+        "nav.design":    "Дизайн",
         "nav.team":      "Создатели",
         "nav.contact":   "Бриф",
         "nav.cta":       "Запустить проект",
@@ -156,6 +157,7 @@ const I18N = {
         "footer.col2.1":  "Манифест",
         "footer.col2.2":  "Процесс",
         "footer.col2.3":  "Кейсы",
+        "footer.col2.5":  "Портфолио дизайна",
         "footer.col2.4":  "Создатели",
         "footer.col3":    "Связь",
         "footer.col3.1":  "Telegram",
@@ -175,6 +177,7 @@ const I18N = {
 
         "nav.expertise": "What we build",
         "nav.projects":  "Cases",
+        "nav.design":    "Design",
         "nav.team":      "Founders",
         "nav.contact":   "Brief",
         "nav.cta":       "Launch a project",
@@ -326,6 +329,7 @@ const I18N = {
         "footer.col2.1":  "Manifesto",
         "footer.col2.2":  "Process",
         "footer.col2.3":  "Cases",
+        "footer.col2.5":  "Design portfolio",
         "footer.col2.4":  "Founders",
         "footer.col3":    "Contact",
         "footer.col3.1":  "Telegram",
@@ -345,6 +349,7 @@ const I18N = {
 
         "nav.expertise": "Що будуємо",
         "nav.projects":  "Кейси",
+        "nav.design":    "Дизайн",
         "nav.team":      "Засновники",
         "nav.contact":   "Бриф",
         "nav.cta":       "Запустити проєкт",
@@ -496,6 +501,7 @@ const I18N = {
         "footer.col2.1":  "Маніфест",
         "footer.col2.2":  "Процес",
         "footer.col2.3":  "Кейси",
+        "footer.col2.5":  "Портфоліо дизайну",
         "footer.col2.4":  "Засновники",
         "footer.col3":    "Зв'язок",
         "footer.col3.1":  "Telegram",
