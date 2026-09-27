@@ -42,11 +42,19 @@
         }
 
         .eyebrow {
-            margin: 0 0 12px;
+            margin: 0;
             font-size: 11px;
             letter-spacing: 0.28em;
             text-transform: uppercase;
             color: var(--muted);
+        }
+
+        .topbar {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
         }
 
         h1 {
@@ -105,6 +113,14 @@
             flex-wrap: wrap;
         }
 
+        .language-switcher {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            color: var(--muted);
+        }
+
         button {
             appearance: none;
             border: 1px solid var(--line);
@@ -119,57 +135,217 @@
         button:hover {
             border-color: rgba(255, 255, 255, 0.24);
         }
+
+        .language-switcher a {
+            padding: 8px 0;
+            border: 0;
+            border-radius: 0;
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .language-switcher a:hover,
+        .language-switcher a.is-active {
+            color: var(--fg);
+        }
+
+        .language-separator {
+            font-size: 13px;
+        }
+
+        @media (max-width: 560px) {
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
     <main class="panel">
-        <p class="eyebrow">BlackStack / Admin</p>
-        <h1>Посетители сайта</h1>
-        <p class="lead">
+        <div class="topbar">
+            <p class="eyebrow" data-i18n="admin.eyebrow">BlackStack / Admin</p>
+            <div class="language-switcher" role="group" aria-label="Language">
+                <a href="?lang=ru" class="is-active" data-language="ru" lang="ru" aria-current="true">Русский</a>
+                <span class="language-separator" aria-hidden="true">/</span>
+                <a href="?lang=en" data-language="en" lang="en">English</a>
+            </div>
+        </div>
+        <h1 data-i18n="admin.title">Посетители сайта</h1>
+        <p class="lead" data-i18n="admin.lead">
             Здесь показывается количество уникальных посетителей, посчитанных по уникальным браузерам.
             Счётчик начинает собирать данные с момента включения этой админки.
         </p>
 
         <section class="card">
-            <div class="label">Уникальные посетители</div>
+            <div class="label" data-i18n="admin.visitorsLabel">Уникальные посетители</div>
             <div class="value" id="visitorCount">...</div>
-            <p class="hint" id="statusText">Загружаю текущую статистику...</p>
+            <p class="hint" id="statusText" data-i18n="admin.status.loading">Загружаю текущую статистику...</p>
             <p class="updated" id="updatedAt"></p>
         </section>
 
         <div class="actions">
-            <button type="button" id="refreshBtn">Обновить</button>
+            <button type="button" id="refreshBtn" data-i18n="admin.refresh">Обновить</button>
         </div>
     </main>
 
     <script>
         const COUNTER_URL = "https://api.countapi.xyz/get/blackstackstudio-site/unique-visitors-v1";
+        const STORAGE_KEY = "blackstack-admin-language";
+        const LOCALES = {
+            ru: "ru-RU",
+            en: "en-US",
+        };
+        const TRANSLATIONS = {
+            ru: {
+                pageTitle: "BlackStack Admin",
+                "admin.eyebrow": "BlackStack / Admin",
+                "admin.title": "Посетители сайта",
+                "admin.lead": "Здесь показывается количество уникальных посетителей, посчитанных по уникальным браузерам. Счётчик начинает собирать данные с момента включения этой админки.",
+                "admin.visitorsLabel": "Уникальные посетители",
+                "admin.status.loading": "Загружаю текущую статистику...",
+                "admin.status.success": "Количество уникальных браузеров, которые уже заходили на сайт.",
+                "admin.status.empty": "Пока данных нет или счётчик ещё не успел накопить посещения.",
+                "admin.updated": "Обновлено:",
+                "admin.retryLater": "Проверь ещё раз позже.",
+                "admin.refresh": "Обновить",
+            },
+            en: {
+                pageTitle: "BlackStack Admin",
+                "admin.eyebrow": "BlackStack / Admin",
+                "admin.title": "Site visitors",
+                "admin.lead": "This panel shows unique visitors counted by unique browsers. The counter starts collecting data from the moment this admin panel is enabled.",
+                "admin.visitorsLabel": "Unique visitors",
+                "admin.status.loading": "Loading current statistics...",
+                "admin.status.success": "Unique browsers that have already visited the site.",
+                "admin.status.empty": "No data yet, or the counter has not collected visits yet.",
+                "admin.updated": "Updated:",
+                "admin.retryLater": "Check again later.",
+                "admin.refresh": "Refresh",
+            },
+        };
 
         const countEl = document.getElementById("visitorCount");
         const statusEl = document.getElementById("statusText");
         const updatedEl = document.getElementById("updatedAt");
         const refreshBtn = document.getElementById("refreshBtn");
+        const languageButtons = document.querySelectorAll("[data-language]");
+        const translatableElements = document.querySelectorAll("[data-i18n]");
+
+        let currentLanguage = getInitialLanguage();
+        let lastVisitorValue = null;
+        let lastStatusKey = "admin.status.loading";
+        let lastUpdatedAt = null;
+        let shouldShowRetryLater = false;
+
+        function getInitialLanguage() {
+            const queryLanguage = new URLSearchParams(window.location.search).get("lang");
+            if (queryLanguage in TRANSLATIONS) return queryLanguage;
+
+            try {
+                const savedLanguage = localStorage.getItem(STORAGE_KEY);
+                if (savedLanguage in TRANSLATIONS) return savedLanguage;
+            } catch (error) {
+                // localStorage can be unavailable in stricter browser contexts.
+            }
+
+            return document.documentElement.lang in TRANSLATIONS ? document.documentElement.lang : "ru";
+        }
+
+        function translate(key) {
+            return TRANSLATIONS[currentLanguage][key] || TRANSLATIONS.ru[key] || key;
+        }
+
+        function formatVisitorCount(value) {
+            return new Intl.NumberFormat(LOCALES[currentLanguage]).format(value);
+        }
+
+        function formatUpdatedAt(date) {
+            return `${translate("admin.updated")} ${date.toLocaleString(LOCALES[currentLanguage])}`;
+        }
+
+        function renderDynamicText() {
+            statusEl.textContent = translate(lastStatusKey);
+
+            if (lastVisitorValue !== null) {
+                countEl.textContent = formatVisitorCount(lastVisitorValue);
+            }
+
+            if (lastUpdatedAt) {
+                updatedEl.textContent = formatUpdatedAt(lastUpdatedAt);
+            } else if (shouldShowRetryLater) {
+                updatedEl.textContent = translate("admin.retryLater");
+            }
+        }
+
+        function applyLanguage(language) {
+            currentLanguage = language in TRANSLATIONS ? language : "ru";
+            document.documentElement.lang = currentLanguage;
+            document.title = translate("pageTitle");
+
+            translatableElements.forEach((element) => {
+                element.textContent = translate(element.dataset.i18n);
+            });
+
+            languageButtons.forEach((button) => {
+                const isActive = button.dataset.language === currentLanguage;
+                button.classList.toggle("is-active", isActive);
+                if (isActive) {
+                    button.setAttribute("aria-current", "true");
+                } else {
+                    button.removeAttribute("aria-current");
+                }
+            });
+
+            renderDynamicText();
+
+            try {
+                localStorage.setItem(STORAGE_KEY, currentLanguage);
+            } catch (error) {
+                // Language switching still works for the current session.
+            }
+        }
 
         async function loadStats() {
             countEl.textContent = "...";
-            statusEl.textContent = "Загружаю текущую статистику...";
+            lastVisitorValue = null;
+            lastUpdatedAt = null;
+            shouldShowRetryLater = false;
+            lastStatusKey = "admin.status.loading";
+            renderDynamicText();
 
             try {
                 const response = await fetch(COUNTER_URL, { cache: "no-store" });
                 if (!response.ok) throw new Error("bad_response");
                 const data = await response.json();
                 const value = typeof data.value === "number" ? data.value : 0;
+                const updatedAt = new Date();
 
-                countEl.textContent = new Intl.NumberFormat("ru-RU").format(value);
-                statusEl.textContent = "Количество уникальных браузеров, которые уже заходили на сайт.";
-                updatedEl.textContent = "Обновлено: " + new Date().toLocaleString("ru-RU");
+                lastVisitorValue = value;
+                lastUpdatedAt = updatedAt;
+                lastStatusKey = "admin.status.success";
+                renderDynamicText();
             } catch (error) {
+                lastVisitorValue = 0;
+                lastUpdatedAt = null;
+                lastStatusKey = "admin.status.empty";
+                shouldShowRetryLater = true;
                 countEl.textContent = "0";
-                statusEl.textContent = "Пока данных нет или счётчик ещё не успел накопить посещения.";
-                updatedEl.textContent = "Проверь ещё раз позже.";
+                renderDynamicText();
             }
         }
 
+        languageButtons.forEach((button) => {
+            button.addEventListener("click", (event) => {
+                event.preventDefault();
+                applyLanguage(button.dataset.language);
+                const url = new URL(window.location.href);
+                url.searchParams.set("lang", currentLanguage);
+                window.history.replaceState({}, "", url);
+            });
+        });
+
+        applyLanguage(currentLanguage);
         refreshBtn.addEventListener("click", loadStats);
         loadStats();
     </script>
