@@ -33,7 +33,7 @@ After publication:
 
 1. Confirm HTTP 200 for all sitemap URLs, robots.txt and sitemap.xml on the production domain. Confirm missing pages return 404.
 2. Verify that language links and canonical URLs resolve to the production domain and that the old page content has not been restored by a separate deployment.
-3. In an approved Google account, inspect or set up Search Console for blackstackstudio.com, verify ownership if needed, and submit sitemap.xml. Inspect the home and representative service pages. Search Console access and indexing status have not been verified in this task.
+3. Keep the Google and Bing ownership files at the site root. Google Search Console ownership was verified on 2026-10-07. The home page was already indexed, with its last reported crawl on 2026-10-03. The new web-development page was accepted into Google's crawl queue on 2026-10-07. Queue submission does not establish indexing. The sitemap report still showed "Couldn't fetch", although Google's live inspection successfully fetched the same sitemap. Recheck this report in a later user-requested review; do not keep resubmitting unchanged URLs.
 4. Check real search queries and indexed pages after Google has crawled the site. Schedule monitoring only if the user explicitly requests it.
 
 A missing robots.txt or sitemap alone does not prohibit indexing. These changes provide crawlable content and discovery paths; they do not establish that Google has indexed the pages or guarantee rankings.
