@@ -1,0 +1,11 @@
+# Keep build inputs, development dependencies and source archives off GitHub Pages.
+exclude:
+  - seo
+  - scripts
+  - tests
+  - node_modules
+  - package.json
+  - package-lock.json
+  - requirements-seo.txt
+  - middleware.js
+  - blackstack-studio.zip

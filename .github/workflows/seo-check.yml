@@ -1,0 +1,22 @@
+name: Validate SEO pages
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-seo.txt
+      - run: python scripts/build-seo.py
+      - run: git diff --exit-code
+      - run: node --check js/main.js && node --check js/i18n.js
+      - run: python -m unittest discover -s tests -v

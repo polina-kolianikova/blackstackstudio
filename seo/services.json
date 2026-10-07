@@ -1,0 +1,95 @@
+[
+  {
+    "slug": "web-development",
+    "card": 1,
+    "ru": {
+      "title": "Разработка сайтов и веб-приложений",
+      "description": "Разработка сайтов, лендингов, интернет-магазинов и веб-приложений в BlackStack Studio. Дизайн, интеграции, запуск и поддержка под задачи бизнеса.",
+      "intro": "Собираем сайты и веб-приложения под конкретную задачу: представить компанию, принимать заявки, продавать товары или дать клиентам личный кабинет. Можно начать с нового проекта или доработки существующего сайта.",
+      "scope": ["Лендинги и сайты компаний с адаптацией под телефон, понятной структурой и формами заявок.", "Интернет-магазины: каталог, корзина, оформление заказа и подключение нужных внешних сервисов.", "Личные кабинеты, рабочие панели и веб-приложения с ролями пользователей и данными из API.", "Интеграции с CRM, платёжными системами и аналитикой, перенос или исправление существующего сайта."],
+      "delivery": "На старте определяем страницы, пользовательские сценарии и интеграции. Затем согласуем структуру, делаем интерфейс и разработку, проверяем формы и основные сценарии на компьютере и телефоне. В состав сдачи включаем исходный код и инструкции по запуску. Хостинг, платные сервисы и дальнейшую поддержку обсуждаем отдельно.",
+      "estimate": "Стоимость и срок зависят от числа страниц, готовности текстов и дизайна, сложности кабинета и внешних интеграций. Для оценки пришлите описание задачи, ссылку на текущий сайт, примеры и желаемую дату запуска. Если всё ещё на уровне идеи, начнём с определения первого полезного объёма.",
+      "proof": "Примеры интерфейсов, айдентики и визуальных материалов доступны в портфолио дизайна. На главной описана наша работа над веб-частью событийного проекта RED’S GO."
+    },
+    "en": {
+      "title": "Website and web application development",
+      "description": "Custom websites, landing pages, online stores and web applications by BlackStack Studio. Design, integrations, launch and support for your business.",
+      "intro": "We build websites and web applications around a specific job: introduce your business, capture enquiries, sell products or give customers a secure account area. We can start a new project or improve an existing website.",
+      "scope": ["Landing pages and company websites with responsive layouts, clear navigation and enquiry forms.", "Online stores with a catalogue, cart, checkout and the external services your operation needs.", "Customer portals, dashboards and web applications with user roles and API connections.", "CRM, payment and analytics integrations, website migrations and fixes to existing projects."],
+      "delivery": "We start by defining the pages, user journeys and integrations. Then we agree on the structure, design and build the interface, and check forms and key workflows on desktop and mobile. Delivery includes source code and instructions for running the project. Hosting, paid services and ongoing support are scoped separately.",
+      "estimate": "Cost and timing depend on the page count, the availability of copy and designs, account features and external integrations. Send your brief, current website, references and preferred launch date. If you only have an idea, we’ll help define a useful first release before estimating the implementation.",
+      "proof": "Our design portfolio includes interfaces, brand identities and visual work. The home page also describes our contribution to the web component of the RED’S GO event project."
+    },
+    "uk": {
+      "title": "Розробка сайтів і вебзастосунків",
+      "description": "Розробка сайтів, лендингів, інтернет-магазинів і вебзастосунків у BlackStack Studio. Дизайн, інтеграції, запуск та підтримка для бізнесу.",
+      "intro": "Створюємо сайти та вебзастосунки під конкретне завдання: представити компанію, приймати заявки, продавати товари або дати клієнтам особистий кабінет. Можемо почати новий проєкт або доопрацювати наявний сайт.",
+      "scope": ["Лендинги та сайти компаній з адаптацією під телефон, зрозумілою структурою та формами заявок.", "Інтернет-магазини: каталог, кошик, оформлення замовлення та підключення потрібних зовнішніх сервісів.", "Особисті кабінети, робочі панелі та вебзастосунки з ролями користувачів і даними з API.", "Інтеграції з CRM, платіжними системами й аналітикою, перенесення та виправлення наявних сайтів."],
+      "delivery": "Спочатку визначаємо сторінки, користувацькі сценарії та інтеграції. Потім погоджуємо структуру, робимо інтерфейс і розробку, перевіряємо форми та основні сценарії на комп’ютері й телефоні. Передаємо вихідний код та інструкції із запуску. Хостинг, платні сервіси й подальшу підтримку обговорюємо окремо.",
+      "estimate": "Вартість і строк залежать від кількості сторінок, готовності текстів і дизайну, складності кабінету та зовнішніх інтеграцій. Для оцінки надішліть опис завдання, посилання на поточний сайт, приклади та бажану дату запуску. Якщо є лише ідея, почнемо з визначення першого корисного обсягу.",
+      "proof": "Приклади інтерфейсів, айдентики та візуальних матеріалів є в портфоліо дизайну. На головній описана наша робота над вебчастиною подієвого проєкту RED’S GO."
+    }
+  },
+  {
+    "slug": "automation-ai",
+    "card": 2,
+    "ru": {
+      "title": "Автоматизация бизнеса, Telegram-боты и AI-агенты",
+      "description": "Автоматизация процессов, Telegram-боты, AI-агенты и API-интеграции от BlackStack Studio. Связываем CRM, заявки, данные и рабочие инструменты.",
+      "intro": "Помогаем убрать повторяющиеся действия из рабочих процессов: перенос заявок, уведомления, сбор данных, подготовку ответов и синхронизацию сервисов. Выбираем решение после разбора процесса и доступных интеграций.",
+      "scope": ["Telegram-боты для заявок, уведомлений, взаимодействия с клиентами и внутренних задач команды.", "Связка сайта, CRM, таблиц и других систем через API и вебхуки.", "AI-помощники для поиска по материалам компании, подготовки черновиков и обработки обращений.", "Автоматическая обработка данных, отчёты и рабочие панели для контроля результата."],
+      "delivery": "Сначала описываем текущий процесс, источники данных и нужный результат. Отделяем обычные правила автоматизации от задач, где полезна языковая модель. Для интеграций предусматриваем обработку ошибок, повторные запросы и журнал событий. В важных действиях AI-помощника можно оставить подтверждение человеком. Проверяем решение на согласованных примерах и передаём инструкции.",
+      "estimate": "Для оценки нужны пример ручного процесса, список сервисов, объём операций и требования к доступу. Срок зависит от качества API, числа сценариев и ограничений внешних платформ. Подписки, сервер и использование моделей могут требовать отдельных расходов. Их учитываем при выборе решения и обсуждаем до разработки.",
+      "proof": "Можно начать с одного процесса, проверить его на реальных примерах и затем расширить автоматизацию. Критерии приёмки определяем до реализации: что поступает на вход, какой результат должен получиться и как обрабатываются ошибки."
+    },
+    "en": {
+      "title": "Business automation, Telegram bots and AI agents",
+      "description": "Workflow automation, Telegram bots, AI agents and API integrations by BlackStack Studio. Connect your CRM, enquiries, data and everyday tools.",
+      "intro": "We help remove repetitive work from everyday operations: moving enquiries between systems, sending notifications, collecting data, drafting responses and keeping tools in sync. The solution follows the process and the integrations available.",
+      "scope": ["Telegram bots for enquiries, notifications, customer workflows and internal team tasks.", "Connections between websites, CRM systems, spreadsheets and other tools through APIs and webhooks.", "AI assistants for searching company materials, preparing drafts and processing incoming requests.", "Data processing, reports and operational dashboards that make the outcome visible."],
+      "delivery": "We map the current process, its data sources and the intended result. We separate deterministic automation from tasks where a language model is useful. Integrations include error handling, retries and event logs. Important AI actions can require human confirmation. We check the agreed scenarios and hand over operating instructions.",
+      "estimate": "To estimate the work, we need an example of the manual process, the tools involved, operation volumes and access requirements. Timing depends on API quality, the number of workflows and platform restrictions. Subscriptions, hosting and model usage may add recurring costs. We consider those costs when choosing the solution and discuss them before development.",
+      "proof": "A project can start with one workflow, be checked against real examples and expand from there. We define acceptance criteria before implementation: the input, the expected output and what should happen when a dependency fails."
+    },
+    "uk": {
+      "title": "Автоматизація бізнесу, Telegram-боти та AI-агенти",
+      "description": "Автоматизація процесів, Telegram-боти, AI-агенти та API-інтеграції від BlackStack Studio. Поєднуємо CRM, заявки, дані й робочі інструменти.",
+      "intro": "Допомагаємо прибрати повторювані дії з робочих процесів: перенесення заявок, сповіщення, збір даних, підготовку відповідей і синхронізацію сервісів. Обираємо рішення після розбору процесу та доступних інтеграцій.",
+      "scope": ["Telegram-боти для заявок, сповіщень, взаємодії з клієнтами та внутрішніх завдань команди.", "Поєднання сайту, CRM, таблиць та інших систем через API і вебхуки.", "AI-помічники для пошуку в матеріалах компанії, підготовки чернеток і обробки звернень.", "Автоматична обробка даних, звіти й робочі панелі для контролю результату."],
+      "delivery": "Спочатку описуємо поточний процес, джерела даних і потрібний результат. Відокремлюємо звичайні правила автоматизації від завдань, де корисна мовна модель. Для інтеграцій передбачаємо обробку помилок, повторні запити та журнал подій. Важливі дії AI-помічника можуть вимагати підтвердження людиною. Перевіряємо погоджені сценарії та передаємо інструкції.",
+      "estimate": "Для оцінки потрібні приклад ручного процесу, перелік сервісів, обсяг операцій і вимоги до доступу. Строк залежить від якості API, кількості сценаріїв та обмежень зовнішніх платформ. Підписки, сервер і використання моделей можуть потребувати окремих витрат. Враховуємо їх під час вибору рішення та обговорюємо до розробки.",
+      "proof": "Можна почати з одного процесу, перевірити його на реальних прикладах і потім розширити автоматизацію. Критерії приймання визначаємо до реалізації: що надходить на вхід, який результат потрібен і як обробляються помилки."
+    }
+  },
+  {
+    "slug": "custom-software",
+    "card": 4,
+    "ru": {
+      "title": "Заказная разработка ПО, MVP и внутренних систем",
+      "description": "Заказная разработка ПО и MVP в BlackStack Studio. SaaS, CRM, внутренние системы, API и доработка существующих продуктов под процессы компании.",
+      "intro": "Разрабатываем программные продукты, когда готовый сервис не подходит под процесс компании. Это может быть первый MVP, SaaS, внутренняя CRM, рабочая система или развитие уже запущенного приложения.",
+      "scope": ["MVP для проверки ключевого пользовательского сценария без лишних функций на первом этапе.", "SaaS и клиентские кабинеты с учётными записями, ролями и подключением внешних сервисов.", "Внутренние системы для операций, заявок, учёта и совместной работы команды.", "API, миграции данных, исправление ошибок и развитие существующего программного продукта."],
+      "delivery": "Начинаем с пользователей, их задач и ограничений: данные, нагрузка, права доступа и обязательные интеграции. Определяем границы первого релиза и критерии приёмки, затем выбираем архитектуру. Разработку делим на проверяемые этапы. Перед запуском проверяем основные сценарии, доступы и обработку ошибок. Передаём код и инструкции по развёртыванию.",
+      "estimate": "Цена и срок зависят от состава функций, интеграций, состояния текущего кода и требований к инфраструктуре. Пришлите описание процесса, роли пользователей, примеры экранов и ограничения по срокам. Для существующего продукта понадобится технический разбор. После него можно отделить обязательные изменения от следующих этапов и оценить работу по частям.",
+      "proof": "Если задача связана с кабинетом или веб-интерфейсом, посмотрите направление веб-разработки. Если основной объём состоит из соединения готовых сервисов, начните с автоматизации: отдельная программная платформа может не понадобиться."
+    },
+    "en": {
+      "title": "Custom software, MVP and internal tool development",
+      "description": "Custom software and MVP development by BlackStack Studio. SaaS, internal systems, CRM tools, APIs and improvements to existing applications.",
+      "intro": "We develop software when an existing service doesn’t fit how your business works. That can mean an initial MVP, a SaaS product, an internal CRM, an operational tool or further development of an existing application.",
+      "scope": ["MVPs that test the core user journey with a focused first release.", "SaaS products and customer portals with accounts, roles and external service integrations.", "Internal tools for operations, enquiries, records and team collaboration.", "APIs, data migrations, bug fixes and ongoing development of existing software."],
+      "delivery": "We start with the users, their tasks and the constraints: data, load, permissions and required integrations. We define the first release and acceptance criteria before choosing the architecture. Development is split into stages you can review. Before launch, we check key workflows, access control and error handling. Delivery includes code and deployment instructions.",
+      "estimate": "Cost and timing depend on features, integrations, the condition of existing code and infrastructure requirements. Send a process description, user roles, screen references and deadlines. An existing product needs a technical review first. That lets us distinguish essential changes from later work and estimate the project in manageable stages.",
+      "proof": "If your project centres on a customer portal or browser interface, explore our web development service. If most of the work involves connecting existing tools, start with automation: you may not need a separate software platform."
+    },
+    "uk": {
+      "title": "Розробка ПЗ на замовлення, MVP і внутрішніх систем",
+      "description": "Розробка ПЗ на замовлення та MVP у BlackStack Studio. SaaS, CRM, внутрішні системи, API та доопрацювання продуктів під процеси компанії.",
+      "intro": "Розробляємо програмні продукти, коли готовий сервіс не відповідає процесам компанії. Це може бути перший MVP, SaaS, внутрішня CRM, робоча система або розвиток уже запущеного застосунку.",
+      "scope": ["MVP для перевірки ключового користувацького сценарію з чіткими межами першого релізу.", "SaaS і клієнтські кабінети з обліковими записами, ролями та зовнішніми інтеграціями.", "Внутрішні системи для операцій, заявок, обліку та спільної роботи команди.", "API, міграції даних, виправлення помилок і розвиток наявного програмного продукту."],
+      "delivery": "Починаємо з користувачів, їхніх завдань та обмежень: дані, навантаження, права доступу й обов’язкові інтеграції. Визначаємо межі першого релізу та критерії приймання, потім обираємо архітектуру. Ділимо розробку на етапи, які можна перевірити. До запуску перевіряємо основні сценарії, доступи й обробку помилок. Передаємо код та інструкції з розгортання.",
+      "estimate": "Вартість і строк залежать від функцій, інтеграцій, стану поточного коду та вимог до інфраструктури. Надішліть опис процесу, ролі користувачів, приклади екранів та обмеження за строками. Для наявного продукту потрібен технічний розбір. Після нього можна відокремити обов’язкові зміни від наступних етапів і оцінити роботу частинами.",
+      "proof": "Якщо завдання пов’язане з кабінетом або вебінтерфейсом, перегляньте напрям веброзробки. Якщо основна робота полягає в поєднанні готових сервісів, почніть з автоматизації: окрема програмна платформа може не знадобитися."
+    }
+  }
+]

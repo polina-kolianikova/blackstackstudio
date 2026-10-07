@@ -337,6 +337,7 @@ img, svg {
 }
 
 .lang-switch__btn {
+    text-decoration: none;
     position: relative;
     z-index: 2;
     padding: 6px 12px;
@@ -2607,9 +2608,16 @@ img, svg {
 }
 
 @media (max-width: 600px) {
+    .hero {
+        height: auto;
+        min-height: 100svh;
+    }
+
     .hero__content {
+        height: auto;
         justify-content: flex-start;
         padding-top: clamp(132px, 18vh, 172px);
+        padding-bottom: 110px;
     }
 
     .hero__meta {
@@ -2707,7 +2715,7 @@ img, svg {
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
     .nav__logo {
         gap: 0;
     }
@@ -2791,3 +2799,15 @@ img, svg {
 @media (prefers-reduced-motion: reduce) {
     @view-transition { navigation: none; }
 }
+
+.service-link {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    margin-top: 24px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.service-link:focus-visible { outline: 2px solid white; outline-offset: 6px; }
