@@ -27,7 +27,7 @@ The GitHub workflow checks syntax, static metadata, local resources, internal li
 
 ## Publishing and search verification
 
-This change was prepared locally on 2026-10-07 against main commit `4c7c244`. Publication is pending verification or explicit authorization of the connected GitHub account. Do not report the production site as updated until that step and the live checks are complete.
+This change was prepared on 2026-10-07 against main commit `4c7c244`. The repository owner explicitly confirmed the connected GitHub account and authorized publication on 2026-10-07. Publish to the existing `main` branch and verify the GitHub Pages build and production responses before reporting completion.
 
 After publication:
 
