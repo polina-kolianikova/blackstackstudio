@@ -19,3 +19,16 @@ output/
 *.sqlite3
 __pycache__/
 *.pyc
+
+.codex/
+.agents/
+.agent-artifacts/
+.cursor/
+.windsurf/
+.claude/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+*.log

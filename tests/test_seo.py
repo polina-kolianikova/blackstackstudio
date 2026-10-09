@@ -25,7 +25,7 @@ class SeoTests(unittest.TestCase):
         cls.pages = {url: BeautifulSoup(file_for(url).read_text(encoding="utf-8"), "html.parser") for url in cls.urls}
 
     def test_sitemap_and_robots(self):
-        self.assertEqual(len(self.urls), 15)
+        self.assertEqual(len(self.urls), 16)
         self.assertEqual(len(set(self.urls)), len(self.urls))
         self.assertIn("Sitemap: " + ORIGIN + "/sitemap.xml", (ROOT / "robots.txt").read_text())
         self.assertNotIn("Disallow: /", (ROOT / "robots.txt").read_text())

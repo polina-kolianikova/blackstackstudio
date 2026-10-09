@@ -158,7 +158,9 @@ const I18N = {
     "footer.col4.2": "Terms",
     "footer.col4.3": "NDA по запросу",
     "footer.copy": "© 2024–2026 BlackStack Studio · Все права защищены",
-    "footer.timelbl": ""
+    "footer.timelbl": "",
+    "nav.video": "Видео",
+    "footer.video": "Видеомонтаж"
   },
   "en": {
     "loader.label": "INITIALIZING BLACKSTACK",
@@ -319,7 +321,9 @@ const I18N = {
     "footer.col4.2": "Terms",
     "footer.col4.3": "NDA on request",
     "footer.copy": "© 2024–2026 BlackStack Studio · All rights reserved",
-    "footer.timelbl": ""
+    "footer.timelbl": "",
+    "nav.video": "Video",
+    "footer.video": "Video editing"
   },
   "uk": {
     "loader.label": "ІНІЦІАЛІЗАЦІЯ BLACKSTACK",
@@ -480,7 +484,9 @@ const I18N = {
     "footer.col4.2": "Terms",
     "footer.col4.3": "NDA на запит",
     "footer.copy": "© 2024–2026 BlackStack Studio · Всі права захищені",
-    "footer.timelbl": ""
+    "footer.timelbl": "",
+    "nav.video": "Відео",
+    "footer.video": "Відеомонтаж"
   }
 };
 

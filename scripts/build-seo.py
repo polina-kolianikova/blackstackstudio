@@ -228,7 +228,7 @@ def main():
         for service in SERVICES:
             service_page(lang, service)
             paths.append(path_for(lang, service["slug"]))
-    for filename, path in (("portfolio/index.html", "/portfolio/"), ("privacy.html", "/privacy.html"), ("terms.html", "/terms.html")):
+    for filename, path in (("portfolio/index.html", "/portfolio/"), ("video/index.html", "/video/"), ("privacy.html", "/privacy.html"), ("terms.html", "/terms.html")):
         soup = soup_of((ROOT / filename).read_text(encoding="utf-8"))
         metadata(soup, "ru", path, soup.title.string, soup.find("meta", attrs={"name": "description"})["content"])
         write(filename, str(soup))
