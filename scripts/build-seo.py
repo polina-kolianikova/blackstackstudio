@@ -178,10 +178,10 @@ def home(lang):
         article.append(link)
     for key, slug in (("footer.col1.1", "web-development"), ("footer.col1.2", "automation-ai"), ("footer.col1.4", "automation-ai")):
         soup.select_one(f'[data-i18n="{key}"]')["href"] = path_for(lang, slug)
-    soup.select_one('[data-i18n="footer.col1.3"]')["href"] = "/portfolio/"
+    soup.select_one('[data-i18n="footer.col1.3"]')["href"] = "/design/"
     # Add real links on the interface-design card too.
     design = soup.select_one('[data-i18n="card3.title"]').find_parent("article")
-    link = tag(soup, "a", href="/portfolio/", **{"class": "service-link"})
+    link = tag(soup, "a", href="/design/", **{"class": "service-link"})
     link.string = COPY[lang]["design"] + " →"
     design.append(link)
     main_script = soup.find("script", src=re.compile(r"/js/main\.js"))
@@ -213,7 +213,7 @@ def service_page(lang, service):
 <h1>{escape(content["title"])}</h1><p class="intro">{escape(content["intro"])}</p>
 <a class="cta" href="https://t.me/blackstackmng">{ui["cta"]} →</a>
 <section><h2>{ui["scope"]}</h2><ul>{points}</ul></section>{sections}
-<section><h2>{ui["related"]}</h2><ul>{related}<li><a href="/portfolio/">{ui["design"]}</a></li></ul></section>
+<section><h2>{ui["related"]}</h2><ul>{related}<li><a href="/design/">{ui["design"]}</a></li></ul></section>
 <section class="contact"><h2>{ui["contact"]}</h2><p>{ui["note"]}</p>
 <a class="cta" href="https://t.me/blackstackmng">Telegram: @blackstackmng</a>
 <a class="email" href="mailto:blackstackst@gmail.com">blackstackst@gmail.com</a></section></main>
@@ -231,7 +231,7 @@ def main():
         for service in SERVICES:
             service_page(lang, service)
             paths.append(path_for(lang, service["slug"]))
-    for filename, path in (("portfolio/index.html", "/portfolio/"), ("video/index.html", "/video/"), ("privacy.html", "/privacy.html"), ("terms.html", "/terms.html")):
+    for filename, path in (("design/index.html", "/design/"), ("montage/index.html", "/montage/"), ("privacy.html", "/privacy.html"), ("terms.html", "/terms.html")):
         soup = soup_of((ROOT / filename).read_text(encoding="utf-8"))
         metadata(soup, "ru", path, soup.title.string, soup.find("meta", attrs={"name": "description"})["content"])
         write(filename, str(soup))
