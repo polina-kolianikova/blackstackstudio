@@ -43,8 +43,12 @@ const VIDEO_CATEGORIES = [
         "labelKey": "video.cat.youtube-format"
     },
     {
-        "id": "long-video",
-        "labelKey": "video.cat.long-video"
+        "id": "youtube-video",
+        "labelKey": "video.cat.youtube-video"
+    },
+    {
+        "id": "ai-video",
+        "labelKey": "video.cat.ai-video"
     }
 ];
 
@@ -59,19 +63,26 @@ const VIDEO_WORKS = [
         ],
         "order": 10,
         "title": "Антитренды",
-        "duration": 75.65
+        "duration": 75.65,
+        "aspect": "portrait"
     },
     {
-        "id": "img-0632",
-        "src": "/video/media/web/img-0632.mp4",
-        "preview": "/video/media/previews/img-0632.mp4",
-        "poster": "/video/media/posters/img-0632.jpg",
+        "id": "polygate",
+        "src": "/video/media/web/polygate.mp4",
+        "preview": "/video/media/previews/polygate.mp4",
+        "poster": "/video/media/posters/polygate.jpg",
         "categories": [
-            "short-video"
+            "short-video",
+            "2d-animation",
+            "3d-animation"
         ],
         "order": 20,
-        "title": "3 стиля съёмки",
-        "duration": 46.51
+        "title": "300 ms",
+        "categoryOrder": {
+            "3d-animation": 30
+        },
+        "duration": 15.02,
+        "aspect": "portrait"
     },
     {
         "id": "img-9239",
@@ -79,11 +90,27 @@ const VIDEO_WORKS = [
         "preview": "/video/media/previews/img-9239.mp4",
         "poster": "/video/media/posters/img-9239.jpg",
         "categories": [
-            "short-video"
+            "short-video",
+            "2d-animation"
         ],
         "order": 30,
         "title": "Lie awake",
-        "duration": 27.23
+        "duration": 27.23,
+        "aspect": "portrait"
+    },
+    {
+        "id": "img-0632",
+        "src": "/video/media/web/img-0632.mp4",
+        "preview": "/video/media/previews/img-0632.mp4",
+        "poster": "/video/media/posters/img-0632.jpg",
+        "categories": [
+            "short-video",
+            "2d-animation"
+        ],
+        "order": 40,
+        "title": "3 стиля съёмки",
+        "duration": 46.51,
+        "aspect": "portrait"
     },
     {
         "id": "anastasia-reels-3",
@@ -93,25 +120,10 @@ const VIDEO_WORKS = [
         "categories": [
             "short-video"
         ],
-        "order": 40,
-        "title": "Тем, кто ведёт блог",
-        "duration": 17.43
-    },
-    {
-        "id": "polygate",
-        "src": "/video/media/web/polygate.mp4",
-        "preview": "/video/media/previews/polygate.mp4",
-        "poster": "/video/media/posters/polygate.jpg",
-        "categories": [
-            "short-video",
-            "3d-animation"
-        ],
         "order": 50,
-        "title": "300 ms",
-        "categoryOrder": {
-            "3d-animation": 30
-        },
-        "duration": 15.02
+        "title": "Тем, кто ведёт блог",
+        "duration": 17.43,
+        "aspect": "portrait"
     },
     {
         "id": "anastasia-1",
@@ -119,12 +131,14 @@ const VIDEO_WORKS = [
         "preview": "/video/media/previews/anastasia-1.mp4",
         "poster": "/video/media/posters/anastasia-1.jpg",
         "categories": [
-            "short-video"
+            "short-video",
+            "2d-animation"
         ],
         "order": 60,
         "title": "Перестаньте сливать деньги",
         "duration": 24.13,
-        "source": "https://media.bypribytkova.com/media/ver_reels.mp4"
+        "source": "https://media.bypribytkova.com/media/ver_reels.mp4",
+        "aspect": "portrait"
     },
     {
         "id": "anastasia-reels-1",
@@ -132,11 +146,13 @@ const VIDEO_WORKS = [
         "preview": "/video/media/previews/anastasia-reels-1.mp4",
         "poster": "/video/media/posters/anastasia-reels-1.jpg",
         "categories": [
-            "short-video"
+            "short-video",
+            "2d-animation"
         ],
         "order": 70,
         "duration": 33.93,
-        "source": "https://media.bypribytkova.com/media/ver_reels2.mp4"
+        "source": "https://media.bypribytkova.com/media/ver_reels2.mp4",
+        "aspect": "portrait"
     },
     {
         "id": "img-8931",
@@ -144,11 +160,12 @@ const VIDEO_WORKS = [
         "preview": "/video/media/previews/img-8931.mp4",
         "poster": "/video/media/posters/img-8931.jpg",
         "categories": [
-            "short-video"
+            "ai-video"
         ],
         "order": 80,
         "duration": 34.93,
-        "source": "https://media.bypribytkova.com/media/ver_cartoon.MP4"
+        "source": "https://media.bypribytkova.com/media/ver_cartoon.MP4",
+        "aspect": "portrait"
     },
     {
         "id": "img-9243",
@@ -156,12 +173,14 @@ const VIDEO_WORKS = [
         "preview": "/video/media/previews/img-9243.mp4",
         "poster": "/video/media/posters/img-9243.jpg",
         "categories": [
-            "short-video"
+            "short-video",
+            "2d-animation"
         ],
         "order": 90,
         "title": "5 шагов до новой версии себя",
         "duration": 43.2,
-        "source": "https://media.bypribytkova.com/media/ver_new_version.mp4"
+        "source": "https://media.bypribytkova.com/media/ver_new_version.mp4",
+        "aspect": "portrait"
     },
     {
         "id": "itog",
@@ -169,10 +188,12 @@ const VIDEO_WORKS = [
         "preview": "/video/media/previews/itog.mp4",
         "poster": "/video/media/posters/itog.jpg",
         "categories": [
-            "short-video"
+            "short-video",
+            "2d-animation"
         ],
         "order": 100,
-        "duration": 34.04
+        "duration": 34.04,
+        "aspect": "portrait"
     },
     {
         "id": "stroika",
@@ -180,12 +201,13 @@ const VIDEO_WORKS = [
         "preview": "/video/media/previews/stroika.mp4",
         "poster": "/video/media/posters/stroika.jpg",
         "categories": [
-            "short-video"
+            "ai-video"
         ],
         "order": 110,
         "title": "Строительство · ролик с озвучкой",
         "duration": 30.87,
-        "source": "https://media.bypribytkova.com/media/ver_house.MP4"
+        "source": "https://media.bypribytkova.com/media/ver_house.MP4",
+        "aspect": "portrait"
     },
     {
         "id": "voice",
@@ -233,7 +255,8 @@ const VIDEO_WORKS = [
         "order": 140,
         "title": "Недвижимость",
         "source": "https://wlkey.ru/videos/nebo.mp4",
-        "duration": 54.66
+        "duration": 54.66,
+        "aspect": "portrait"
     },
     {
         "id": "wlkey-car",
@@ -246,7 +269,8 @@ const VIDEO_WORKS = [
         "order": 150,
         "title": "Автосалон",
         "source": "https://wlkey.ru/videos/car.mp4",
-        "duration": 21.63
+        "duration": 21.63,
+        "aspect": "portrait"
     },
     {
         "id": "wlkey-sklad",
@@ -254,12 +278,14 @@ const VIDEO_WORKS = [
         "preview": "/video/media/previews/wlkey-sklad.mp4",
         "poster": "/video/media/posters/wlkey-sklad.jpg",
         "categories": [
-            "short-video"
+            "short-video",
+            "2d-animation"
         ],
         "order": 160,
         "title": "Склады · экспертный ролик",
         "source": "https://wlkey.ru/videos/sklad.mp4",
-        "duration": 9.98
+        "duration": 9.98,
+        "aspect": "portrait"
     },
     {
         "id": "wlkey-dubai",
@@ -272,7 +298,8 @@ const VIDEO_WORKS = [
         "order": 170,
         "title": "Автомобиль · Дубай",
         "source": "https://wlkey.ru/videos/dubai.mov",
-        "duration": 21.01
+        "duration": 21.01,
+        "aspect": "portrait"
     },
     {
         "id": "wlkey-interface",
@@ -317,7 +344,7 @@ const VIDEO_WORKS = [
             "youtube-format"
         ],
         "order": 200,
-        "title": "Byreal · 3D-ролик",
+        "title": "Mantle · 3D-ролик",
         "source": "https://cloofen.ru/media/byreal.mp4",
         "duration": 24.28,
         "aspect": "landscape"
@@ -343,6 +370,7 @@ const VIDEO_WORKS = [
         "preview": "/video/media/previews/cloofen/bleap.mp4?v=2",
         "poster": "/video/media/posters/cloofen/bleap.jpg",
         "categories": [
+            "2d-animation",
             "3d-animation",
             "youtube-format"
         ],
@@ -433,12 +461,13 @@ const VIDEO_WORKS = [
         "preview": "/video/media/previews/nessy/ver-car.mp4?v=2",
         "poster": "/video/media/posters/nessy/ver-car.jpg",
         "categories": [
-            "short-video"
+            "ai-video"
         ],
         "order": 280,
         "title": "Ретроавтомобиль",
         "source": "https://media.bypribytkova.com/media/ver_car.MP4",
-        "duration": 17.71
+        "duration": 17.71,
+        "aspect": "portrait"
     },
     {
         "id": "nessy-hor-map",
@@ -467,7 +496,8 @@ const VIDEO_WORKS = [
         "order": 300,
         "title": "Рабочий процесс · типографика",
         "source": "https://media.bypribytkova.com/media/ver_workflow.MP4",
-        "duration": 8.13
+        "duration": 8.13,
+        "aspect": "portrait"
     },
     {
         "id": "nessy-ver-you",
@@ -481,7 +511,8 @@ const VIDEO_WORKS = [
         "order": 310,
         "title": "Why not you · мотивационный монтаж",
         "source": "https://media.bypribytkova.com/media/ver_you.MP4",
-        "duration": 24.7
+        "duration": 24.7,
+        "aspect": "portrait"
     },
     {
         "id": "ooo-design-7",
@@ -507,6 +538,7 @@ const VIDEO_WORKS = [
         "poster": "/video/media/ooo-design/posters/ooo-design-14.webp",
         "categories": [
             "2d-animation",
+            "3d-animation",
             "youtube-format"
         ],
         "title": "Федерация сумо — видеокейс",
@@ -515,23 +547,6 @@ const VIDEO_WORKS = [
         "source": "https://t.me/ooo_design/14",
         "concept": false,
         "order": 330
-    },
-    {
-        "id": "ooo-design-22",
-        "src": "/video/media/ooo-design/web/ooo-design-22.mp4",
-        "preview": "/video/media/ooo-design/previews/ooo-design-22.mp4?v=2",
-        "poster": "/video/media/ooo-design/posters/ooo-design-22.webp",
-        "categories": [
-            "long-video",
-            "2d-animation",
-            "3d-animation"
-        ],
-        "title": "Искусство запуска — видеокейс",
-        "duration": 190.984,
-        "aspect": "portrait",
-        "source": "https://t.me/ooo_design/22",
-        "concept": false,
-        "order": 340
     },
     {
         "id": "ooo-design-57",
@@ -547,7 +562,7 @@ const VIDEO_WORKS = [
         "aspect": "landscape",
         "source": "https://t.me/ooo_design/57",
         "concept": false,
-        "order": 350
+        "order": 340
     },
     {
         "id": "ooo-design-102",
@@ -562,7 +577,7 @@ const VIDEO_WORKS = [
         "aspect": "portrait",
         "source": "https://t.me/ooo_design/102",
         "concept": false,
-        "order": 360
+        "order": 350
     },
     {
         "id": "ooo-design-103",
@@ -577,7 +592,7 @@ const VIDEO_WORKS = [
         "aspect": "portrait",
         "source": "https://t.me/ooo_design/103",
         "concept": false,
-        "order": 370
+        "order": 360
     },
     {
         "id": "ooo-design-104",
@@ -585,15 +600,15 @@ const VIDEO_WORKS = [
         "preview": "/video/media/ooo-design/previews/ooo-design-104.mp4?v=2",
         "poster": "/video/media/ooo-design/posters/ooo-design-104.webp",
         "categories": [
-            "short-video",
-            "2d-animation"
+            "2d-animation",
+            "3d-animation"
         ],
         "title": "Здоровые Дети — видеокейс",
         "duration": 19.233,
         "aspect": "square",
         "source": "https://t.me/ooo_design/104",
         "concept": false,
-        "order": 380
+        "order": 370
     },
     {
         "id": "ooo-design-107",
@@ -601,15 +616,14 @@ const VIDEO_WORKS = [
         "preview": "/video/media/ooo-design/previews/ooo-design-107.mp4?v=2",
         "poster": "/video/media/ooo-design/posters/ooo-design-107.webp",
         "categories": [
-            "short-video",
-            "2d-animation"
+            "ai-video"
         ],
         "title": "Рефлективная одежда — fashion video",
         "duration": 28.567,
         "aspect": "square",
         "source": "https://t.me/ooo_design/107",
         "concept": false,
-        "order": 390
+        "order": 380
     },
     {
         "id": "ooo-design-112",
@@ -624,7 +638,7 @@ const VIDEO_WORKS = [
         "aspect": "square",
         "source": "https://t.me/ooo_design/112",
         "concept": false,
-        "order": 400
+        "order": 390
     },
     {
         "id": "ooo-brain-fox-67aAsaQTCIC",
@@ -632,14 +646,14 @@ const VIDEO_WORKS = [
         "preview": "/video/media/ooo-design/previews/ooo-brain-fox-67aAsaQTCIC.mp4?v=2",
         "poster": "/video/media/ooo-design/posters/ooo-brain-fox-67aAsaQTCIC.webp",
         "categories": [
-            "3d-animation"
+            "ai-video"
         ],
-        "title": "Brain Fox — анимация персонажа",
+        "title": "Brain Fox — трансформация персонажа",
         "duration": 4.317,
         "aspect": "square",
         "source": "https://www.behance.net/gallery/244597601/Brain-Fox-identity",
         "concept": false,
-        "order": 410
+        "order": 400
     },
     {
         "id": "ooo-brain-fox-ARNjR7F_qdw",
@@ -647,14 +661,14 @@ const VIDEO_WORKS = [
         "preview": "/video/media/ooo-design/previews/ooo-brain-fox-ARNjR7F_qdw.mp4?v=2",
         "poster": "/video/media/ooo-design/posters/ooo-brain-fox-ARNjR7F_qdw.webp",
         "categories": [
-            "3d-animation"
+            "ai-video"
         ],
-        "title": "Brain Fox — 3D-мокапы",
+        "title": "Brain Fox — продуктовые видеомокапы",
         "duration": 10.0,
         "aspect": "square",
         "source": "https://www.behance.net/gallery/244597601/Brain-Fox-identity",
         "concept": false,
-        "order": 420
+        "order": 410
     },
     {
         "id": "ooo-brain-fox-9-tSsPNc3a_",
@@ -662,14 +676,14 @@ const VIDEO_WORKS = [
         "preview": "/video/media/ooo-design/previews/ooo-brain-fox-9-tSsPNc3a_.mp4?v=2",
         "poster": "/video/media/ooo-design/posters/ooo-brain-fox-9-tSsPNc3a_.webp",
         "categories": [
-            "3d-animation"
+            "ai-video"
         ],
         "title": "Brain Fox — рекламные видеомокапы",
         "duration": 31.133,
         "aspect": "square",
         "source": "https://www.behance.net/gallery/244597601/Brain-Fox-identity",
         "concept": false,
-        "order": 430
+        "order": 420
     },
     {
         "id": "ooo-brain-fox-7TCaV-ccnYB",
@@ -685,7 +699,7 @@ const VIDEO_WORKS = [
         "aspect": "landscape",
         "source": "https://www.behance.net/gallery/244597601/Brain-Fox-identity",
         "concept": false,
-        "order": 440
+        "order": 430
     },
     {
         "id": "ooo-vegan-bro-film",
@@ -693,7 +707,6 @@ const VIDEO_WORKS = [
         "preview": "/video/media/ooo-design/previews/ooo-vegan-bro-film.mp4?v=2",
         "poster": "/video/media/ooo-design/posters/ooo-vegan-bro-film.webp",
         "categories": [
-            "short-video",
             "youtube-format"
         ],
         "title": "Vegan Bro — cinematic video",
@@ -701,7 +714,7 @@ const VIDEO_WORKS = [
         "aspect": "landscape",
         "source": "https://www.youtube.com/watch?v=M0jDa752nJQ",
         "concept": false,
-        "order": 450
+        "order": 440
     },
     {
         "id": "ivar-166",
@@ -709,7 +722,6 @@ const VIDEO_WORKS = [
         "preview": "/video/media/ivar/previews/ivar-166.mp4?v=2",
         "poster": "/video/media/ivar/posters/ivar-166.webp",
         "categories": [
-            "short-video",
             "2d-animation",
             "youtube-format"
         ],
@@ -718,7 +730,7 @@ const VIDEO_WORKS = [
         "aspect": "landscape",
         "source": "https://t.me/designIvar/166",
         "concept": false,
-        "order": 460
+        "order": 450
     },
     {
         "id": "ivar-191",
@@ -734,7 +746,7 @@ const VIDEO_WORKS = [
         "aspect": "landscape",
         "source": "https://t.me/designIvar/191",
         "concept": false,
-        "order": 470
+        "order": 460
     },
     {
         "id": "ivar-195",
@@ -742,7 +754,6 @@ const VIDEO_WORKS = [
         "preview": "/video/media/ivar/previews/ivar-195.mp4?v=2",
         "poster": "/video/media/ivar/posters/ivar-195.webp",
         "categories": [
-            "short-video",
             "2d-animation",
             "youtube-format"
         ],
@@ -751,7 +762,7 @@ const VIDEO_WORKS = [
         "aspect": "landscape",
         "source": "https://t.me/designIvar/195",
         "concept": true,
-        "order": 480
+        "order": 470
     },
     {
         "id": "ivar-209",
@@ -766,22 +777,205 @@ const VIDEO_WORKS = [
         "aspect": "portrait",
         "source": "https://t.me/designIvar/209",
         "concept": true,
-        "order": 490
+        "order": 480
     },
     {
-        "id": "ivar-241",
-        "src": "/video/media/ivar/web/ivar-241.mp4",
-        "preview": "/video/media/ivar/previews/ivar-241.mp4?v=2",
-        "poster": "/video/media/ivar/posters/ivar-241.webp",
+        "id": "youtube-_TpUTtvvJtQ",
+        "provider": "youtube",
+        "youtubeId": "_TpUTtvvJtQ",
+        "title": "ПЕЧЕНЬКО ШОУ 🍪 САМЫЙ ПЕРВЫЙ ВЫПУСК (Новки и Крис)",
+        "duration": 2429,
+        "durationSeconds": 2429,
+        "startTime": 1682,
+        "poster": "/video/media/youtube/_TpUTtvvJtQ-poster.webp",
+        "aspect": "landscape",
+        "creatorId": "nowkie",
+        "creatorName": "nowkie",
+        "category": "youtube",
+        "categoryLabel": "YouTube",
+        "source": "https://www.youtube.com/watch?v=_TpUTtvvJtQ&t=1682s",
+        "description": "Монтаж фрагмента выпуска — с 28:02.",
+        "claimScope": "fragment-from-28:02",
+        "durationLabel": "40:29",
         "categories": [
-            "short-video",
-            "2d-animation"
+            "youtube-video"
         ],
-        "title": "Legion — моушн-концепт игрового бренда",
-        "duration": 20.016,
-        "aspect": "portrait",
-        "source": "https://t.me/designIvar/241",
-        "concept": true,
-        "order": 500
+        "order": 5048
+    },
+    {
+        "id": "youtube-XLKW0BNXZN8",
+        "provider": "youtube",
+        "youtubeId": "XLKW0BNXZN8",
+        "title": "СМЕРТЬ ГЛАВНОГО СКВАДА СТРАНЫ",
+        "duration": 4297,
+        "durationSeconds": 4297,
+        "startTime": 0,
+        "poster": "/video/media/youtube/XLKW0BNXZN8-poster.webp",
+        "aspect": "landscape",
+        "creatorId": "shtozatim",
+        "creatorName": "Што за Тим",
+        "category": "youtube",
+        "categoryLabel": "YouTube",
+        "source": "https://www.youtube.com/watch?v=XLKW0BNXZN8",
+        "description": "YouTube-выпуск. Работа монтажёра нашей команды.",
+        "claimScope": "team-editor-prior-work",
+        "durationLabel": "71:37",
+        "categories": [
+            "youtube-video"
+        ],
+        "order": 5049
+    },
+    {
+        "id": "youtube-Me2c5syhp2U",
+        "provider": "youtube",
+        "youtubeId": "Me2c5syhp2U",
+        "title": "ПАКИСТАН — ФАБРИКА МРАКОБЕСОВ",
+        "duration": 2324,
+        "durationSeconds": 2324,
+        "startTime": 0,
+        "poster": "/video/media/youtube/Me2c5syhp2U-poster.webp",
+        "aspect": "landscape",
+        "creatorId": "tonytut",
+        "creatorName": "ТОНИ ТУТ",
+        "category": "youtube",
+        "categoryLabel": "YouTube",
+        "source": "https://www.youtube.com/watch?v=Me2c5syhp2U",
+        "description": "YouTube-выпуск. Работа монтажёра нашей команды.",
+        "claimScope": "team-editor-prior-work",
+        "durationLabel": "38:44",
+        "categories": [
+            "youtube-video"
+        ],
+        "order": 5050
+    },
+    {
+        "id": "youtube-Usinu3f0u9A",
+        "provider": "youtube",
+        "youtubeId": "Usinu3f0u9A",
+        "title": "Шоу «Сортировка» — ЯЯНА",
+        "duration": 1036,
+        "durationSeconds": 1036,
+        "startTime": 0,
+        "poster": "/video/media/youtube/Usinu3f0u9A-poster.webp",
+        "aspect": "landscape",
+        "creatorId": "yanazenina",
+        "creatorName": "ЯЯНА",
+        "category": "youtube",
+        "categoryLabel": "YouTube",
+        "source": "https://www.youtube.com/watch?v=Usinu3f0u9A",
+        "description": "YouTube-выпуск. Работа монтажёра нашей команды.",
+        "claimScope": "team-editor-prior-work",
+        "durationLabel": "17:16",
+        "categories": [
+            "youtube-video"
+        ],
+        "order": 5051
+    },
+    {
+        "id": "youtube-LpEIXL0KHHs",
+        "provider": "youtube",
+        "youtubeId": "LpEIXL0KHHs",
+        "title": "ШУТКИ КОНЧИЛИСЬ",
+        "duration": 3604,
+        "durationSeconds": 3604,
+        "startTime": 0,
+        "poster": "/video/media/youtube/LpEIXL0KHHs-poster.webp",
+        "aspect": "landscape",
+        "creatorId": "shtozatim",
+        "creatorName": "Што за Тим",
+        "category": "youtube",
+        "categoryLabel": "YouTube",
+        "source": "https://www.youtube.com/watch?v=LpEIXL0KHHs",
+        "description": "YouTube-выпуск. Работа монтажёра нашей команды.",
+        "claimScope": "team-editor-prior-work",
+        "durationLabel": "60:04",
+        "categories": [
+            "youtube-video"
+        ],
+        "order": 5052
+    },
+    {
+        "id": "team-1cZ_gBAD",
+        "src": "/video/media/team-projects/web/team-1cZ_gBAD.mp4",
+        "preview": "/video/media/team-projects/previews/team-1cZ_gBAD.mp4",
+        "poster": "/video/media/team-projects/posters/team-1cZ_gBAD.webp",
+        "title": "Послезавтра — фрагмент выпуска",
+        "duration": 33.0,
+        "aspect": "landscape",
+        "categories": [
+            "youtube-video"
+        ],
+        "order": 6000,
+        "previewIsExcerpt": true
+    },
+    {
+        "id": "team-13oqX7pB",
+        "src": "/video/media/team-projects/web/team-13oqX7pB.mp4",
+        "preview": "/video/media/team-projects/previews/team-13oqX7pB.mp4",
+        "poster": "/video/media/team-projects/posters/team-13oqX7pB.webp",
+        "title": "NoName Pilot — фрагмент об авиации",
+        "duration": 31.579002,
+        "aspect": "landscape",
+        "categories": [
+            "youtube-video"
+        ],
+        "order": 6010,
+        "previewIsExcerpt": true
+    },
+    {
+        "id": "team-1CJHHec5",
+        "src": "/video/media/team-projects/web/team-1CJHHec5.mp4",
+        "preview": "/video/media/team-projects/previews/team-1CJHHec5.mp4",
+        "poster": "/video/media/team-projects/posters/team-1CJHHec5.webp",
+        "title": "SEVEN FORCE — фрагмент автообзора",
+        "duration": 46.2,
+        "aspect": "landscape",
+        "categories": [
+            "youtube-video"
+        ],
+        "order": 6020,
+        "previewIsExcerpt": true
+    },
+    {
+        "id": "team-112DMvdj",
+        "src": "/video/media/team-projects/web/team-112DMvdj.mp4",
+        "preview": "/video/media/team-projects/previews/team-112DMvdj.mp4",
+        "poster": "/video/media/team-projects/posters/team-112DMvdj.webp",
+        "title": "Япония — travel-фрагмент",
+        "duration": 46.212833,
+        "aspect": "landscape",
+        "categories": [
+            "youtube-video"
+        ],
+        "order": 6030,
+        "previewIsExcerpt": true
+    }
+];
+
+const VIDEO_CREATORS = [
+    {
+        "name": "Новки",
+        "portrait": "/video/media/youtube/nowkie-portrait.webp",
+        "workId": "youtube-_TpUTtvvJtQ"
+    },
+    {
+        "name": "Послезавтра",
+        "portrait": "/video/media/youtube/posle-zavtra-portrait.webp",
+        "workId": "team-1cZ_gBAD"
+    },
+    {
+        "name": "Што за Тим",
+        "portrait": "/video/media/youtube/shtozatim-portrait.webp",
+        "workId": "youtube-XLKW0BNXZN8"
+    },
+    {
+        "name": "ТОНИ ТУТ",
+        "portrait": "/video/media/youtube/tonytut-portrait.webp",
+        "workId": "youtube-Me2c5syhp2U"
+    },
+    {
+        "name": "ЯЯНА",
+        "portrait": "/video/media/youtube/yanazenina-portrait.webp",
+        "workId": "youtube-Usinu3f0u9A"
     }
 ];

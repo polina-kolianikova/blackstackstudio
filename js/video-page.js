@@ -7,6 +7,7 @@
     const previewVideos = new Map();
     if (!filters || !stage || !dialog) return;
     Object.assign(I18N.ru, {
+        'video.cat.ai-video': 'AI-видео', 'video.cat.youtube-video': 'YouTube-видео', 'nav.development': 'Разработка', 'video.creatorsTitle': 'Монтажёры нашей команды работали с…', 'video.watchYouTube': 'Открыть на YouTube ↗',
         'video.cat.youtube-format': 'Горизонтальные',
         'video.motionTitle': 'Монтаж', 'video.motionAccent': 'под вашу задачу',
         'video.motionLead': 'Короткие ролики, выпуски, 2D- и 3D-анимация. Закажите одно видео или передайте регулярный монтаж команде.',
@@ -17,6 +18,7 @@
         'video.cat.3d-animation': '3D-анимация', 'video.retry': 'Попробовать ещё раз', 'video.loading': 'Загружаем ролик…', 'video.pausePreviews': 'Пауза превью', 'video.resumePreviews': 'Запустить превью', 'video.pausePreview': 'Пауза', 'video.choose': 'Выбрать ролик', 'video.mediaError': 'Не удалось загрузить ролик. Попробуйте открыть его ещё раз.'
     });
     Object.assign(I18N.en, {
+        'video.cat.ai-video': 'AI video', 'video.cat.youtube-video': 'YouTube videos', 'nav.development': 'Development', 'video.creatorsTitle': 'Our editors have worked with…', 'video.watchYouTube': 'Watch on YouTube ↗',
         'video.cat.youtube-format': 'Landscape',
         'video.motionTitle': 'Editing', 'video.motionAccent': 'for your project',
         'video.motionLead': 'Short videos, long-form episodes, 2D and 3D animation. Start with one video or hand over your regular editing.',
@@ -27,6 +29,7 @@
         'video.cat.3d-animation': '3D animation', 'video.retry': 'Try again', 'video.loading': 'Loading video…', 'video.pausePreviews': 'Pause previews', 'video.resumePreviews': 'Play previews', 'video.pausePreview': 'Pause', 'video.choose': 'Select video', 'video.mediaError': 'This video could not load. Please try opening it again.'
     });
     Object.assign(I18N.uk, {
+        'video.cat.ai-video': 'AI-відео', 'video.cat.youtube-video': 'YouTube-відео', 'nav.development': 'Розробка', 'video.creatorsTitle': 'Монтажери нашої команди працювали з…', 'video.watchYouTube': 'Дивитися на YouTube ↗',
         'video.cat.youtube-format': 'Горизонтальні',
         'video.motionTitle': 'Монтаж', 'video.motionAccent': 'під ваше завдання',
         'video.motionLead': 'Короткі ролики, випуски, 2D- та 3D-анімація. Замовте одне відео або передайте регулярний монтаж команді.',
@@ -39,13 +42,13 @@
     const categories = new Map(VIDEO_CATEGORIES.map((cat) => [cat.id, cat]));
     const seen = new Set();
     const allWorks = VIDEO_WORKS.filter((work) => {
-        if (!work || !work.id || !work.src || !Array.isArray(work.categories) || !Number.isFinite(work.order) || seen.has(work.id)) return false;
+        if (!work || !work.id || (!work.src && !work.youtubeId) || !Array.isArray(work.categories) || !Number.isFinite(work.order) || seen.has(work.id)) return false;
         seen.add(work.id); return true;
     }).sort((a, b) => a.order - b.order);
     let works = [], current = 0, opener = null, dragStart = null, suppressClick = false, wheelAmount = 0, previewsPaused = false, centeredId = null;
-    let dialogMedia = null, dialogPreview = null, previewHome = null, dialogWork = null;
+    let dialogMedia = null, dialogPreview = null, previewHome = null, dialogWork = null, youtubeFrame = null;
     let warmTimer = null, hdStarting = false, playbackSession = 0, pendingTap = null;
-    const category = () => new URLSearchParams(location.search).get('category') || 'short-video';
+    const category = () => { const id = new URLSearchParams(location.search).get('category'); return id === 'long-video' ? 'youtube-video' : id || 'short-video'; };
     const label = (work) => t(categories.get(work.categories.includes(category()) ? category() : work.categories[0])?.labelKey || 'video.title');
     const offset = (index) => {
         let d = index - current;
@@ -96,7 +99,10 @@
             if (previewsPaused || document.hidden || dialog.open || card.dataset.inStage !== 'true') video.pause();
         }); video.tabIndex = -1;
         video.setAttribute('aria-hidden', 'true'); if (work.poster) video.poster = work.poster;
-        media.append(video);
+        if (work.youtubeId) {
+            previewVideos.delete(work.id);
+            const poster = document.createElement('img'); poster.src = work.poster; poster.alt = ''; poster.loading = 'lazy'; poster.decoding = 'async'; media.append(poster);
+        } else media.append(video);
         const open = document.createElement('button'); open.type = 'button'; open.className = 'vcard__open';
         const number = document.createElement('span'); number.className = 'vcard__number'; number.textContent = String(index + 1).padStart(2, '0');
         const cat = document.createElement('span'); cat.className = 'vcard__cat';
@@ -137,7 +143,7 @@
         const id = category();
         works = allWorks.filter(work => work.categories.includes(id))
             .sort((a, b) => (a.categoryOrder?.[id] ?? a.order) - (b.categoryOrder?.[id] ?? b.order));
-        current = 0; centeredId = null;
+        current = id === 'short-video' ? Math.max(0, works.findIndex(work => work.id === 'polygate')) : 0; centeredId = null;
         const visibleCategories = VIDEO_CATEGORIES.filter(cat => cat.id === id || allWorks.some(work => work.categories.includes(cat.id)));
         filters.classList.toggle('is-five', visibleCategories.length === 5);
         filters.classList.toggle('is-six', visibleCategories.length === 6);
@@ -171,7 +177,7 @@
             const video = previewVideos.get(card.dataset.workId);
             const entering = visible && card.dataset.inStage !== 'true';
             card.dataset.inStage = String(visible);
-            if (entering || (d === 0 && centeredId !== works[i].id)) {
+            if (video && (entering || (d === 0 && centeredId !== works[i].id))) {
                 video.dataset.restart = '1'; applyRestart(video);
             }
         });
@@ -212,7 +218,7 @@
         if (document.hidden && dialogMedia) dialogMedia.pause();
     }
     function prepareFullscreen(work) {
-        if (!work || hdPlayer.dataset.workId === work.id) return;
+        if (!work || work.youtubeId || hdPlayer.dataset.workId === work.id) return;
         hdPlayer.pause();
         hdPlayer.hidden = true;
         hdPlayer.dataset.workId = work.id;
@@ -238,7 +244,7 @@
         dialogPreview = null; previewHome = null;
     }
     function upgradeFullscreen() {
-        if (!dialog.open || !dialogWork || dialogMedia === hdPlayer || hdStarting || hdPlayer.readyState < 3 || hdPlayer.dataset.workId !== dialogWork.id) return;
+        if (!dialog.open || !dialogWork || !dialogMedia || dialogWork.youtubeId || !dialogMedia.muted || dialogMedia === hdPlayer || hdStarting || hdPlayer.readyState < 3 || hdPlayer.dataset.workId !== dialogWork.id) return;
         const previous = dialogMedia;
         const session = playbackSession;
         const workId = dialogWork.id;
@@ -262,10 +268,23 @@
         playbackSession += 1; hdStarting = false;
         opener = button; dialogWork = work;
         dialog.dataset.openedAt = String(performance.now()); delete dialog.dataset.firstFrameMs;
-        $('videoPlayerLabel').textContent = work.title || label(work);
+        $('videoPlayerLabel').textContent = [work.title || label(work), work.startTime ? work.description : ''].filter(Boolean).join(' · ');
         $('videoPlayerError').hidden = true;
+        const watchLink = $('videoYouTubeLink'); watchLink.hidden = !work.youtubeId;
+        if (work.youtubeId) {
+            hdPlayer.pause(); hdPlayer.hidden = true;
+            youtubeFrame = document.createElement('iframe'); youtubeFrame.title = work.title;
+            youtubeFrame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; youtubeFrame.allowFullscreen = true;
+            youtubeFrame.referrerPolicy = 'strict-origin-when-cross-origin';
+            youtubeFrame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(work.youtubeId)}?autoplay=1&rel=0&start=${work.startTime || 0}`;
+            watchLink.href = `https://www.youtube.com/watch?v=${encodeURIComponent(work.youtubeId)}${work.startTime ? '&t=' + work.startTime : ''}`;
+            youtubeFrame.addEventListener('load', () => { if (dialogWork?.id === work.id) $('videoPlayerLoading').hidden = true; });
+            dialogFrame.append(youtubeFrame);
+            $('videoPlayerLoading').hidden = false;
+            document.body.classList.add('media-open'); dialog.showModal(); syncPlayback(); return;
+        }
         prepareFullscreen(work);
-        if (hdPlayer.readyState >= 3) {
+        if (hdPlayer.readyState >= 3 || work.previewIsExcerpt) {
             dialogMedia = hdPlayer; hdPlayer.hidden = false;
         } else {
             dialogPreview = previewVideos.get(work.id);
@@ -289,10 +308,11 @@
         });
     }
     function closePlayer() {
-        if (dialog.open || !dialogMedia) return;
+        if (dialog.open || (!dialogMedia && !youtubeFrame)) return;
         playbackSession += 1; hdStarting = false;
-        const time = dialogMedia.currentTime;
-        dialogMedia.pause(); hdPlayer.pause(); hdPlayer.hidden = true;
+        const time = dialogMedia?.currentTime;
+        dialogMedia?.pause();
+        youtubeFrame?.remove(); youtubeFrame = null; $('videoYouTubeLink').hidden = true; hdPlayer.pause(); hdPlayer.hidden = true;
         restorePreview(time);
         dialogMedia = null; dialogWork = null;
         $('videoPlayerLoading').hidden = true; $('videoPlayerError').hidden = true;
@@ -356,5 +376,21 @@
     window.addEventListener('popstate', render); window.addEventListener('resize', layout);
     window.addEventListener('scroll', syncPlayback, { passive: true }); document.addEventListener('visibilitychange', syncPlayback);
     $('langSwitch')?.addEventListener('click', syncText);
-    document.addEventListener('DOMContentLoaded', render);
+    document.addEventListener('DOMContentLoaded', () => {
+        const creatorGrid = $('videoCreators');
+        (typeof VIDEO_CREATORS === 'undefined' ? [] : VIDEO_CREATORS).forEach(creator => {
+            const button = document.createElement('button'); button.type = 'button'; button.className = 'video-creator';
+            const image = document.createElement('img'); image.src = creator.portrait; image.alt = ''; image.loading = 'lazy'; image.decoding = 'async';
+            const name = document.createElement('span'); name.textContent = creator.name;
+            const arrow = document.createElement('span'); arrow.className = 'video-creator__arrow'; arrow.textContent = '↗'; arrow.ariaHidden = 'true';
+            button.append(image, name, arrow);
+            button.addEventListener('click', () => {
+                if (dialog.open) return;
+                if (category() !== 'youtube-video') writeCategory('youtube-video');
+                const index = works.findIndex(work => work.id === creator.workId);
+                if (index >= 0) { current = index; layout(); openPlayer(works[index], button); }
+            }); creatorGrid.append(button);
+        });
+        render();
+    });
 })();

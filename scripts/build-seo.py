@@ -6,7 +6,7 @@ from html import escape
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://blackstackstudio.com"
@@ -74,6 +74,9 @@ def metadata(soup, lang, path, title, description, alternates=None, service=None
     head = soup.head
     for item in head.select('title, meta[name="description"], meta[name="robots"], meta[property^="og:"], meta[name^="twitter:"], link[rel="canonical"], link[hreflang], script[type="application/ld+json"]'):
         item.decompose()
+    for item in list(head.children):
+        if isinstance(item, NavigableString) and not item.strip():
+            item.extract()
     title_tag = tag(soup, "title")
     title_tag.string = title
     head.append(title_tag)
@@ -182,9 +185,9 @@ def home(lang):
     link.string = COPY[lang]["design"] + " →"
     design.append(link)
     main_script = soup.find("script", src=re.compile(r"/js/main\.js"))
-    main_script["src"] = "/js/main.js?v=seo1"
-    main_script.insert_before(tag(soup, "script", src="/js/i18n.js?v=seo1", defer=""))
-    soup.find("link", href=re.compile(r"/css/style\.css"))["href"] = "/css/style.css?v=seo1"
+    main_script["src"] = "/js/main.js?v=seo2"
+    main_script.insert_before(tag(soup, "script", src="/js/i18n.js?v=seo2", defer=""))
+    soup.find("link", href=re.compile(r"/css/style\.css"))["href"] = "/css/style.css?v=seo2"
     metadata(soup, lang, path_for(lang), COPY[lang]["title"], COPY[lang]["description"], alternatives())
     write(path_for(lang).lstrip("/") + "index.html", str(soup))
 
