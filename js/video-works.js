@@ -787,7 +787,7 @@ const VIDEO_WORKS = [
         "duration": 2429,
         "durationSeconds": 2429,
         "startTime": 1682,
-        "poster": "/video/media/youtube/_TpUTtvvJtQ-poster.webp",
+        "poster": "/video/media/youtube/yt-_TpUTtvvJtQ-poster.webp",
         "aspect": "landscape",
         "creatorId": "nowkie",
         "creatorName": "nowkie",

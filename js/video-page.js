@@ -101,7 +101,7 @@
         video.setAttribute('aria-hidden', 'true'); if (work.poster) video.poster = work.poster;
         if (work.youtubeId) {
             previewVideos.delete(work.id);
-            const poster = document.createElement('img'); poster.src = work.poster; poster.alt = ''; poster.loading = 'lazy'; poster.decoding = 'async'; media.append(poster);
+            const poster = document.createElement('img'); poster.src = work.poster; poster.alt = ''; poster.loading = 'eager'; poster.decoding = 'async'; media.append(poster);
         } else media.append(video);
         const open = document.createElement('button'); open.type = 'button'; open.className = 'vcard__open';
         const number = document.createElement('span'); number.className = 'vcard__number'; number.textContent = String(index + 1).padStart(2, '0');
