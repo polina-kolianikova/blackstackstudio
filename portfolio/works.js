@@ -92,7 +92,7 @@ export const WORKS = [
     "title": "Витамины Opti-Men",
     "tag": "Инфографика для карточки товара",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-infographic-vitamins.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-infographic-vitamins.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -102,10 +102,10 @@ export const WORKS = [
     "order": 10,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-infographic-vitamins.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-infographic-vitamins.webp",
         "title": "Витамины Opti-Men",
-        "width": 467,
-        "height": 600
+        "width": 1214,
+        "height": 1561
       }
     ]
   },
@@ -312,7 +312,7 @@ export const WORKS = [
     "title": "IWNL Padel Academy",
     "tag": "Слайды презентации",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-presentation-iwnl-padel-1.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-presentation-iwnl-padel-1.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -322,22 +322,22 @@ export const WORKS = [
     "order": 50,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-presentation-iwnl-padel-1.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-presentation-iwnl-padel-1.webp",
         "title": "IWNL Padel Academy — слайд 1",
-        "width": 623,
-        "height": 351
+        "width": 1678,
+        "height": 944
       },
       {
-        "src": "/portfolio/media/alexander/alexander-presentation-iwnl-padel-2.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-presentation-iwnl-padel-2.webp",
         "title": "IWNL Padel Academy — слайд 2",
-        "width": 624,
-        "height": 351
+        "width": 1678,
+        "height": 944
       },
       {
-        "src": "/portfolio/media/alexander/alexander-presentation-iwnl-padel-3.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-presentation-iwnl-padel-3.webp",
         "title": "IWNL Padel Academy — слайд 3",
-        "width": 620,
-        "height": 351
+        "width": 1675,
+        "height": 942
       }
     ]
   },
@@ -411,8 +411,8 @@ export const WORKS = [
     "title": "Iron Punch",
     "tag": "Фрагмент макета сайта",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-website-iron-punch.webp",
-    "poster": "/portfolio/media/alexander/alexander-website-iron-punch-preview.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-website-iron-punch.webp",
+    "poster": "/portfolio/media/alexander/originals/alexander-website-iron-punch-preview.webp",
     "link": null,
     "designerId": "alexander-ladinskii",
     "categories": [
@@ -421,11 +421,12 @@ export const WORKS = [
     "order": 80,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-website-iron-punch.webp",
-        "poster": "/portfolio/media/alexander/alexander-website-iron-punch-preview.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-website-iron-punch.webp",
+        "poster": "/portfolio/media/alexander/originals/alexander-website-iron-punch-preview.webp",
         "title": "Iron Punch",
-        "width": 695,
-        "height": 1341
+        "width": 1800,
+        "height": 2795,
+        "display": "scroll"
       }
     ]
   },
@@ -574,7 +575,7 @@ export const WORKS = [
     "title": "Нитриловые перчатки Foxy Gloves",
     "tag": "Инфографика для карточки товара",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-infographic-foxy-gloves.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-infographic-foxy-gloves.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -584,10 +585,10 @@ export const WORKS = [
     "order": 110,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-infographic-foxy-gloves.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-infographic-foxy-gloves.webp",
         "title": "Нитриловые перчатки Foxy Gloves",
-        "width": 466,
-        "height": 600
+        "width": 1209,
+        "height": 1555
       }
     ]
   },
@@ -834,7 +835,7 @@ export const WORKS = [
     "title": "Wi-Fi камера для дома",
     "tag": "Инфографика для карточки товара",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-infographic-wifi-camera.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-infographic-wifi-camera.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -844,10 +845,10 @@ export const WORKS = [
     "order": 220,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-infographic-wifi-camera.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-infographic-wifi-camera.webp",
         "title": "Wi-Fi камера для дома",
-        "width": 465,
-        "height": 600
+        "width": 1209,
+        "height": 1555
       }
     ]
   },
@@ -873,7 +874,7 @@ export const WORKS = [
     "title": "Шнековая соковыжималка",
     "tag": "Инфографика для карточки товара",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-infographic-juicer.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-infographic-juicer.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -883,10 +884,10 @@ export const WORKS = [
     "order": 240,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-infographic-juicer.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-infographic-juicer.webp",
         "title": "Шнековая соковыжималка",
-        "width": 466,
-        "height": 600
+        "width": 1209,
+        "height": 1555
       }
     ]
   },
@@ -912,7 +913,7 @@ export const WORKS = [
     "title": "Петличный микрофон",
     "tag": "Инфографика для карточки товара",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-infographic-microphone.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-infographic-microphone.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -922,10 +923,10 @@ export const WORKS = [
     "order": 260,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-infographic-microphone.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-infographic-microphone.webp",
         "title": "Петличный микрофон",
-        "width": 468,
-        "height": 600
+        "width": 1214,
+        "height": 1561
       }
     ]
   },
@@ -950,7 +951,7 @@ export const WORKS = [
     "title": "Профессиональный триммер 2 в 1",
     "tag": "Инфографика для карточки товара",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-infographic-trimmer-duo.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-infographic-trimmer-duo.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -960,10 +961,10 @@ export const WORKS = [
     "order": 280,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-infographic-trimmer-duo.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-infographic-trimmer-duo.webp",
         "title": "Профессиональный триммер 2 в 1",
-        "width": 467,
-        "height": 600
+        "width": 1214,
+        "height": 1561
       }
     ]
   },
@@ -988,7 +989,7 @@ export const WORKS = [
     "title": "Nike Air Force 1",
     "tag": "Инфографика для карточки товара",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-infographic-nike-airforce.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-infographic-nike-airforce.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -998,10 +999,10 @@ export const WORKS = [
     "order": 300,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-infographic-nike-airforce.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-infographic-nike-airforce.webp",
         "title": "Nike Air Force 1",
-        "width": 465,
-        "height": 600
+        "width": 1209,
+        "height": 1555
       }
     ]
   },
@@ -1041,7 +1042,7 @@ export const WORKS = [
     "title": "Триммер — набор 5 в 1",
     "tag": "Инфографика для карточки товара",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-infographic-trimmer-kit.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-infographic-trimmer-kit.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1051,10 +1052,10 @@ export const WORKS = [
     "order": 330,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-infographic-trimmer-kit.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-infographic-trimmer-kit.webp",
         "title": "Триммер — набор 5 в 1",
-        "width": 468,
-        "height": 601
+        "width": 1214,
+        "height": 1561
       }
     ]
   },
@@ -1080,7 +1081,7 @@ export const WORKS = [
     "title": "Обучение работе с маркетплейсами",
     "tag": "Рекламный баннер",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-banner-marketplace-training.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-banner-marketplace-training.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1090,10 +1091,10 @@ export const WORKS = [
     "order": 350,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-banner-marketplace-training.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-banner-marketplace-training.webp",
         "title": "Обучение работе с маркетплейсами",
-        "width": 506,
-        "height": 506
+        "width": 1386,
+        "height": 1386
       }
     ]
   },
@@ -1103,7 +1104,7 @@ export const WORKS = [
     "title": "Моя ипотека — партнёрство",
     "tag": "Рекламный баннер",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-banner-mortgage.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-banner-mortgage.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1113,10 +1114,10 @@ export const WORKS = [
     "order": 360,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-banner-mortgage.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-banner-mortgage.webp",
         "title": "Моя ипотека — партнёрство",
-        "width": 505,
-        "height": 506
+        "width": 1379,
+        "height": 1379
       }
     ]
   },
@@ -1126,7 +1127,7 @@ export const WORKS = [
     "title": "Bianca Townhouses",
     "tag": "Рекламный баннер",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-banner-bianca.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-banner-bianca.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1136,10 +1137,10 @@ export const WORKS = [
     "order": 370,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-banner-bianca.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-banner-bianca.webp",
         "title": "Bianca Townhouses",
-        "width": 506,
-        "height": 506
+        "width": 1379,
+        "height": 1379
       }
     ]
   },
@@ -1149,7 +1150,7 @@ export const WORKS = [
     "title": "Методфест",
     "tag": "Рекламный баннер",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-banner-metodfest.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-banner-metodfest.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1159,10 +1160,10 @@ export const WORKS = [
     "order": 380,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-banner-metodfest.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-banner-metodfest.webp",
         "title": "Методфест",
-        "width": 505,
-        "height": 506
+        "width": 1379,
+        "height": 1379
       }
     ]
   },
@@ -1172,7 +1173,7 @@ export const WORKS = [
     "title": "MPSTATS PRO",
     "tag": "Рекламный баннер",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-banner-mpstats.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-banner-mpstats.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1182,10 +1183,10 @@ export const WORKS = [
     "order": 390,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-banner-mpstats.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-banner-mpstats.webp",
         "title": "MPSTATS PRO",
-        "width": 1063,
-        "height": 580
+        "width": 1800,
+        "height": 985
       }
     ]
   },
@@ -1195,7 +1196,7 @@ export const WORKS = [
     "title": "Продвижение экспертов в Telegram",
     "tag": "Рекламный баннер",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-banner-telegram-experts.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-banner-telegram-experts.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1205,10 +1206,10 @@ export const WORKS = [
     "order": 400,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-banner-telegram-experts.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-banner-telegram-experts.webp",
         "title": "Продвижение экспертов в Telegram",
-        "width": 1053,
-        "height": 580
+        "width": 1800,
+        "height": 985
       }
     ]
   },
@@ -1218,7 +1219,7 @@ export const WORKS = [
     "title": "Реклама у блогеров",
     "tag": "Слайды презентации",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-presentation-blogger-advertising-1.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-presentation-blogger-advertising-1.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1228,22 +1229,22 @@ export const WORKS = [
     "order": 410,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-presentation-blogger-advertising-1.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-presentation-blogger-advertising-1.webp",
         "title": "Реклама у блогеров — слайд 1",
-        "width": 623,
-        "height": 350
+        "width": 1678,
+        "height": 944
       },
       {
-        "src": "/portfolio/media/alexander/alexander-presentation-blogger-advertising-2.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-presentation-blogger-advertising-2.webp",
         "title": "Реклама у блогеров — слайд 2",
-        "width": 624,
-        "height": 350
+        "width": 1678,
+        "height": 944
       },
       {
-        "src": "/portfolio/media/alexander/alexander-presentation-blogger-advertising-3.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-presentation-blogger-advertising-3.webp",
         "title": "Реклама у блогеров — слайд 3",
-        "width": 620,
-        "height": 350
+        "width": 1675,
+        "height": 942
       }
     ]
   },
@@ -1253,7 +1254,7 @@ export const WORKS = [
     "title": "Презентация курса об отношениях",
     "tag": "Слайды презентации",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-presentation-relationships-course-1.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-presentation-relationships-course-1.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1263,22 +1264,22 @@ export const WORKS = [
     "order": 420,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-presentation-relationships-course-1.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-presentation-relationships-course-1.webp",
         "title": "Презентация курса об отношениях — слайд 1",
-        "width": 403,
-        "height": 350
+        "width": 1085,
+        "height": 944
       },
       {
-        "src": "/portfolio/media/alexander/alexander-presentation-relationships-course-2.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-presentation-relationships-course-2.webp",
         "title": "Презентация курса об отношениях — слайд 2",
-        "width": 403,
-        "height": 350
+        "width": 1085,
+        "height": 944
       },
       {
-        "src": "/portfolio/media/alexander/alexander-presentation-relationships-course-3.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-presentation-relationships-course-3.webp",
         "title": "Презентация курса об отношениях — слайд 3",
-        "width": 403,
-        "height": 350
+        "width": 1085,
+        "height": 942
       }
     ]
   },
@@ -1288,8 +1289,8 @@ export const WORKS = [
     "title": "Команда Ольги Мархель",
     "tag": "Фрагмент макета сайта",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-website-olga-marhel.webp",
-    "poster": "/portfolio/media/alexander/alexander-website-olga-marhel-preview.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-website-olga-marhel.webp",
+    "poster": "/portfolio/media/alexander/originals/alexander-website-olga-marhel-preview.webp",
     "link": null,
     "designerId": "alexander-ladinskii",
     "categories": [
@@ -1298,11 +1299,12 @@ export const WORKS = [
     "order": 430,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-website-olga-marhel.webp",
-        "poster": "/portfolio/media/alexander/alexander-website-olga-marhel-preview.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-website-olga-marhel.webp",
+        "poster": "/portfolio/media/alexander/originals/alexander-website-olga-marhel-preview.webp",
         "title": "Команда Ольги Мархель",
-        "width": 772,
-        "height": 1341
+        "width": 1800,
+        "height": 2473,
+        "display": "scroll"
       }
     ]
   },
@@ -1312,8 +1314,8 @@ export const WORKS = [
     "title": "Курс создания видео",
     "tag": "Фрагмент макета сайта",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-website-video-course.webp",
-    "poster": "/portfolio/media/alexander/alexander-website-video-course-preview.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-website-video-course.webp",
+    "poster": "/portfolio/media/alexander/originals/alexander-website-video-course-preview.webp",
     "link": null,
     "designerId": "alexander-ladinskii",
     "categories": [
@@ -1322,11 +1324,12 @@ export const WORKS = [
     "order": 440,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-website-video-course.webp",
-        "poster": "/portfolio/media/alexander/alexander-website-video-course-preview.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-website-video-course.webp",
+        "poster": "/portfolio/media/alexander/originals/alexander-website-video-course-preview.webp",
         "title": "Курс создания видео",
-        "width": 697,
-        "height": 1341
+        "width": 1800,
+        "height": 2433,
+        "display": "scroll"
       }
     ]
   },
@@ -1524,7 +1527,7 @@ export const WORKS = [
     "title": "Roll Way",
     "tag": "Логотип",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-logo-roll-way.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-logo-roll-way.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1534,10 +1537,10 @@ export const WORKS = [
     "order": 490,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-logo-roll-way.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-logo-roll-way.webp",
         "title": "Roll Way",
-        "width": 494,
-        "height": 494
+        "width": 1285,
+        "height": 1285
       }
     ]
   },
@@ -1547,7 +1550,7 @@ export const WORKS = [
     "title": "Строй Гарант",
     "tag": "Логотип",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-logo-stroy-garant.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-logo-stroy-garant.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1557,10 +1560,10 @@ export const WORKS = [
     "order": 500,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-logo-stroy-garant.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-logo-stroy-garant.webp",
         "title": "Строй Гарант",
-        "width": 494,
-        "height": 494
+        "width": 1285,
+        "height": 1285
       }
     ]
   },
@@ -1570,7 +1573,7 @@ export const WORKS = [
     "title": "Double Much",
     "tag": "Логотип",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-logo-double-much.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-logo-double-much.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1580,10 +1583,10 @@ export const WORKS = [
     "order": 510,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-logo-double-much.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-logo-double-much.webp",
         "title": "Double Much",
-        "width": 494,
-        "height": 494
+        "width": 1285,
+        "height": 1285
       }
     ]
   },
@@ -1593,7 +1596,7 @@ export const WORKS = [
     "title": "Graf Market",
     "tag": "Логотип",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-logo-graf-market.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-logo-graf-market.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1603,10 +1606,10 @@ export const WORKS = [
     "order": 520,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-logo-graf-market.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-logo-graf-market.webp",
         "title": "Graf Market",
-        "width": 494,
-        "height": 494
+        "width": 1285,
+        "height": 1285
       }
     ]
   },
@@ -1616,7 +1619,7 @@ export const WORKS = [
     "title": "Web Media",
     "tag": "Логотип",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-logo-web-media.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-logo-web-media.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1626,10 +1629,10 @@ export const WORKS = [
     "order": 530,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-logo-web-media.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-logo-web-media.webp",
         "title": "Web Media",
-        "width": 494,
-        "height": 494
+        "width": 1285,
+        "height": 1285
       }
     ]
   },
@@ -1639,7 +1642,7 @@ export const WORKS = [
     "title": "Tech Agency",
     "tag": "Логотип",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-logo-tech-agency.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-logo-tech-agency.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1649,10 +1652,10 @@ export const WORKS = [
     "order": 540,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-logo-tech-agency.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-logo-tech-agency.webp",
         "title": "Tech Agency",
-        "width": 494,
-        "height": 494
+        "width": 1285,
+        "height": 1285
       }
     ]
   },
@@ -1662,7 +1665,7 @@ export const WORKS = [
     "title": "Rental Car",
     "tag": "Логотип",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-logo-rental-car.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-logo-rental-car.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1672,10 +1675,10 @@ export const WORKS = [
     "order": 550,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-logo-rental-car.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-logo-rental-car.webp",
         "title": "Rental Car",
-        "width": 494,
-        "height": 494
+        "width": 1285,
+        "height": 1285
       }
     ]
   },
@@ -1685,7 +1688,7 @@ export const WORKS = [
     "title": "Turbo Service",
     "tag": "Логотип",
     "kind": "image",
-    "src": "/portfolio/media/alexander/alexander-logo-turbo-service.webp",
+    "src": "/portfolio/media/alexander/originals/alexander-logo-turbo-service.webp",
     "poster": null,
     "link": null,
     "designerId": "alexander-ladinskii",
@@ -1695,10 +1698,10 @@ export const WORKS = [
     "order": 560,
     "gallery": [
       {
-        "src": "/portfolio/media/alexander/alexander-logo-turbo-service.webp",
+        "src": "/portfolio/media/alexander/originals/alexander-logo-turbo-service.webp",
         "title": "Turbo Service",
-        "width": 494,
-        "height": 494
+        "width": 1285,
+        "height": 1285
       }
     ]
   },

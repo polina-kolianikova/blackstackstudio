@@ -1,4 +1,4 @@
-import { CATEGORIES, DESIGNERS, WORKS } from './works.js?v=4';
+import { CATEGORIES, DESIGNERS, WORKS } from './works.js?v=5';
 
 const works = WORKS.slice().sort((a, b) => a.order - b.order).map((work, index) => ({ ...work, index }));
 const designerById = new Map(DESIGNERS.map(designer => [designer.id, designer]));
@@ -262,7 +262,7 @@ function showDialogImage(imageIndex) {
   } else {
     element.alt = asset.alt || '';
     element.addEventListener('load', () => {
-      if (media.firstElementChild === element) media.classList.toggle('is-long', element.naturalHeight > element.naturalWidth * 2);
+      if (media.firstElementChild === element) media.classList.toggle('is-long', asset.display === 'scroll' || element.naturalHeight > element.naturalWidth * 2);
     });
   }
   element.src = asset.src; media.replaceChildren(element); dialog.scrollTop = 0;
