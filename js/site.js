@@ -1,11 +1,23 @@
 const SITE = {
     email: "blackstackst@gmail.com",
     tg: "blackstackmng",
+    bot: "blackstackstudio_bot",
     ig: "blackstack_studio",
 };
 
 const SITE_TG_URL = `https://t.me/${SITE.tg}`;
 const SITE_IG_URL = `https://www.instagram.com/${SITE.ig}/`;
+
+function enquiryUrl(source = "contact") {
+    const lang = ["ru", "en", "uk"].includes(document.documentElement.lang)
+        ? document.documentElement.lang : "ru";
+    const route = window.location.pathname.includes("/services/")
+        ? window.location.pathname.split("/services/")[1].split("/")[0]
+        : window.location.pathname.includes("/design/") ? "design"
+        : window.location.pathname.includes("/montage/") ? "video" : "home";
+    const payload = `web_${lang}_${route}_${source}`.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 64);
+    return `https://t.me/${SITE.bot}?start=${payload}`;
+}
 
 function gmailUrl(subject) {
     const q = new URLSearchParams({ view: "cm", fs: "1", to: SITE.email });
@@ -16,6 +28,11 @@ function gmailUrl(subject) {
 function initSiteLinks() {
     document.querySelectorAll("[data-tg-link]").forEach((a) => {
         a.href = SITE_TG_URL;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+    });
+    document.querySelectorAll("[data-bot-link]").forEach((a) => {
+        a.href = enquiryUrl(a.dataset.botLink || "contact");
         a.target = "_blank";
         a.rel = "noopener noreferrer";
     });

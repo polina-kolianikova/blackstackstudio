@@ -164,6 +164,10 @@ def home(lang):
                 el[attr] = "/" + value
     for el in soup.select("[data-email-link]"):
         el["href"] = "mailto:blackstackst@gmail.com"
+    for el in soup.select("[data-bot-link]"):
+        el["href"] = f"https://t.me/blackstackstudio_bot?start=web_{lang}_home_{el['data-bot-link']}"
+        el["target"] = "_blank"
+        el["rel"] = "noopener noreferrer"
     for el in soup.select("[data-ig-link]"):
         el["href"] = "https://www.instagram.com/blackstack_studio/"
     for index, key in ((0, "m1.name"), (1, "m2.name")):
@@ -211,11 +215,11 @@ def service_page(lang, service):
 <nav aria-label="Language">{langs}</nav></header>
 <main><nav class="breadcrumb" aria-label="Breadcrumb"><a href="{path_for(lang)}">{ui["home"]}</a> / {ui["services"]}</nav>
 <h1>{escape(content["title"])}</h1><p class="intro">{escape(content["intro"])}</p>
-<a class="cta" href="https://t.me/blackstackmng">{ui["cta"]} →</a>
+<a class="cta" href="https://t.me/blackstackstudio_bot?start=web_{lang}_{service["slug"]}_hero">{ui["cta"]} →</a>
 <section><h2>{ui["scope"]}</h2><ul>{points}</ul></section>{sections}
 <section><h2>{ui["related"]}</h2><ul>{related}<li><a href="/design/">{ui["design"]}</a></li></ul></section>
 <section class="contact"><h2>{ui["contact"]}</h2><p>{ui["note"]}</p>
-<a class="cta" href="https://t.me/blackstackmng">Telegram: @blackstackmng</a>
+<a class="cta" href="https://t.me/blackstackstudio_bot?start=web_{lang}_{service["slug"]}_contact">{ui["cta"]} · Telegram</a>
 <a class="email" href="mailto:blackstackst@gmail.com">blackstackst@gmail.com</a></section></main>
 <footer><a href="{path_for(lang)}">BlackStack Studio</a><a href="/privacy.html">{ui["privacy"]}</a>
 <a href="/terms.html">{ui["terms"]}</a></footer></body></html>''')
