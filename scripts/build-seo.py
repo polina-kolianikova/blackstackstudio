@@ -215,14 +215,15 @@ def service_page(lang, service):
 <nav aria-label="Language">{langs}</nav></header>
 <main><nav class="breadcrumb" aria-label="Breadcrumb"><a href="{path_for(lang)}">{ui["home"]}</a> / {ui["services"]}</nav>
 <h1>{escape(content["title"])}</h1><p class="intro">{escape(content["intro"])}</p>
-<a class="cta" href="https://t.me/blackstackstudio_bot?start=web_{lang}_{service["slug"]}_hero">{ui["cta"]} →</a>
+<a class="cta" data-bot-link="hero" href="https://t.me/blackstackstudio_bot?start=web_{lang}_{service["slug"]}_hero">{ui["cta"]} →</a>
 <section><h2>{ui["scope"]}</h2><ul>{points}</ul></section>{sections}
 <section><h2>{ui["related"]}</h2><ul>{related}<li><a href="/design/">{ui["design"]}</a></li></ul></section>
 <section class="contact"><h2>{ui["contact"]}</h2><p>{ui["note"]}</p>
-<a class="cta" href="https://t.me/blackstackstudio_bot?start=web_{lang}_{service["slug"]}_contact">{ui["cta"]} · Telegram</a>
+<a class="cta" data-bot-link="contact" href="https://t.me/blackstackstudio_bot?start=web_{lang}_{service["slug"]}_contact">{ui["cta"]} · Telegram</a>
 <a class="email" href="mailto:blackstackst@gmail.com">blackstackst@gmail.com</a></section></main>
 <footer><a href="{path_for(lang)}">BlackStack Studio</a><a href="/privacy.html">{ui["privacy"]}</a>
-<a href="/terms.html">{ui["terms"]}</a></footer></body></html>''')
+<a href="/terms.html">{ui["terms"]}</a></footer>
+<script defer src="/js/site.js?v=instagram1"></script></body></html>''')
     metadata(soup, lang, path, content["title"] + " | BlackStack Studio", content["description"], alternatives(service["slug"]), content)
     write(path.lstrip("/") + "index.html", str(soup))
 
