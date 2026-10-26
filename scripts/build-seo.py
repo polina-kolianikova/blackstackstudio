@@ -71,14 +71,14 @@ def tag(soup, tag_name, **attrs):
 
 def refinement(soup):
     """Keep the accepted visual layer on every generated public page."""
-    soup.html["data-refined"] = "20261026"
+    soup.html["data-refined"] = "20261026b"
     classes = list(soup.body.get("class", []))
     if "bs-refined" not in classes:
         classes.append("bs-refined")
     if soup.select_one("#heroCanvas") and "bs-home" not in classes:
         classes.append("bs-home")
     soup.body["class"] = classes
-    styles = ("/assets/fonts/onest.css", "/css/refinement.css?v=20261026")
+    styles = ("/assets/fonts/onest.css", "/css/refinement.css?v=usability20261026")
     for href in styles:
         for old in soup.select("link[href]"):
             if old["href"].split("?")[0] == href.split("?")[0]:
@@ -88,9 +88,12 @@ def refinement(soup):
         path = script["src"].split("?")[0]
         if path == "/js/refinement.js":
             script.decompose()
-        elif path in ("/js/main.js", "/js/cursor.js", "/js/three-scene.js"):
-            script["src"] = path + "?v=refine20261026"
-    soup.body.append(tag(soup, "script", src="/js/refinement.js?v=20261026", defer=""))
+        elif path in ("/js/main.js", "/js/cursor.js", "/js/three-scene.js", "/js/spiral-integration.js", "/portfolio/showcase.js"):
+            script["src"] = path + "?v=usability20261026"
+    for link in soup.select('link[href]'):
+        if link["href"].split("?")[0] == "/css/spiral-integration.css":
+            link["href"] = "/css/spiral-integration.css?v=usability20261026"
+    soup.body.append(tag(soup, "script", src="/js/refinement.js?v=usability20261026", defer=""))
 
 
 def metadata(soup, lang, path, title, description, alternates=None, service=None):
@@ -201,7 +204,10 @@ def home(lang):
         if el.get_text() == "AI-агенты":
             el.string = {"ru": "AI-агенты", "en": "AI agents", "uk": "AI-агенти"}[lang]
     for service in SERVICES:
-        article = soup.select_one(f'[data-i18n="card{service["card"]}.title"]').find_parent("article")
+        title = soup.select_one(f'[data-i18n="card{service["card"]}.title"]')
+        if title is None:
+            continue
+        article = title.find_parent("article")
         link = tag(soup, "a", href=path_for(lang, service["slug"]), **{"class": "service-link"})
         link.string = COPY[lang]["more"] + " →"
         article.append(link)
@@ -209,10 +215,12 @@ def home(lang):
         soup.select_one(f'[data-i18n="{key}"]')["href"] = path_for(lang, slug)
     soup.select_one('[data-i18n="footer.col1.3"]')["href"] = "/design/"
     # Add real links on the interface-design card too.
-    design = soup.select_one('[data-i18n="card3.title"]').find_parent("article")
-    link = tag(soup, "a", href="/design/", **{"class": "service-link"})
-    link.string = COPY[lang]["design"] + " →"
-    design.append(link)
+    design_title = soup.select_one('[data-i18n="card3.title"]')
+    if design_title is not None:
+        design = design_title.find_parent("article")
+        link = tag(soup, "a", href="/design/", **{"class": "service-link"})
+        link.string = COPY[lang]["design"] + " →"
+        design.append(link)
     main_script = soup.find("script", src=re.compile(r"/js/main\.js"))
     main_script["src"] = "/js/main.js?v=seo2"
     main_script.insert_before(tag(soup, "script", src="/js/i18n.js?v=seo2", defer=""))

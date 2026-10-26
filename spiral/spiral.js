@@ -28,7 +28,7 @@ function mount(element, options = {}) {
   const base = new URL(options.base || './', MODULE_BASE), asset = p => { const url=new URL(p,base);if(url.origin===location.origin)url.searchParams.set('v',ASSET_VERSION);return url.href; };
   let destroyed=false, renderReady=false, renderer, scene, camera, environment, pmrem, resizeObserver, intersectionObserver, frame=0, lastTime=0;
   let cases=[], cards=[], slots=[], active=-1, hover=-1, shown=0, target=0, velocity=0, direction=1;
-  let width=0, height=0, start=0, travel=0, grid=false, forceGrid=false, idle=4.53333333333, pointerInside=false, inViewport=true, lastVideoSync=0, lastDrawIdle=0, fps=60;
+  let width=0, height=0, start=0, travel=0, grid=false, forceGrid=false, idle=4.53333333333,  inViewport=true, lastVideoSync=0, lastDrawIdle=0, fps=60;
   let knotTexture=null,knotGeometry=null,knotSamples=[];const nodes=[],nodeMatrices=[],cardMatrices=[],curve1=[],curve2=[],protectMatrices=[new THREE.Matrix4(),new THREE.Matrix4(),new THREE.Matrix4()];const MATTER_PERIOD=13.3333333333;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)'), cleanup=[], textures=new Set(), geometries=new Set(), materials=new Set(), occluders=[];
   let language=options.language||'ru';
@@ -39,7 +39,7 @@ function mount(element, options = {}) {
   };
   const txt=key=>(copy[language]||copy.ru)[key];
   const caseStatus=item=>txt(item.status==='концепт'?'concept':item.status==='под ключ'?'full':'launch');
-  const raycaster=new THREE.Raycaster(), pointer=new THREE.Vector2(), point=new THREE.Vector3(), look=new THREE.Vector3();
+  const point=new THREE.Vector3(), look=new THREE.Vector3();
   const rememberGeometry=g=>(geometries.add(g),g), rememberMaterial=m=>(materials.add(m),m);
   element.replaceChildren();element.classList.add('bs-spiral');
   const sticky=make('section','sticky'), stage=make('div','stage'), links=make('div','links'), top=make('div','top'), brand=make('div');
@@ -163,18 +163,11 @@ function mount(element, options = {}) {
       card.link.tabIndex=distance<1.6&&minX>=-w*.2&&maxX<=width+w*.2?0:-1;
       card.link.setAttribute('aria-hidden',card.link.tabIndex===0?'false':'true');
     });
-    if(pointerInside)hitPointer();
   }
-  function coreHitVisible(){return true;}
-  function hitPointer(){
-    if(!renderReady||!camera||grid)return -1;
-    raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(occluders,false).filter(hit=>hit.object.visible&&hit.object.parent?.visible!==false&&(!hit.object.userData.core||coreHitVisible(hit)));
-    const hit=hits[0],index=hit?.object.userData.caseIndex??-1;
-    hover=index;
-    cards.forEach((card,i)=>{if(card.visible)card.link.style.pointerEvents=i===index?'auto':'none';});
-    return index;
+  function pointerAt(event){
+    const link=event.target.closest?.('.bs-spiral__card');
+    hover=cards.findIndex(card=>card.link===link);
   }
-  function pointerAt(event){const box=stage.getBoundingClientRect();pointer.set((event.clientX-box.left)/width*2-1,-(event.clientY-box.top)/height*2+1);pointerInside=true;hitPointer();}
   function positionCaption(){
     const box=cards[active]?.bounds;if(!box)return;
     const mobile=width<=650,captionWidth=Math.min(mobile?width-42:440,Math.max(240,box.w));
@@ -356,8 +349,7 @@ function mount(element, options = {}) {
       }catch(error){console.error('Portfolio scene unavailable',error);forceGrid=true;}}
       listen(window,'scroll',readScroll,{passive:true});listen(window,'resize',resize,{passive:true});listen(document,'visibilitychange',()=>{if(document.hidden){if(frame)cancelAnimationFrame(frame);frame=0;}else{lastTime=0;readScroll();}syncVideos();});listen(reduced,'change',()=>{if(!renderer&&!reduced.matches)forceGrid=true;switchView(false);});
       listen(view,'click',()=>{const wasGrid=grid;switchView(!grid);if(wasGrid)seek(active);else window.scrollTo({top:start,behavior:'instant'});});listen(prev,'click',()=>seek(active-1));listen(next,'click',()=>seek(active+1));
-      listen(stage,'pointermove',pointerAt,{passive:true});listen(stage,'pointerover',pointerAt,{passive:true});listen(stage,'pointerleave',()=>{pointerInside=false;hover=-1;cards.forEach(c=>{if(c.visible)c.link.style.pointerEvents='auto';});});
-      listen(stage,'pointerdown',event=>{pointerAt(event);const link=event.target.closest?.('.bs-spiral__card'),index=cards.findIndex(c=>c.link===link);if(link&&index!==hover)event.preventDefault();},true);
+      listen(stage,'pointermove',pointerAt,{passive:true});listen(stage,'pointerover',pointerAt,{passive:true});listen(stage,'pointerleave',()=>{hover=-1;});
       resizeObserver=new ResizeObserver(()=>{if(element.clientWidth!==width)resize();});resizeObserver.observe(element);
       intersectionObserver=new IntersectionObserver(entries=>{
         if(destroyed)return;

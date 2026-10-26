@@ -308,6 +308,7 @@ stage.addEventListener('keydown', event => {
 });
 function onWheel(event) {
   if (event.ctrlKey || filtered.length < 2 || dialog.open) return;
+  if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) && !event.shiftKey) return;
   event.preventDefault();
   const unit = event.deltaMode === 1 ? 18 : event.deltaMode === 2 ? 300 : 1;
   wheelDistance += (Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY) * unit;

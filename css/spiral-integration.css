@@ -19,6 +19,25 @@ body:has(#projects.bs-spiral){overflow-x:clip}
 #projects.is-grid .bs-spiral__grid{padding-top:190px}
 #projects .bs-spiral__grid-title{font-size:18px}
 #projects .bs-spiral__grid-card img{border:0;filter:none}
+#projects.portfolio-mobile{height:auto;min-height:0;scroll-margin-top:100px;padding:44px 0 48px;background:#08090a;overflow:hidden}
+.portfolio-mobile__heading{padding:0 20px 26px}
+.portfolio-mobile__brand{display:block;font-size:13px;letter-spacing:.025em;color:#a6adb1;margin-bottom:12px}
+.portfolio-mobile__title{font:550 clamp(26px,5vw,38px)/1.15 Onest,Arial,sans-serif;letter-spacing:-.04em}
+.portfolio-mobile__rail{display:flex;gap:16px;position:relative;padding:3px 20px 20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:20px;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#6a7175 #151719;touch-action:auto}
+.portfolio-mobile__card{display:block;flex:0 0 min(80vw,720px);min-width:0;scroll-snap-align:start;border:1px solid #ffffff20;border-radius:13px;overflow:hidden;background:#101214;color:#eee}
+.portfolio-mobile__poster{display:block;width:100%;height:auto;aspect-ratio:1.6;object-fit:cover;object-position:top;background:#171a1d}
+.portfolio-mobile__caption{padding:19px 18px 21px}
+.portfolio-mobile__name{font:500 23px/1.22 Onest,Arial,sans-serif;letter-spacing:-.035em;overflow-wrap:anywhere}
+.portfolio-mobile__status{display:block;margin-top:9px;font-size:13px;color:#a6afb5}
+.portfolio-mobile__controls{display:flex;align-items:center;gap:12px;padding:22px 20px 0}
+.portfolio-mobile__controls[hidden]{display:none}
+.portfolio-mobile__hint{margin-right:auto;color:#9da8ae;font-size:13px}
+.portfolio-mobile__count{font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap;color:#bec6ca}
+.portfolio-mobile__arrow{display:grid;place-items:center;flex-shrink:0;width:44px;height:44px;border:1px solid #ffffff26;border-radius:50%;background:#ffffff05;color:#eee;font-size:19px}
+.portfolio-mobile__arrow:disabled{opacity:.3;cursor:default!important}
+.portfolio-mobile__error{padding:20px;white-space:normal;font-size:16px}
+@media(max-width:900px),(hover:none) and (pointer:coarse),(prefers-reduced-motion:reduce){#projects{min-height:0}}
+@media(max-width:600px){#projects.portfolio-mobile{scroll-margin-top:82px}.portfolio-mobile__hint{max-width:100px;font-size:12px}.portfolio-mobile__controls{gap:9px}}
 @media(max-width:650px){
   #projects .bs-spiral__top{top:87px}
   #projects .bs-spiral__brand{font-size:17px}

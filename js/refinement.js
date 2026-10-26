@@ -27,10 +27,10 @@
     toggle.addEventListener('click', () => {
       const open = toggle.getAttribute('aria-expanded') !== 'true';
       toggle.setAttribute('aria-expanded', String(open)); nav.classList.toggle('is-open', open);
-      if (open) nav.querySelector('a')?.focus();
+      if (open) nav.querySelector('a')?.focus({preventScroll:true});
     });
     nav.addEventListener('click', event => { if (event.target.closest('a')) close(); });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape' && nav.classList.contains('is-open')) { close(); toggle.focus(); } });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && nav.classList.contains('is-open')) { close(); toggle.focus({preventScroll:true}); } });
     document.addEventListener('pointerdown', event => { if (!header.contains(event.target)) close(); });
     matchMedia('(min-width:901px)').addEventListener('change', event => { if(event.matches) close(); });
   }
