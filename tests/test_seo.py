@@ -81,8 +81,8 @@ class SeoTests(unittest.TestCase):
                     self.assertIsNone(re.search("[А-Яа-яЁёІіЇїЄє]", text))
                 if "/services/" not in url:
                     self.assertTrue(page.select_one("#typewriter").get_text(strip=True))
-                    scripts = [el.get("src", "") for el in page.select("script[src]")]
-                    self.assertLess(scripts.index("/js/i18n.js?v=seo2"), scripts.index("/js/main.js?v=seo2"))
+                    scripts = [urlsplit(el.get("src", "")).path for el in page.select("script[src]")]
+                    self.assertLess(scripts.index("/js/i18n.js"), scripts.index("/js/main.js"))
 
     def test_local_resources_and_internal_links(self):
         reached = set()

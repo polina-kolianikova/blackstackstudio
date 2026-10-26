@@ -1,0 +1,30 @@
+/* Scope all integration styles to the existing project gallery. */
+body:has(#projects.bs-spiral){overflow-x:clip}
+#projects{min-height:940svh;scroll-margin-top:0}
+#projects.is-grid{min-height:100svh}
+#projects.bs-spiral{font-family:Manrope,Arial,sans-serif;background:#090909;color:#ededeb}
+#projects .bs-spiral__top{top:100px}
+#projects .bs-spiral__brand{font:600 20px Manrope,Arial,sans-serif;letter-spacing:-.04em}
+#projects .bs-spiral__edition{font:13px Manrope,Arial,sans-serif;letter-spacing:0;color:#aaa}
+#projects .bs-spiral__view{font-size:14px;min-height:44px;border:0;background:#17191a;padding:10px 18px}
+#projects .bs-spiral__label{top:163px;font:14px Manrope,Arial,sans-serif;letter-spacing:0;text-transform:none;color:#aaa}
+#projects .bs-spiral__hint{top:163px;font:13px Manrope,Arial,sans-serif;letter-spacing:0;color:#aaa}
+#projects .bs-spiral__meta,#projects .bs-spiral__grid-status{font:13px Manrope,Arial,sans-serif;letter-spacing:0;color:#aaa}
+#projects .bs-spiral__status{border:0;background:#202224;border-radius:0;color:#ededeb;padding:5px 10px}
+#projects .bs-spiral__count{font:14px Manrope,Arial,sans-serif;letter-spacing:0}
+#projects .bs-spiral__arrow{border:0;background:#202224}
+#projects .bs-spiral__track,#projects .bs-spiral__track span{height:3px}
+#projects .bs-spiral__track span{background:#b4b4ae}
+#projects .bs-spiral__card-meta{font:18px Manrope,Arial,sans-serif;letter-spacing:0;text-transform:none}
+#projects.is-grid .bs-spiral__grid{padding-top:190px}
+#projects .bs-spiral__grid-title{font-size:18px}
+#projects .bs-spiral__grid-card img{border:0;filter:none}
+@media(max-width:650px){
+  #projects .bs-spiral__top{top:87px}
+  #projects .bs-spiral__brand{font-size:17px}
+  #projects .bs-spiral__label,#projects .bs-spiral__hint{top:148px;font-size:12px}
+  #projects .bs-spiral__hint{max-width:145px;text-align:right}
+  #projects .bs-spiral__meta{font-size:12px}
+  #projects .bs-spiral__edition{display:none}
+  #projects .bs-spiral__view{font-size:13px}
+}

@@ -276,11 +276,21 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    const clock = new THREE.Clock();
-
-    function animate() {
-        const t = clock.getElapsedTime();
-        const dt = Math.min(clock.getDelta() + 0.016, 0.05);
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let sceneFrame = 0, lastFrame = 0, idleTime = 0, contextLost = false;
+    let inViewport = heroEl.getBoundingClientRect().bottom > 0 && heroEl.getBoundingClientRect().top < innerHeight;
+    function requestScene() {
+        if (!sceneFrame && inViewport && !document.hidden && !motionQuery.matches && !contextLost) {
+            sceneFrame = requestAnimationFrame(animate);
+        }
+    }
+    function animate(now) {
+        sceneFrame = 0;
+        if (!inViewport || document.hidden || motionQuery.matches || contextLost) { lastFrame = 0; return; }
+        const dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.05) : 1 / 60;
+        lastFrame = now;
+        idleTime += dt;
+        const t = idleTime;
 
         pointer.x += (target.x - pointer.x) * 0.06;
         pointer.y += (target.y - pointer.y) * 0.06;
@@ -299,7 +309,7 @@
             c.mesh.scale.setScalar(k);
         });
 
-        const heroH = window.innerHeight;
+        const heroH = heroEl.offsetHeight || window.innerHeight;
         const p = Math.min(scrollY / heroH, 1);
         construct.position.y = -p * 2;
         construct.position.z = -p * 3;
@@ -317,10 +327,28 @@
         camera.lookAt(0, 0, 0);
 
         renderer.render(scene, camera);
-        requestAnimationFrame(animate);
+        requestScene();
     }
 
-    animate();
+    const visibilityObserver = new IntersectionObserver(entries => {
+        inViewport = entries[0].isIntersecting;
+        if (!inViewport) { cancelAnimationFrame(sceneFrame); sceneFrame = 0; lastFrame = 0; }
+        else requestScene();
+    }, {threshold: 0});
+    visibilityObserver.observe(heroEl);
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) { cancelAnimationFrame(sceneFrame); sceneFrame = 0; lastFrame = 0; }
+        else requestScene();
+    });
+    motionQuery.addEventListener('change', () => {
+        cancelAnimationFrame(sceneFrame); sceneFrame = 0; lastFrame = 0;
+        if (motionQuery.matches) useStaticBackground();
+        else { canvas.style.display = ''; heroEl.style.background = ''; requestScene(); }
+    });
+    canvas.addEventListener('webglcontextlost', () => {
+        contextLost = true; cancelAnimationFrame(sceneFrame); sceneFrame = 0; useStaticBackground();
+    });
+    requestScene();
         } catch (error) {
             console.warn("WebGL scene disabled.", error);
             useStaticBackground();

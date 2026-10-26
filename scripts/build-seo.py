@@ -69,7 +69,32 @@ def tag(soup, tag_name, **attrs):
     return soup.new_tag(tag_name, attrs=attrs)
 
 
+def refinement(soup):
+    """Keep the accepted visual layer on every generated public page."""
+    soup.html["data-refined"] = "20261026"
+    classes = list(soup.body.get("class", []))
+    if "bs-refined" not in classes:
+        classes.append("bs-refined")
+    if soup.select_one("#heroCanvas") and "bs-home" not in classes:
+        classes.append("bs-home")
+    soup.body["class"] = classes
+    styles = ("/assets/fonts/onest.css", "/css/refinement.css?v=20261026")
+    for href in styles:
+        for old in soup.select("link[href]"):
+            if old["href"].split("?")[0] == href.split("?")[0]:
+                old.decompose()
+        soup.head.append(tag(soup, "link", rel="stylesheet", href=href))
+    for script in list(soup.select("script[src]")):
+        path = script["src"].split("?")[0]
+        if path == "/js/refinement.js":
+            script.decompose()
+        elif path in ("/js/main.js", "/js/cursor.js", "/js/three-scene.js"):
+            script["src"] = path + "?v=refine20261026"
+    soup.body.append(tag(soup, "script", src="/js/refinement.js?v=20261026", defer=""))
+
+
 def metadata(soup, lang, path, title, description, alternates=None, service=None):
+    refinement(soup)
     title, description = str(title), str(description)
     head = soup.head
     for item in head.select('title, meta[name="description"], meta[name="robots"], meta[property^="og:"], meta[name^="twitter:"], link[rel="canonical"], link[hreflang], script[type="application/ld+json"]'):

@@ -1,0 +1,17 @@
+[
+  {"slug":"monolith","title":"MONOLITH","domain":"monolith-architecture","status":"концепт","url":"https://polina-kolianikova.github.io/monolith-architecture/","poster":"media/monolith.webp","video":"media/monolith.mp4"},
+  {"slug":"jsenglish","title":"JS English","domain":"jsenglish.co.uk","status":"под ключ","url":"https://jsenglish.co.uk/","poster":"media/jsenglish.webp","video":"media/jsenglish.mp4"},
+  {"slug":"volt","title":"VOLT","domain":"volt-mobility","status":"концепт","url":"https://polina-kolianikova.github.io/volt-mobility/","poster":"media/volt.webp","video":"media/volt.mp4"},
+  {"slug":"energo","title":"Школа энергодыхания","domain":"energo-breathing-test.vercel.app","status":"под ключ","url":"https://energo-breathing-test.vercel.app/","poster":"media/energo.webp","video":"media/energo.mp4"},
+  {"slug":"nocturne","title":"NOCTURNE","domain":"nocturne-parfum","status":"концепт","url":"https://polina-kolianikova.github.io/nocturne-parfum/","poster":"media/nocturne.webp","video":"media/nocturne.mp4"},
+  {"slug":"kogorta","title":"Kogorta","domain":"kogorta.co","status":"в запуске","url":"https://kogorta.co/","poster":"media/kogorta.webp","video":"media/kogorta.mp4"},
+  {"slug":"signal","title":"SIGNAL","domain":"signal-automation","status":"концепт","url":"https://polina-kolianikova.github.io/signal-automation/","poster":"media/signal.webp","video":"media/signal.mp4"},
+  {"slug":"obscura","title":"OBSCURA","domain":"obscura-audio","status":"концепт","url":"https://polina-kolianikova.github.io/obscura-audio/","poster":"media/obscura.webp","video":"media/obscura.mp4"},
+  {"slug":"aurel","title":"AUREL","domain":"aurel-retreat","status":"концепт","url":"https://polina-kolianikova.github.io/aurel-retreat/","poster":"media/aurel.webp","video":"media/aurel.mp4"},
+  {"slug":"fold","title":"FOLD","domain":"fold-interiors","status":"концепт","url":"https://polina-kolianikova.github.io/fold-interiors/","poster":"media/fold.webp","video":"media/fold.mp4"},
+  {"slug":"origin","title":"ORIGIN","domain":"origin-coffee","status":"концепт","url":"https://polina-kolianikova.github.io/origin-coffee/","poster":"media/origin.webp","video":"media/origin.mp4"},
+  {"slug":"veil","title":"VEIL","domain":"veil-skincare","status":"концепт","url":"https://polina-kolianikova.github.io/veil-skincare/","poster":"media/veil.webp","video":"media/veil.mp4"},
+  {"slug":"still","title":"STILL","domain":"still-wellness","status":"концепт","url":"https://polina-kolianikova.github.io/still-wellness/","poster":"media/still.webp","video":"media/still.mp4"},
+  {"slug":"aperture","title":"APERTURE","domain":"aperture-films","status":"концепт","url":"https://polina-kolianikova.github.io/aperture-films/","poster":"media/aperture.webp","video":"media/aperture.mp4"},
+  {"slug":"umbra","title":"UMBRA","domain":"umbra-gallery","status":"концепт","url":"https://polina-kolianikova.github.io/umbra-gallery/","poster":"media/umbra.webp","video":"media/umbra.mp4"}
+]

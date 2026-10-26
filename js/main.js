@@ -50,11 +50,16 @@ function runLoader() {
     const fill = document.getElementById("loaderBarFill");
     const pct = document.getElementById("loaderPercent");
     if (!loader) return Promise.resolve();
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        loader.classList.add('is-done');
+        document.body.classList.add('is-loaded');
+        return Promise.resolve();
+    }
 
     return new Promise((resolve) => {
         let finished = false;
         const start = performance.now();
-        const minDuration = 1500;
+        const minDuration = 520;
 
         function finish() {
             if (finished) return;
@@ -102,6 +107,11 @@ function splitText() {
         if (el.dataset.splitDone) return;
         const key = el.getAttribute("data-i18n");
         const text = (key ? t(key) : el.textContent).trim();
+        if (document.documentElement.hasAttribute('data-refined')) {
+            el.textContent = text;
+            el.dataset.splitDone = '1';
+            return;
+        }
         el.textContent = "";
 
         const words = text.split(" ");
@@ -292,6 +302,7 @@ function startClock() {
 function initStats() {
     const stats = document.querySelectorAll("[data-count]");
     if (!stats.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const easeOut = (t) => 1 - Math.pow(1 - t, 3);
     const animate = (el) => {
@@ -336,9 +347,11 @@ document.addEventListener("DOMContentLoaded", () => {
         applyTranslations();
 
         navScroll();
-        parallaxMark();
-        tilt();
-        magnetic();
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) parallaxMark();
+        if (!document.documentElement.hasAttribute('data-refined')) {
+            tilt();
+            magnetic();
+        }
         startClock();
         initStats();
     } catch (error) {
