@@ -1,9 +1,13 @@
 import { CATEGORIES, DESIGNERS, WORKS } from './works.js?v=5';
 
-const works = WORKS.slice().sort((a, b) => a.order - b.order).map((work, index) => ({ ...work, index }));
+const language = document.documentElement.lang || 'ru';
+const tr = text => window.BlackStackPages?.[language]?.[text] ?? text;
+const localizedCategories = CATEGORIES.map(category => ({...category, label: tr(category.label), description: tr(category.description)}));
+
+const works = WORKS.slice().sort((a, b) => a.order - b.order).map((work, index) => ({ ...work, tag: tr(work.tag), index }));
 const designerById = new Map(DESIGNERS.map(designer => [designer.id, designer]));
 const designers = DESIGNERS.filter(designer => works.some(work => work.designerId === designer.id));
-const categoryById = new Map(CATEGORIES.filter(category => works.some(work => work.categories.includes(category.id))).map(category => [category.id, category]));
+const categoryById = new Map(localizedCategories.filter(category => works.some(work => work.categories.includes(category.id))).map(category => [category.id, category]));
 const deck = document.querySelector('#artDeck');
 const stage = document.querySelector('#artStage');
 const tabsRoot = document.querySelector('#categoryTabs');
@@ -35,6 +39,9 @@ let state = { category: 'all', designer: '', query: '' };
 const wrap = (index, count = filtered.length) => ((index % count) + count) % count;
 const authorName = work => designerById.get(work.designerId)?.name || '';
 function wordCount(count) {
+  if (language === 'ka') return `${count} ნამუშევარი`;
+  if (language === 'en') return `${count} ${count === 1 ? 'work' : 'works'}`;
+  if (language === 'uk') { const n=count%10, t=count%100; return `${count} ${n===1&&t!==11?'робота':n>1&&n<5&&(t<12||t>14)?'роботи':'робіт'}`; }
   const last = count % 10, teens = count % 100;
   return `${count} ${last === 1 && teens !== 11 ? 'работа' : last > 1 && last < 5 && (teens < 12 || teens > 14) ? 'работы' : 'работ'}`;
 }
@@ -50,7 +57,7 @@ function createTab(category, count) {
 }
 function buildFilters() {
   const fragment = document.createDocumentFragment();
-  fragment.append(createTab({ id: 'all', label: 'Всё' }, works.length));
+  fragment.append(createTab({ id: 'all', label: tr('Всё') }, works.length));
   for (const category of categoryById.values()) fragment.append(createTab(category, works.filter(work => work.categories.includes(category.id)).length));
   tabsRoot.replaceChildren(fragment);
   tabs = [...tabsRoot.querySelectorAll('button')];
@@ -66,7 +73,7 @@ function buildFilters() {
     });
   }
   document.querySelector('#designerFilter').hidden = designers.length === 0;
-  const team = document.createElement('option'); team.value = ''; team.textContent = 'Вся команда';
+  const team = document.createElement('option'); team.value = ''; team.textContent = tr('Вся команда');
   designerSelect.replaceChildren(team);
   for (const designer of designers) {
     const option = document.createElement('option'); option.value = designer.id; option.textContent = designer.name;
@@ -89,9 +96,9 @@ function writeUrl(mode) {
 function applyFilters(mode = false) {
   if (dialog.open) dismissDialog();
   pointer = null; pendingTap = null; stage.classList.remove('is-dragging');
-  const query = state.query.trim().toLocaleLowerCase('ru');
+  const query = state.query.trim().toLocaleLowerCase(language);
   const scope = works.filter(work => (!state.designer || work.designerId === state.designer)
-    && (!query || [work.title, work.tag, authorName(work), ...work.categories.map(id => categoryById.get(id)?.label || '')].join(' ').toLocaleLowerCase('ru').includes(query)));
+    && (!query || [work.title, work.tag, authorName(work), ...work.categories.map(id => categoryById.get(id)?.label || '')].join(' ').toLocaleLowerCase(language).includes(query)));
   filtered = scope.filter(work => state.category === 'all' || work.categories.includes(state.category));
   for (const tab of tabs) {
     const category = tab.dataset.categoryTab;
@@ -104,7 +111,7 @@ function applyFilters(mode = false) {
     tab.setAttribute('aria-selected', String(tab === active)); tab.tabIndex = tab === active ? 0 : -1;
   }
   document.querySelector('#workPanel').setAttribute('aria-labelledby', active.id);
-  document.querySelector('#categoryDescription').textContent = categoryById.get(state.category)?.description || 'Выберите направление — внутри проектов можно посмотреть все материалы.';
+  document.querySelector('#categoryDescription').textContent = categoryById.get(state.category)?.description || tr('Выберите направление — внутри проектов можно посмотреть все материалы.');
   document.querySelector('#archiveCount').textContent = wordCount(filtered.length);
   document.querySelector('#catalogEmpty').hidden = filtered.length > 0;
   document.querySelector('#workPanel').hidden = filtered.length === 0;
@@ -134,7 +141,7 @@ function makeCard(work) {
 function makeGalleryCount(work) {
   if (!work.gallery || work.gallery.length < 2) return null;
   const badge = document.createElement('span'); badge.className = 'case-count';
-  badge.textContent = `▦ ${work.gallery.length}`; badge.title = `Материалы проекта: ${work.gallery.length}`;
+  badge.textContent = `▦ ${work.gallery.length}`; badge.title = `${tr("Материалы проекта")}: ${work.gallery.length}`;
   badge.setAttribute('aria-hidden', 'true'); return badge;
 }
 function pose(delta) {
@@ -177,7 +184,7 @@ function renderDeck(direction = 0, reset = false, cursor = selected) {
     card.style.zIndex = String(Math.round(50 - Math.abs(delta) * 10));
     card.setAttribute('aria-hidden', String(Math.abs(delta) >= 3));
     card.tabIndex = work.index === filtered[selected].index ? 0 : -1;
-    card.setAttribute('aria-label', `Открыть: ${work.title}, ${work.tag}${authorName(work) ? ', ' + authorName(work) : ''}`);
+    card.setAttribute('aria-label', `${tr("Открыть")}: ${work.title}, ${work.tag}${authorName(work) ? ', ' + authorName(work) : ''}`);
   }
   for (const [index, card] of cards) {
     if (visible.has(index)) continue;
@@ -203,7 +210,7 @@ function renderGrid() {
   const fragment = document.createDocumentFragment();
   for (const work of filtered) {
     const card = document.createElement('button'); card.type = 'button'; card.className = 'work-card'; card.dataset.work = work.index;
-    card.setAttribute('aria-label', `Открыть: ${work.title}, ${work.tag}`);
+    card.setAttribute('aria-label', `${tr("Открыть")}: ${work.title}, ${work.tag}`);
     const imageFrame = document.createElement('span'); imageFrame.className = 'work-card__image';
     const image = document.createElement('img'); image.src = work.poster || work.src; image.alt = `${work.title} — ${work.tag}`; image.loading = 'lazy'; image.decoding = 'async'; imageFrame.append(image);
     const count = makeGalleryCount(work); if (count) imageFrame.append(count);
@@ -221,7 +228,7 @@ function renderPacks() {
   const links = new Map();
   for (const work of filtered) if (work.categories.includes('stickers') && work.link) links.set(work.link, work.title);
   root.hidden = (state.category !== 'all' && state.category !== 'stickers') || links.size === 0;
-  const label = document.createElement('span'); label.textContent = 'Telegram-паки'; root.replaceChildren(label);
+  const label = document.createElement('span'); label.textContent = tr('Telegram-паки'); root.replaceChildren(label);
   for (const [url, name] of links) { const link = document.createElement('a'); link.href = url; link.textContent = name + ' ↗'; link.target = '_blank'; link.rel = 'noopener noreferrer'; root.append(link); }
 }
 function openWork(index, trigger) {
@@ -237,7 +244,7 @@ function openWork(index, trigger) {
   dialog.classList.toggle('has-gallery', dialogImages.length > 1);
   galleryThumbs.replaceChildren(...dialogImages.map((asset, imageIndex) => {
     const button = document.createElement('button'); button.type = 'button'; button.className = 'dialog__thumb';
-    button.ariaLabel = `Показать материал ${imageIndex + 1}`;
+    button.ariaLabel = `${tr("Показать материал")} ${imageIndex + 1}`;
     const image = document.createElement('img'); image.src = asset.thumb || asset.poster || asset.src; image.alt = ''; image.loading = 'lazy';
     button.append(image); button.addEventListener('click', () => showDialogImage(imageIndex));
     return button;

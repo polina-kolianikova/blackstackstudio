@@ -18,7 +18,7 @@
     toggle = document.createElement('button');
     toggle.className = 'refine-menu-toggle';
     toggle.type = 'button';
-    toggle.setAttribute('aria-label', {en:'Menu',uk:'Меню',ru:'Меню'}[document.documentElement.lang] || 'Menu');
+    toggle.setAttribute('aria-label', {en:'Menu',uk:'Меню',ru:'Меню',ka:'მენიუ'}[document.documentElement.lang] || 'Menu');
     toggle.setAttribute('aria-controls', nav.id);
     toggle.setAttribute('aria-expanded', 'false');
     toggle.innerHTML = '<i aria-hidden="true"></i><i aria-hidden="true"></i>';

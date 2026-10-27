@@ -20,5 +20,6 @@ jobs:
       - run: git diff --exit-code
       - run: node --check js/main.js && node --check js/i18n.js
       - run: node --check js/site.js && node --check js/instagram.js
+      - run: node --check js/language.js && node --check js/i18n-ka.js && node --check js/page-copy.js && node --check js/video-runtime.js
       - run: node --test tests/*.cjs
       - run: python -m unittest discover -s tests -v

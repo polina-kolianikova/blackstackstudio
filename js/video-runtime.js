@@ -584,12 +584,8 @@ const I18N = {
 };
 
 const STORAGE_KEY = "bs.lang";
-let currentLang = "ru";
-try {
-    currentLang = localStorage.getItem(STORAGE_KEY) || "ru";
-} catch (error) {
-    currentLang = "ru";
-}
+if (window.BlackStackGeorgian) I18N.ka = window.BlackStackGeorgian;
+let currentLang = document.documentElement.lang || "ru";
 if (!I18N[currentLang]) currentLang = "ru";
 
 function t(key) {

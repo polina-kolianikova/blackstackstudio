@@ -1,5 +1,6 @@
 const base = new URL('../spiral/', import.meta.url);
 const copy = {
+  ka:{title:'პროექტები და კონცეფციები',previous:'წინა პროექტი',next:'შემდეგი პროექტი',hint:'გადაათვალიერეთ პროექტები',concept:'კონცეფცია',full:'სრული პროექტი',launch:'გაშვების პროცესში',error:'პროექტები ვერ ჩაიტვირთა. განაახლეთ გვერდი.'},
   ru:{title:'Проекты и концепты',previous:'Предыдущий проект',next:'Следующий проект',hint:'Листайте проекты',concept:'концепт',full:'под ключ',launch:'в запуске',error:'Не удалось загрузить проекты. Обновите страницу.'},
   en:{title:'Projects and concepts',previous:'Previous project',next:'Next project',hint:'Swipe to explore',concept:'concept',full:'full delivery',launch:'launching',error:'Projects could not load. Please refresh the page.'},
   uk:{title:'Проєкти та концепти',previous:'Попередній проєкт',next:'Наступний проєкт',hint:'Гортайте проєкти',concept:'концепт',full:'під ключ',launch:'у запуску',error:'Не вдалося завантажити проєкти. Оновіть сторінку.'}

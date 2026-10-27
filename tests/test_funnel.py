@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class FunnelTests(unittest.TestCase):
     def test_every_primary_page_has_localized_bot_entry(self):
-        for lang in ("ru", "en", "uk"):
+        for lang in ("ru", "en", "uk", "ka"):
             prefix = "" if lang == "ru" else lang + "/"
             for route in ("", "services/web-development/", "services/automation-ai/",
                           "services/custom-software/"):

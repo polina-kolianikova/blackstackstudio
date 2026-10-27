@@ -1,4 +1,5 @@
 // The URL and its static HTML determine the language for visitors and crawlers.
+if (window.BlackStackGeorgian) I18N.ka = window.BlackStackGeorgian;
 let currentLang = document.documentElement.lang || "ru";
 if (!I18N[currentLang]) currentLang = "ru";
 

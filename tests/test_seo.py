@@ -25,7 +25,7 @@ class SeoTests(unittest.TestCase):
         cls.pages = {url: BeautifulSoup(file_for(url).read_text(encoding="utf-8"), "html.parser") for url in cls.urls}
 
     def test_sitemap_and_robots(self):
-        self.assertEqual(len(self.urls), 16)
+        self.assertEqual(len(self.urls), 26)
         self.assertEqual(len(set(self.urls)), len(self.urls))
         self.assertIn("Sitemap: " + ORIGIN + "/sitemap.xml", (ROOT / "robots.txt").read_text())
         self.assertNotIn("Disallow: /", (ROOT / "robots.txt").read_text())
@@ -65,21 +65,22 @@ class SeoTests(unittest.TestCase):
                 continue
             with self.subTest(url=url):
                 alternates = {link["hreflang"]: link["href"] for link in links}
-                self.assertEqual(set(alternates), {"ru", "en", "uk", "x-default"})
+                self.assertEqual(set(alternates), {"ru", "en", "uk", "ka", "x-default"})
                 self.assertEqual(alternates[page.html["lang"]], url)
                 self.assertEqual(alternates["x-default"], alternates["ru"])
-                for language in ("ru", "en", "uk"):
+                for language in ("ru", "en", "uk", "ka"):
                     other = self.pages[alternates[language]]
                     self.assertEqual(other.html["lang"], language)
                     self.assertEqual({el["hreflang"]: el["href"] for el in other.select("link[hreflang]")}, alternates)
                     anchors = other.select(f'a[hreflang="{language}"]')
                     self.assertTrue(any(urljoin(alternates[language], a["href"]) == alternates[language] for a in anchors))
-                self.assertGreater(len(page.body.get_text(" ", strip=True)), 1000)
+                portfolio = any(section in urlsplit(url).path for section in ("/design/", "/montage/"))
+                self.assertGreater(len(page.body.get_text(" ", strip=True)), 500 if portfolio else 1000)
                 if page.html["lang"] == "en":
                     text = page.body.get_text(" ", strip=True)
                     text = text.replace("Русский", "").replace("Українська", "")
                     self.assertIsNone(re.search("[А-Яа-яЁёІіЇїЄє]", text))
-                if "/services/" not in url:
+                if urlsplit(url).path in ("/", "/en/", "/uk/", "/ka/"):
                     self.assertTrue(page.select_one("#typewriter").get_text(strip=True))
                     scripts = [urlsplit(el.get("src", "")).path for el in page.select("script[src]")]
                     self.assertLess(scripts.index("/js/i18n.js"), scripts.index("/js/main.js"))
@@ -109,6 +110,30 @@ class SeoTests(unittest.TestCase):
         for name in ("cases/template.html", "bs-admin/index.html"):
             page = BeautifulSoup((ROOT / name).read_text(encoding="utf-8"), "html.parser")
             self.assertIn("noindex", page.select_one('meta[name="robots"]')["content"])
+
+    def test_language_menu_is_available_without_javascript_and_keeps_the_section(self):
+        for url, page in self.pages.items():
+            with self.subTest(url=url):
+                menus = page.select('.language-menu')
+                self.assertEqual(len(menus), 1)
+                links = menus[0].select('a[data-language]')
+                self.assertEqual({link['data-language'] for link in links}, {'ru', 'en', 'uk', 'ka'})
+                self.assertEqual(len(menus[0].select('a[aria-current="page"]')), 1)
+                alternates = {link['hreflang']: link['href'] for link in page.select('link[hreflang]')}
+                for link in links:
+                    target = urljoin(url, link['href'])
+                    self.assertIn(target, self.pages)
+                    if alternates:
+                        self.assertEqual(target, alternates[link['data-language']])
+                self.assertEqual(len(page.select('script[src^="/js/language.js"]')), 1)
+
+    def test_georgian_home_and_video_have_complete_static_copy(self):
+        copy = json.loads((ROOT / 'seo/ka.json').read_text(encoding='utf-8'))
+        for route in ('ka/index.html', 'ka/montage/index.html'):
+            page = BeautifulSoup((ROOT / route).read_text(encoding='utf-8'), 'html.parser')
+            for element in page.select('[data-i18n]'):
+                self.assertEqual(element.get_text(), copy[element['data-i18n']])
+            self.assertEqual(len(page.select('script[src^="/js/i18n-ka.js"]')), 1)
 
 
 if __name__ == "__main__":

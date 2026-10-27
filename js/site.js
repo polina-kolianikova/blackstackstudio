@@ -66,7 +66,7 @@ function decorateInternalLinks(attribution) {
 
 function enquiryUrl(source = "contact") {
     if (instagramAttribution()) return `https://t.me/${SITE.bot}?start=${INSTAGRAM_SOURCE}`;
-    const lang = ["ru", "en", "uk"].includes(document.documentElement.lang)
+    const lang = ["ru", "en", "uk", "ka"].includes(document.documentElement.lang)
         ? document.documentElement.lang : "ru";
     const route = window.location.pathname.includes("/services/")
         ? window.location.pathname.split("/services/")[1].split("/")[0]

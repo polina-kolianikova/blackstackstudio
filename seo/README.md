@@ -1,8 +1,8 @@
 # SEO pages
 
-The existing GitHub Pages site now has static Russian, English and Ukrainian home pages and three service pages in each language. The Russian home remains at `/`; English uses `/en/` and Ukrainian `/uk/`.
+The existing GitHub Pages site now has static Russian, English, Ukrainian and Georgian home pages and three service pages in each language. The Russian home remains at `/`; English uses `/en/` and Ukrainian `/uk/` and Georgian `/ka/`.
 
-Edit `seo/home.html` for the home-page layout, `js/i18n.js` for translated copy, and `seo/services.json` for service content. Run the build after editing any of these inputs. The root home page and localized pages are generated files. The portfolio and legal pages keep their existing body content and receive metadata in place.
+Edit `seo/home.html` for the home-page layout, `js/i18n.js` for translated copy, and `seo/services.json` for service content. Run the build after editing any of these inputs. The root home page and localized pages are generated files. The design and video templates live in `seo/design.html` and `seo/montage.html`. Georgian copy lives in `seo/ka.json`, `seo/ka-services.json` and `seo/ka-design-tags.json`. Shared page copy lives in `seo/page-translations.json`. The legal documents remain in Russian and links from other languages say so.
 
 ## Build and check
 
@@ -17,7 +17,7 @@ node --check js/i18n.js
 python -m http.server 8876 --bind 127.0.0.1
 ```
 
-The build writes 15 sitemap URLs: three home pages, nine service pages, the design portfolio and two legal pages. Each localized page has its own canonical URL, reciprocal hreflang links and content available without JavaScript. Language links navigate to the corresponding page; saved browser language no longer overrides a URL's language.
+The build writes 26 sitemap URLs: four home pages, twelve service pages, eight design/video pages and two legal documents. Each localized page has its own canonical URL, reciprocal hreflang links and content available without JavaScript. One native disclosure menu links to the corresponding page in all four languages. Explicit localized URLs keep their language. On the common `/` address only, a manual choice in `blackstack.language` (or the earlier `bs.lang` key) wins, otherwise the first supported browser preference is selected, with English as fallback. No IP lookup is used. A direct Russian link can use `/?lang=ru`. Manual switching preserves current query parameters and the fragment, including portfolio filters. Disabled storage uses the explicit `lang` parameter and does not create a redirect loop.
 
 The site uses Organization, WebSite and WebPage structured data. Service pages additionally describe the visible service and breadcrumbs. No ratings, prices or office locations are invented. Social cards use the existing 640 by 640 studio logo because the old `/assets/og.png` URL does not exist.
 
@@ -39,3 +39,9 @@ After publication:
 A missing robots.txt or sitemap alone does not prohibit indexing. These changes provide crawlable content and discovery paths; they do not establish that Google has indexed the pages or guarantee rankings.
 
 References: [Google's localized-page guidance](https://developers.google.com/search/docs/specialty/international/localized-versions), [Google's sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview).
+
+## Georgian release, 2026-10-27
+
+The Georgian font is self-hosted with its OFL license. Original project names and text inside portfolio images remain as supplied. The Telegram bot must be released with its Georgian dictionaries before the website release so `web_ka_*` links keep the selected language through submission.
+
+Validation: `node --test tests/*.cjs`, `python -m unittest discover -s tests -q`, JavaScript syntax checks and a second build with byte-identical generated output. Browser QA covers 390, 768 and 1440 pixel widths.
