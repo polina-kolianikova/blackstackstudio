@@ -129,6 +129,12 @@ def language_assets(soup, lang, route):
         soup.head.append(tag(soup, "link", rel="stylesheet", href="/assets/fonts/georgian.css"))
     if lang == "ka" and not soup.select_one('script[src^="/js/i18n-ka.js"]'):
         soup.head.insert(1, tag(soup, "script", src="/js/i18n-ka.js?v=20261027"))
+    changed_scripts = {"/js/main.js", "/js/site.js", "/js/video-runtime.js", "/js/refinement.js",
+                       "/js/spiral-integration.js", "/portfolio/showcase.js"}
+    for script in soup.select('script[src]'):
+        path = script["src"].split("?")[0]
+        if path in changed_scripts:
+            script["src"] = path + "?v=locale20261027"
     for link in soup.select('a[href]'):
         if link.has_attr("data-language"):
             continue

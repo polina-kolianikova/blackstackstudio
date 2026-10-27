@@ -23,7 +23,7 @@ class FunnelTests(unittest.TestCase):
                     self.assertRegex(value, r"^[A-Za-z0-9_-]{1,64}$")
                     self.assertFalse(link.has_attr("data-tg-link"))
                     self.assertTrue(link.has_attr("data-bot-link"))
-                self.assertEqual(len(page.select('script[src="/js/site.js?v=instagram1"]')), 1)
+                self.assertEqual(len(page.select('script[src^="/js/site.js?"]')), 1)
 
     def test_design_and_video_use_distinct_sources(self):
         for route, source in (("design", "design"), ("montage", "video")):
@@ -31,7 +31,7 @@ class FunnelTests(unittest.TestCase):
             links = page.select('a[href^="https://t.me/blackstackstudio_bot?start="]')
             self.assertGreaterEqual(len(links), 2)
             self.assertTrue(all(f"web_ru_{source}_" in link["href"] for link in links))
-            self.assertEqual(len(page.select('script[src="/js/site.js?v=instagram1"]')), 1)
+            self.assertEqual(len(page.select('script[src^="/js/site.js?"]')), 1)
 
     def test_direct_contact_and_privacy_remain_available(self):
         page = BeautifulSoup((ROOT / "index.html").read_text(encoding="utf-8"), "html.parser")
