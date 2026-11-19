@@ -137,6 +137,8 @@ def language_assets(soup, lang, route):
             script["src"] = path + "?v=locale20261027"
         if path == "/js/spiral-integration.js":
             script["src"] = path + "?v=spiral20261119"
+        if path in {"/js/site.js", "/js/i18n.js", "/js/i18n-ka.js", "/js/video-runtime.js"}:
+            script["src"] = path + "?v=contact20261120"
     for link in soup.select('link[href]'):
         if link["href"].split("?")[0] == "/css/spiral-integration.css":
             link["href"] = "/css/spiral-integration.css?v=spiral20261119"
@@ -263,7 +265,7 @@ def metadata(soup, lang, path, title, description, alternates=None, service=None
     graph = [
         {"@type": "Organization", "@id": ORIGIN + "/#organization", "name": "BlackStack Studio",
          "url": ORIGIN + "/", "logo": ORIGIN + "/assets/logo.png", "email": "blackstackst@gmail.com",
-         "sameAs": ["https://t.me/blackstackmng", "https://www.instagram.com/blackstack_studio/"]},
+         "sameAs": ["https://t.me/blackstack_manager2", "https://www.instagram.com/blackstack_studio/"]},
         {"@type": "WebSite", "@id": ORIGIN + "/#website", "url": ORIGIN + "/",
          "name": "BlackStack Studio", "publisher": {"@id": ORIGIN + "/#organization"}, "inLanguage": list(LANGS)},
         {"@type": "WebPage", "@id": ORIGIN + path + "#webpage", "url": ORIGIN + path,

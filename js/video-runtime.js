@@ -143,7 +143,7 @@ const I18N = {
         "contact.title": "Идея в продакшен за 30 дней",
         "contact.lead":  "Если задача возможна — берём. Если невозможна — стоит дороже. На бриф отвечаем за час. Оценка — за 48 часов.",
         "contact.cta":   "Запустить проект",
-        "contact.tg":    "@blackstackmng",
+        "contact.tg":    "@blackstack_manager2",
         "contact.email": "blackstackst@gmail.com",
         "contact.emailLbl": "Email",
 
@@ -337,7 +337,7 @@ const I18N = {
         "contact.title": "Idea to production in 30 days",
         "contact.lead":  "If it's possible, we take it. If it's impossible, it costs more. We reply to your brief in one hour. Estimate in 48 hours.",
         "contact.cta":   "Launch a project",
-        "contact.tg":    "@blackstackmng",
+        "contact.tg":    "@blackstack_manager2",
         "contact.email": "blackstackst@gmail.com",
         "contact.emailLbl": "Email",
 
@@ -531,7 +531,7 @@ const I18N = {
         "contact.title": "Ідея у продакшн за 30 днів",
         "contact.lead":  "Якщо задача можлива — беремо. Якщо неможлива — коштує дорожче. На бриф відповідаємо за годину. Оцінка — за 48 годин.",
         "contact.cta":   "Запустити проєкт",
-        "contact.tg":    "@blackstackmng",
+        "contact.tg":    "@blackstack_manager2",
         "contact.email": "blackstackst@gmail.com",
         "contact.emailLbl": "Email",
 

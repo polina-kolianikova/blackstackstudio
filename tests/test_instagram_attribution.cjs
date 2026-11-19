@@ -121,7 +121,7 @@ test("corrupt, expired, future and foreign storage records fail closed", () => {
 
 test("manager, email, external links, downloads and admin never receive campaign params", () => {
     const links = [
-        { href: "https://t.me/blackstackmng", "data-tg-link": "" },
+        { href: "https://t.me/blackstack_manager2", "data-tg-link": "" },
         { href: "mailto:blackstackst@gmail.com" },
         { href: "https://example.com/proof" },
         { href: "/instagram/brief-template.txt", download: "brief.txt" },
@@ -137,9 +137,9 @@ test("manager, email, external links, downloads and admin never receive campaign
 test("real managed CTA receives the fixed payload and public manager remains separate", () => {
     const page = visit("/instagram/index.html", { links: [
         { href: "https://t.me/blackstackstudio_bot?start=web_ru_home_nav", "data-bot-link": "nav" },
-        { href: "https://t.me/blackstackmng", "data-tg-link": "" },
+        { href: "https://t.me/blackstack_manager2", "data-tg-link": "" },
     ] });
     assert.equal(page.anchors[0].href, instagramBot);
-    assert.equal(page.anchors[1].href, "https://t.me/blackstackmng");
+    assert.equal(page.anchors[1].href, "https://t.me/blackstack_manager2");
     assert.match(new URL(page.bot()).searchParams.get("start"), /^[A-Za-z0-9_-]{1,64}$/);
 });

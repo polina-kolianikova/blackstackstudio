@@ -35,7 +35,7 @@ class FunnelTests(unittest.TestCase):
 
     def test_direct_contact_and_privacy_remain_available(self):
         page = BeautifulSoup((ROOT / "index.html").read_text(encoding="utf-8"), "html.parser")
-        self.assertTrue(page.select('a[href="https://t.me/blackstackmng"]'))
+        self.assertTrue(page.select('a[href="https://t.me/blackstack_manager2"]'))
         self.assertTrue(page.select('a[href="mailto:blackstackst@gmail.com"]'))
         self.assertTrue(page.select('a[href="/privacy.html"]'))
 

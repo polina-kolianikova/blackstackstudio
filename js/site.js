@@ -1,6 +1,6 @@
 const SITE = {
     email: "blackstackst@gmail.com",
-    tg: "blackstackmng",
+    tg: "blackstack_manager2",
     bot: "blackstackstudio_bot",
     ig: "blackstack_studio",
 };
