@@ -1,7 +1,6 @@
 import { mountMobilePortfolio } from './portfolio-mobile.js?v=locale20261027';
 
 const element = document.getElementById('projects');
-const compact = matchMedia('(max-width: 900px), (hover: none) and (pointer: coarse)');
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const language = document.documentElement.lang || 'ru';
 let instance, generation = 0, visitorMoved = false;
@@ -14,10 +13,10 @@ async function mount() {
   const run = ++generation;
   instance?.destroy();
   instance = null;
-  if (compact.matches || reduced.matches) {
+  if (reduced.matches) {
     instance = mountMobilePortfolio(element, {language});
   } else {
-    const [{BSSpiral}] = await Promise.all([import('../spiral/spiral.js?v=locale20261027'), document.fonts.ready]);
+    const [{BSSpiral}] = await Promise.all([import('../spiral/spiral.js?v=spiral20261119'), document.fonts.ready]);
     if (run !== generation) return;
     instance = BSSpiral.mount(element, {language});
   }
@@ -31,6 +30,5 @@ async function mount() {
   }
 }
 
-compact.addEventListener('change', mount);
 reduced.addEventListener('change', mount);
 mount();

@@ -36,7 +36,7 @@ body:has(#projects.bs-spiral){overflow-x:clip}
 .portfolio-mobile__arrow{display:grid;place-items:center;flex-shrink:0;width:44px;height:44px;border:1px solid #ffffff26;border-radius:50%;background:#ffffff05;color:#eee;font-size:19px}
 .portfolio-mobile__arrow:disabled{opacity:.3;cursor:default!important}
 .portfolio-mobile__error{padding:20px;white-space:normal;font-size:16px}
-@media(max-width:900px),(hover:none) and (pointer:coarse),(prefers-reduced-motion:reduce){#projects{min-height:0}}
+@media(prefers-reduced-motion:reduce){#projects{min-height:0}}
 @media(max-width:600px){#projects.portfolio-mobile{scroll-margin-top:82px}.portfolio-mobile__hint{max-width:100px;font-size:12px}.portfolio-mobile__controls{gap:9px}}
 @media(max-width:650px){
   #projects .bs-spiral__top{top:87px}

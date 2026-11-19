@@ -135,6 +135,11 @@ def language_assets(soup, lang, route):
         path = script["src"].split("?")[0]
         if path in changed_scripts:
             script["src"] = path + "?v=locale20261027"
+        if path == "/js/spiral-integration.js":
+            script["src"] = path + "?v=spiral20261119"
+    for link in soup.select('link[href]'):
+        if link["href"].split("?")[0] == "/css/spiral-integration.css":
+            link["href"] = "/css/spiral-integration.css?v=spiral20261119"
     for link in soup.select('a[href]'):
         if link.has_attr("data-language"):
             continue

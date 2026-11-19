@@ -26,7 +26,7 @@ function mount(element, options = {}) {
   if (!(element instanceof HTMLElement)) throw new TypeError('A mount element is required');
   const previous = [...element.childNodes], oldClass = element.className, oldHeight = element.style.height;
   const base = new URL(options.base || './', MODULE_BASE), asset = p => { const url=new URL(p,base);if(url.origin===location.origin)url.searchParams.set('v',ASSET_VERSION);return url.href; };
-  let destroyed=false, renderReady=false, renderer, scene, camera, environment, pmrem, resizeObserver, intersectionObserver, frame=0, lastTime=0;
+  let destroyed=false, renderReady=false, renderer, scene, camera, environment, pmrem, resizeObserver, frame=0, lastTime=0;
   let cases=[], cards=[], slots=[], active=-1, hover=-1, shown=0, target=0, velocity=0, direction=1;
   let width=0, height=0, start=0, travel=0, grid=false, forceGrid=false, idle=4.53333333333,  inViewport=true, lastVideoSync=0, lastDrawIdle=0, fps=60;
   let knotTexture=null,knotGeometry=null,knotSamples=[];const nodes=[],nodeMatrices=[],cardMatrices=[],curve1=[],curve2=[],protectMatrices=[new THREE.Matrix4(),new THREE.Matrix4(),new THREE.Matrix4()];const MATTER_PERIOD=13.3333333333;
@@ -59,6 +59,12 @@ function mount(element, options = {}) {
   function seek(i){if(!grid)window.scrollTo({top:start+clamp(i,0,cases.length-1)/Math.max(1,cases.length-1)*travel,behavior:'instant'});}
   function readScroll(){
     if(grid)return;
+    const visible=scrollY+innerHeight>start&&scrollY<start+height+travel;
+    if(visible!==inViewport){
+      inViewport=visible;lastTime=0;
+      if(!visible){if(frame)cancelAnimationFrame(frame);frame=0;}
+      syncVideos();
+    }
     const update=clamp((scrollY-start)/Math.max(1,travel),0,1)*Math.max(0,cases.length-1),delta=update-target;
     if(delta&&Math.sign(delta)!==direction){direction=Math.sign(delta);syncVideos();}
     target=update;request();
@@ -352,20 +358,11 @@ function mount(element, options = {}) {
       listen(view,'click',()=>{const wasGrid=grid;switchView(!grid);if(wasGrid)seek(active);else window.scrollTo({top:start,behavior:'instant'});});listen(prev,'click',()=>seek(active-1));listen(next,'click',()=>seek(active+1));
       listen(stage,'pointermove',pointerAt,{passive:true});listen(stage,'pointerover',pointerAt,{passive:true});listen(stage,'pointerleave',()=>{hover=-1;});
       resizeObserver=new ResizeObserver(()=>{if(element.clientWidth!==width)resize();});resizeObserver.observe(element);
-      intersectionObserver=new IntersectionObserver(entries=>{
-        if(destroyed)return;
-        const visible=entries[0].isIntersecting&&entries[0].intersectionRatio>0;
-        if(visible===inViewport)return;
-        inViewport=visible;
-        if(!visible){if(frame)cancelAnimationFrame(frame);frame=0;lastTime=0;}else readScroll();
-        syncVideos();
-      },{threshold:0});
-      const box=sticky.getBoundingClientRect();inViewport=box.bottom>0&&box.top<innerHeight;
-      intersectionObserver.observe(sticky);select(0);switchView(false);resize();return api;
+      select(0);switchView(false);resize();return api;
     }catch(error){if(!destroyed)sticky.replaceChildren(make('p','error','Не удалось загрузить проекты. Обновите страницу.'));}
   });
   const api={ready,setLanguage,destroy(){
-    destroyed=true;renderReady=false;if(frame)cancelAnimationFrame(frame);cleanup.forEach(fn=>fn());resizeObserver?.disconnect();intersectionObserver?.disconnect();slots.forEach(clearSlot);textures.forEach(t=>t.dispose());geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());environment?.dispose();pmrem?.dispose();renderer?.dispose();renderer?.forceContextLoss();element.replaceChildren(...previous);element.className=oldClass;element.style.height=oldHeight;delete element.dataset.active;delete element.dataset.progress;delete element.dataset.camera;delete element.dataset.target;delete element.dataset.velocity;delete element.dataset.idle;delete element.dataset.fps;delete element.dataset.playing;delete element.dataset.matterPhase;delete element.dataset.particleCount;delete element.dataset.matterPeriod;delete element.dataset.axisX;delete element.dataset.orbitRadius;
+    destroyed=true;renderReady=false;if(frame)cancelAnimationFrame(frame);cleanup.forEach(fn=>fn());resizeObserver?.disconnect();slots.forEach(clearSlot);textures.forEach(t=>t.dispose());geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());environment?.dispose();pmrem?.dispose();renderer?.dispose();renderer?.forceContextLoss();element.replaceChildren(...previous);element.className=oldClass;element.style.height=oldHeight;delete element.dataset.active;delete element.dataset.progress;delete element.dataset.camera;delete element.dataset.target;delete element.dataset.velocity;delete element.dataset.idle;delete element.dataset.fps;delete element.dataset.playing;delete element.dataset.matterPhase;delete element.dataset.particleCount;delete element.dataset.matterPeriod;delete element.dataset.axisX;delete element.dataset.orbitRadius;
   }};
   return api;
 }
