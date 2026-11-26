@@ -130,7 +130,7 @@ def language_assets(soup, lang, route):
             header.append(menu)
     soup.head.insert(0, tag(soup, "script", src="/js/language.js?v=privacy20261127"))
     soup.head.insert(0, tag(soup, "script", src="/js/privacy.js?v=20261127"))
-    soup.head.append(tag(soup, "link", rel="stylesheet", href="/css/privacy.css?v=20261127"))
+    soup.head.append(tag(soup, "link", rel="stylesheet", href="/css/privacy.css?v=20261127b"))
     if not soup.select_one('link[href^="/assets/fonts/legacy.css"]'):
         soup.head.append(tag(soup, "link", rel="stylesheet", href="/assets/fonts/legacy.css?v=20261127"))
     soup.head.append(tag(soup, "link", rel="stylesheet", href="/css/language.css?v=20261027"))
@@ -170,10 +170,16 @@ def language_assets(soup, lang, route):
     footer = soup.select_one('footer')
     if footer:
         privacy_link = footer.select_one('a[href$="/privacy.html"]')
-        target = privacy_link.parent if privacy_link else footer
-        if not footer.select_one('a[href$="/cookies.html"]'):
-            link = tag(soup, 'a', href=localized_route(lang, '/cookies.html'))
-            link.string = LEGAL_LABELS[lang][1]; target.append(link)
+        if privacy_link:
+            target = privacy_link.parent
+        else:
+            target = tag(soup, 'nav', **{'class':'privacy-footer-links', 'aria-label':LEGAL[lang]['settings']})
+            footer.append(target)
+        for index, kind in enumerate(('privacy', 'cookies', 'terms')):
+            href = localized_route(lang, '/' + kind + '.html')
+            if not footer.select_one(f'a[href="{href}"]'):
+                link = tag(soup, 'a', href=href)
+                link.string = LEGAL_LABELS[lang][index]; target.append(link)
         if not footer.select_one('[data-privacy-settings]'):
             button = tag(soup, 'button', type='button', **{'data-privacy-settings': ''})
             button.string = LEGAL[lang]['settings']; target.append(button)

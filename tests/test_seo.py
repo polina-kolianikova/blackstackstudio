@@ -137,6 +137,17 @@ class SeoTests(unittest.TestCase):
                 self.assertEqual(element.get_text(), copy[element['data-i18n']])
             self.assertEqual(len(page.select('script[src^="/js/i18n-ka.js"]')), 1)
 
+    def test_every_indexable_page_exposes_policies_and_privacy_controls(self):
+        for url, page in self.pages.items():
+            with self.subTest(url=url):
+                prefix = '' if page.html['lang'] == 'ru' else '/' + page.html['lang']
+                for kind in ('privacy', 'cookies', 'terms'):
+                    self.assertIsNotNone(page.select_one(f'footer a[href="{prefix}/{kind}.html"]'))
+                self.assertEqual(len(page.select('[data-privacy-settings]')), 1)
+                scripts = [script['src'].split('?')[0] for script in page.select('script[src]')]
+                self.assertLess(scripts.index('/js/privacy.js'), scripts.index('/js/language.js'))
+                self.assertFalse(page.select('link[href*="fonts.googleapis.com"], script[src*="cdnjs.cloudflare.com"]'))
+
 
 if __name__ == "__main__":
     unittest.main()
