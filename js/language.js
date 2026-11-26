@@ -20,10 +20,12 @@
     if (!root.document) return;
 
     function remember(language) {
+        if (!root.BlackStackPrivacy?.allows('preferences')) return false;
         try { root.localStorage.setItem(storageKey, language); return true; }
         catch (_) { return false; }
     }
     function savedLanguage() {
+        if (!root.BlackStackPrivacy?.allows('preferences')) return null;
         try {
             const value = root.localStorage.getItem(storageKey);
             if (supported(value)) return value;

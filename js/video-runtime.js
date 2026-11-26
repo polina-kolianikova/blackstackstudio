@@ -619,7 +619,7 @@ function initLangSwitch() {
             const lang = btn.dataset.lang;
             if (!I18N[lang] || lang === currentLang) return;
             currentLang = lang;
-            try {
+            if (window.BlackStackPrivacy?.allows('preferences')) try {
                 localStorage.setItem(STORAGE_KEY, lang);
             } catch (error) {
             }

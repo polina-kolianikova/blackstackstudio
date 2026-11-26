@@ -9,9 +9,10 @@ const key = "bs_instagram_attribution_v1";
 const origin = "https://blackstackstudio.com";
 const instagramBot = "https://t.me/blackstackstudio_bot?start=instagram_profile";
 
-function visit(route, { lang = "ru", store = new Map(), blocked = false, links = [] } = {}) {
+function visit(route, { lang = "ru", store = new Map(), blocked = false, links = [], consent = true } = {}) {
     const location = new URL(route, origin);
     const listeners = [];
+    const privacyListeners = [];
     const anchors = links.map((attributes) => {
         const attrs = { ...attributes };
         const dataset = {};
@@ -41,13 +42,14 @@ function visit(route, { lang = "ru", store = new Map(), blocked = false, links =
             return anchors.filter((a) => a.hasAttribute(attr));
         },
     };
-    const context = vm.createContext({ window: { location, sessionStorage }, document, navigator: { userAgent: "Desktop" }, URL, URLSearchParams });
+    const context = vm.createContext({ window: { location, sessionStorage, BlackStackPrivacy:{allows:()=>consent}, addEventListener(name,handler){if(name==='blackstackprivacychange')privacyListeners.push(handler);} }, document, navigator: { userAgent: "Desktop" }, URL, URLSearchParams });
     vm.runInContext(source, context);
     listeners.forEach((handler) => handler());
     return {
         anchors, store,
         bot(position = "contact") { return vm.runInContext(`enquiryUrl(${JSON.stringify(position)})`, context); },
         init() { vm.runInContext("initSiteLinks()", context); },
+        choose(value) { consent=value;privacyListeners.forEach(handler=>handler()); },
     };
 }
 
@@ -58,6 +60,19 @@ test("ordinary visitors retain exact existing localized entry payloads", () => {
     assert.equal(visit("/en/services/automation-ai/", { lang: "en" }).bot("hero"), "https://t.me/blackstackstudio_bot?start=web_en_automation-ai_hero");
     assert.equal(visit("/design/").bot("hero"), "https://t.me/blackstackstudio_bot?start=web_ru_design_hero");
     assert.equal(visit("/montage/").bot("hero"), "https://t.me/blackstackstudio_bot?start=web_ru_video_hero");
+});
+test('source measurement requires permission and is removed on withdrawal',()=>{
+    const page=visit('/instagram/',{consent:false,links:[{href:'/design/'},{href:'https://t.me/blackstackstudio_bot','data-bot-link':'contact'}]});
+    assert.equal(page.store.has(key),false);
+    assert.equal(new URL(page.anchors[0].href).search,'');
+    assert.notEqual(page.bot(),instagramBot);
+    page.choose(true);
+    assert.equal(page.bot(),instagramBot);
+    assert.equal(new URL(page.anchors[0].href).searchParams.get('utm_source'),'instagram');
+    page.choose(false);
+    assert.equal(page.store.has(key),false);
+    assert.equal(new URL(page.anchors[0].href).search,'');
+    assert.notEqual(page.anchors[1].href,instagramBot);
 });
 
 test("profile entry preserves generic source through proof, services and language changes", () => {

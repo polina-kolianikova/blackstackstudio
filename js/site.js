@@ -15,12 +15,17 @@ const INSTAGRAM_PARAMS = {
     utm_medium: "social",
     utm_campaign: "profile",
 };
+const originalAttributionLinks = new WeakMap();
 
 function clearInstagramAttribution() {
     try { window.sessionStorage.removeItem(ATTRIBUTION_KEY); } catch (_) { /* Storage is optional. */ }
 }
 
 function instagramAttribution() {
+    if (!window.BlackStackPrivacy?.allows('attribution')) {
+        clearInstagramAttribution();
+        return null;
+    }
     const source = new URLSearchParams(window.location.search).get("utm_source");
     if (source !== null && source.toLowerCase() !== "instagram") {
         clearInstagramAttribution();
@@ -56,6 +61,7 @@ function decorateInternalLinks(attribution) {
             || (/\.[^/]+$/.test(url.pathname) && !/\.html$/.test(url.pathname))) return;
         const source = url.searchParams.get("utm_source");
         if (source !== null && source.toLowerCase() !== "instagram") return;
+        if (!originalAttributionLinks.has(a)) originalAttributionLinks.set(a, raw);
         for (const key of [...url.searchParams.keys()]) {
             if (key.toLowerCase().startsWith("utm_")) url.searchParams.delete(key);
         }
@@ -83,6 +89,9 @@ function gmailUrl(subject) {
 }
 
 function initSiteLinks() {
+    document.querySelectorAll('a[href]').forEach(a => {
+        if (originalAttributionLinks.has(a)) a.href = originalAttributionLinks.get(a);
+    });
     const attribution = instagramAttribution();
     rememberInstagramAttribution(attribution);
     document.querySelectorAll("[data-tg-link]").forEach((a) => {
@@ -125,3 +134,4 @@ function initSiteLinks() {
 document.addEventListener("DOMContentLoaded", () => {
     initSiteLinks();
 });
+window.addEventListener('blackstackprivacychange', initSiteLinks);

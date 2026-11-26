@@ -22,6 +22,11 @@ KA_SERVICES = json.loads((ROOT / "seo/ka-services.json").read_text(encoding="utf
 PAGE_ROWS = json.loads((ROOT / "seo/page-translations.json").read_text(encoding="utf-8"))
 PAGE_COPY = {lang: {row[0]: row[index] for row in PAGE_ROWS} for index, lang in enumerate(LANGS)}
 PAGE_COPY["ka"].update(json.loads((ROOT / "seo/ka-design-tags.json").read_text(encoding="utf-8")))
+LEGAL = json.loads((ROOT / 'seo/legal.json').read_text(encoding='utf-8'))
+LEGAL_LABELS = {
+    'ru': ('Приватность', 'Cookies', 'Условия'), 'en': ('Privacy', 'Cookies', 'Terms'),
+    'uk': ('Приватність', 'Cookies', 'Умови'), 'ka': ('კონფიდენციალურობა', 'Cookies', 'პირობები'),
+}
 VIDEO_I18N = json.loads(subprocess.check_output(["node", "-e", r"""
 const fs = require('node:fs'), vm = require('node:vm');
 const context = {};
@@ -86,7 +91,7 @@ def path_for(lang, slug=""):
 def write(path, content):
     destination = ROOT / path
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(content.rstrip() + "\n", encoding="utf-8")
+    destination.write_text(content.rstrip() + "\n", encoding="utf-8", newline='\n')
 
 
 def soup_of(html):
@@ -113,17 +118,21 @@ def language_menu(lang, route):
 
 
 def language_assets(soup, lang, route):
-    for old in soup.select('.language-menu, script[src^="/js/language.js"], link[href^="/css/language.css"], link[href="/assets/fonts/georgian.css"]'):
+    for old in soup.select('.language-menu, script[src^="/js/language.js"], script[src^="/js/privacy.js"], link[href^="/css/privacy.css"], link[href^="/assets/fonts/legacy.css"], link[href^="/css/language.css"], link[href="/assets/fonts/georgian.css"], link[href*="fonts.googleapis.com"], link[href*="fonts.gstatic.com"]'):
         old.decompose()
     menu = language_menu(lang, route)
     old = soup.select_one("#langSwitch") or soup.select_one('.service-nav nav[aria-label="Language"]')
     if old:
         old.replace_with(menu)
     else:
-        header = soup.select_one(".design-nav, .terms-nav, .privacy-nav, .case-nav")
+        header = soup.select_one(".design-nav, .terms-nav, .privacy-nav, .case-nav, .legal-nav")
         if header:
             header.append(menu)
-    soup.head.insert(0, tag(soup, "script", src="/js/language.js?v=20261027"))
+    soup.head.insert(0, tag(soup, "script", src="/js/language.js?v=privacy20261127"))
+    soup.head.insert(0, tag(soup, "script", src="/js/privacy.js?v=20261127"))
+    soup.head.append(tag(soup, "link", rel="stylesheet", href="/css/privacy.css?v=20261127"))
+    if not soup.select_one('link[href^="/assets/fonts/legacy.css"]'):
+        soup.head.append(tag(soup, "link", rel="stylesheet", href="/assets/fonts/legacy.css?v=20261127"))
     soup.head.append(tag(soup, "link", rel="stylesheet", href="/css/language.css?v=20261027"))
     if not soup.select_one('link[href="/assets/fonts/georgian.css"]'):
         soup.head.append(tag(soup, "link", rel="stylesheet", href="/assets/fonts/georgian.css"))
@@ -139,6 +148,8 @@ def language_assets(soup, lang, route):
             script["src"] = path + "?v=spiral20261119"
         if path in {"/js/site.js", "/js/i18n.js", "/js/i18n-ka.js", "/js/video-runtime.js"}:
             script["src"] = path + "?v=contact20261120"
+        if path in {'/js/site.js', '/js/video-runtime.js', '/js/video-page.js'}:
+            script['src'] = path + '?v=privacy20261127'
     for link in soup.select('link[href]'):
         if link["href"].split("?")[0] == "/css/spiral-integration.css":
             link["href"] = "/css/spiral-integration.css?v=spiral20261119"
@@ -146,13 +157,26 @@ def language_assets(soup, lang, route):
         if link.has_attr("data-language"):
             continue
         href = link["href"]
+        if href in ('/privacy.html', '/cookies.html', '/terms.html'):
+            link['href'] = localized_route(lang, href)
+            link.string = LEGAL_LABELS[lang][('privacy', 'cookies', 'terms').index(href[1:-5])]
+            for attribute in ('data-i18n', 'data-i18n-attr'):
+                link.attrs.pop(attribute, None)
+            continue
         if href.startswith(("/design/", "/montage/", "/services/")):
             link["href"] = localized_route(lang, href)
         elif href == "/" or href.startswith("/#"):
             link["href"] = localized_route(lang, href)
-    if lang != "ru":
-        for link in soup.select('a[href="/privacy.html"], a[href="/terms.html"]'):
-            link.string = COPY[lang]["privacy" if "privacy" in link["href"] else "terms"]
+    footer = soup.select_one('footer')
+    if footer:
+        privacy_link = footer.select_one('a[href$="/privacy.html"]')
+        target = privacy_link.parent if privacy_link else footer
+        if not footer.select_one('a[href$="/cookies.html"]'):
+            link = tag(soup, 'a', href=localized_route(lang, '/cookies.html'))
+            link.string = LEGAL_LABELS[lang][1]; target.append(link)
+        if not footer.select_one('[data-privacy-settings]'):
+            button = tag(soup, 'button', type='button', **{'data-privacy-settings': ''})
+            button.string = LEGAL[lang]['settings']; target.append(button)
 
 
 def translate_page(soup, lang):
@@ -302,6 +326,22 @@ def home(lang):
         if el.get("data-i18n-attr"):
             el[el["data-i18n-attr"]] = I18N[lang][key]
     soup.select_one("#typewriter").string = I18N[lang]["hero.typed"]
+    projects = soup.select_one('#projects')
+    if projects:
+        projects.clear()
+        heading = {'ru':'Проекты и концепты', 'en':'Projects and concepts', 'uk':'Проєкти та концепти', 'ka':'პროექტები და კონცეფციები'}[lang]
+        statuses = {'ru':('концепт','под ключ','в запуске'), 'en':('concept','full delivery','launching'), 'uk':('концепт','під ключ','у запуску'), 'ka':('კონცეფცია','სრული პროექტი','გაშვების პროცესში')}[lang]
+        gallery = tag(soup, 'div', **{'class':'project-fallback'})
+        title = tag(soup, 'h2'); title.string = heading; gallery.append(title)
+        listing = tag(soup, 'ul')
+        for item in json.loads((ROOT / 'spiral/cases.json').read_text(encoding='utf-8')):
+            entry = tag(soup, 'li')
+            link = tag(soup, 'a', href=item['url'], target='_blank', rel='noopener noreferrer', **{'data-project-title':''})
+            link.string = item['title']; entry.append(link)
+            status = tag(soup, 'span'); status.string = statuses[0 if item['status']=='концепт' else 1 if item['status']=='под ключ' else 2]
+            entry.append(status); listing.append(entry)
+        gallery.append(listing); projects.append(gallery)
+        soup.head.append(tag(soup, 'link', rel='stylesheet', href='/css/seo-fallback.css?v=20261127'))
     for el in soup.select(".now__val"):
         if el.get_text() == "1ч":
             el.string = {"ru": "1ч", "en": "1h", "uk": "1 год", "ka": "1 სთ"}[lang]
@@ -399,6 +439,29 @@ def service_page(lang, service):
     write(path.lstrip("/") + "index.html", str(soup))
 
 
+def legal_page(lang, kind):
+    ui, document = LEGAL[lang], LEGAL[lang][kind]
+    path = localized_route(lang, '/' + kind + '.html')
+    sections = ''.join('<section><h2>' + escape(section[0]) + '</h2>' + ''.join('<p>' + escape(p) + '</p>' for p in section[1:]) + '</section>' for section in document['sections'])
+    links = ''.join(f'<a href="/{name}.html">{escape(LEGAL_LABELS[lang][index])}</a>' for index, name in enumerate(('privacy', 'cookies', 'terms')))
+    operator = LEGAL['operator']
+    details = ''
+    if operator.get('name'):
+        details = f'<section><h2>{escape(ui["operatorLabel"])}</h2><p>' + '<br>'.join(escape(str(operator[key])) for key in ('name','country','address') if operator.get(key)) + '</p></section>'
+    providers = ''
+    if kind != 'terms':
+        providers = '<section><h2>' + escape(ui['providers']) + '</h2><ul>' + ''.join(f'<li><a href="{url}" target="_blank" rel="noopener noreferrer">{label}</a></li>' for label,url in (
+            ('GitHub Pages / GitHub','https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement'),
+            ('Telegram','https://telegram.org/privacy'),('Google / YouTube / Gmail','https://policies.google.com/privacy'),
+            ('Hetzner','https://www.hetzner.com/legal/privacy-policy/'))) + '</ul></section>'
+    soup = soup_of(f'''<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090b0c"><link rel="icon" href="/assets/logo.png"><link rel="stylesheet" href="/assets/fonts/onest.css"><link rel="stylesheet" href="/css/legal.css?v=20261127"></head><body class="legal-page"><header class="legal-nav"><a class="legal-brand" href="{path_for(lang)}">BlackStack Studio</a></header><main class="legal-main"><a href="{path_for(lang)}">{escape(ui['home'])}</a><h1>{escape(document['title'])}</h1><p class="legal-updated">{escape(ui['updated'])}</p><nav class="legal-toc">{links}</nav>{details}{sections}{providers}<div class="legal-contact"><p>{escape(ui['contact'])}</p><a href="mailto:blackstackst@gmail.com">blackstackst@gmail.com</a> · <a data-tg-link href="https://t.me/blackstack_manager2">@blackstack_manager2</a></div></main><footer class="legal-footer">{links}<a href="{path_for(lang)}">BlackStack Studio</a></footer><script defer src="/js/site.js"></script></body></html>''')
+    metadata(soup, lang, path, document['title'] + ' | BlackStack Studio', document['description'],
+             {**{code:localized_route(code, '/' + kind + '.html') for code in LANGS}, 'x-default':'/' + kind + '.html'})
+    language_assets(soup, lang, '/' + kind + '.html')
+    write(path.lstrip('/'), str(soup))
+    return path
+
+
 def main():
     write("js/i18n-ka.js", "window.BlackStackGeorgian = " + json.dumps(I18N["ka"], ensure_ascii=False) + ";")
     write("js/page-copy.js", "window.BlackStackPages = " + json.dumps(PAGE_COPY, ensure_ascii=False) + ";")
@@ -415,12 +478,14 @@ def main():
         for lang in LANGS:
             portfolio_page(lang, route, source)
             paths.append(localized_route(lang, route))
-    for filename, path in (("privacy.html", "/privacy.html"), ("terms.html", "/terms.html")):
-        soup = soup_of((ROOT / filename).read_text(encoding="utf-8"))
-        metadata(soup, "ru", path, soup.title.string, soup.find("meta", attrs={"name": "description"})["content"])
-        language_assets(soup, "ru", "/")
-        write(filename, str(soup))
-        paths.append(path)
+    for lang in LANGS:
+        for kind in ('privacy', 'cookies', 'terms'):
+            paths.append(legal_page(lang, kind))
+    instagram = soup_of((ROOT / 'instagram/index.html').read_text(encoding='utf-8'))
+    language_assets(instagram, 'ru', '/')
+    for link in instagram.select('[data-bot-link]'):
+        link['href'] = 'https://t.me/blackstackstudio_bot?start=web_ru_home_instagram'
+    write('instagram/index.html', str(instagram))
     template = soup_of((ROOT / "cases/template.html").read_text(encoding="utf-8"))
     if not template.find("meta", attrs={"name": "robots"}):
         template.head.append(tag(template, "meta", **{"name": "robots", "content": "noindex, follow"}))

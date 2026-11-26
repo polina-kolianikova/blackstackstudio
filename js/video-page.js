@@ -46,7 +46,7 @@
         seen.add(work.id); return true;
     }).sort((a, b) => a.order - b.order);
     let works = [], current = 0, opener = null, dragStart = null, suppressClick = false, wheelAmount = 0, previewsPaused = false, centeredId = null;
-    let dialogMedia = null, dialogPreview = null, previewHome = null, dialogWork = null, youtubeFrame = null;
+    let dialogMedia = null, dialogPreview = null, previewHome = null, dialogWork = null, youtubeFrame = null, youtubeNotice = null;
     let warmTimer = null, hdStarting = false, playbackSession = 0, pendingTap = null;
     const category = () => { const id = new URLSearchParams(location.search).get('category'); return id === 'long-video' ? 'youtube-video' : id || 'short-video'; };
     const label = (work) => t(categories.get(work.categories.includes(category()) ? category() : work.categories[0])?.labelKey || 'video.title');
@@ -262,6 +262,32 @@
             restorePreview(hdPlayer.currentTime); markFirstFrame(hdPlayer);
         }).catch(() => {}).finally(() => { if (session === playbackSession) hdStarting = false; });
     }
+    function renderYouTube(work) {
+        youtubeFrame?.remove(); youtubeFrame = null;
+        youtubeNotice?.remove(); youtubeNotice = null;
+        $('videoPlayerLoading').hidden = true;
+        if (!window.BlackStackPrivacy?.allows('externalMedia')) {
+            youtubeNotice = document.createElement('div'); youtubeNotice.className = 'video-privacy-notice';
+            const note = document.createElement('p');
+            note.textContent = window.BlackStackPrivacy?.text('youtube') || 'Allow a connection to Google to load the YouTube player. You can also open the video directly on YouTube.';
+            const allow = document.createElement('button'); allow.type = 'button'; allow.className = 'privacy-button';
+            allow.textContent = window.BlackStackPrivacy?.text('allowYoutube') || 'Allow YouTube and play';
+            allow.addEventListener('click', () => window.BlackStackPrivacy?.grant('externalMedia'));
+            const policy = document.createElement('a');
+            policy.href = (document.documentElement.lang === 'ru' ? '' : '/' + document.documentElement.lang) + '/cookies.html';
+            policy.textContent = window.BlackStackPrivacy?.text('policy') || 'Cookie policy';
+            youtubeNotice.append(note, allow, policy); dialogFrame.append(youtubeNotice); return;
+        }
+        youtubeFrame = document.createElement('iframe'); youtubeFrame.title = work.title;
+        youtubeFrame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; youtubeFrame.allowFullscreen = true;
+        youtubeFrame.referrerPolicy = 'strict-origin';
+        youtubeFrame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(work.youtubeId)}?autoplay=1&rel=0&start=${work.startTime || 0}`;
+        youtubeFrame.addEventListener('load', () => { if (dialogWork?.id === work.id) $('videoPlayerLoading').hidden = true; });
+        dialogFrame.append(youtubeFrame); $('videoPlayerLoading').hidden = false;
+    }
+    window.addEventListener('blackstackprivacychange', () => {
+        if (dialog.open && dialogWork?.youtubeId) renderYouTube(dialogWork);
+    });
     function openPlayer(work, button) {
         if (dialog.open) return;
         clearTimeout(warmTimer);
@@ -273,14 +299,8 @@
         const watchLink = $('videoYouTubeLink'); watchLink.hidden = !work.youtubeId;
         if (work.youtubeId) {
             hdPlayer.pause(); hdPlayer.hidden = true;
-            youtubeFrame = document.createElement('iframe'); youtubeFrame.title = work.title;
-            youtubeFrame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; youtubeFrame.allowFullscreen = true;
-            youtubeFrame.referrerPolicy = 'strict-origin-when-cross-origin';
-            youtubeFrame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(work.youtubeId)}?autoplay=1&rel=0&start=${work.startTime || 0}`;
             watchLink.href = `https://www.youtube.com/watch?v=${encodeURIComponent(work.youtubeId)}${work.startTime ? '&t=' + work.startTime : ''}`;
-            youtubeFrame.addEventListener('load', () => { if (dialogWork?.id === work.id) $('videoPlayerLoading').hidden = true; });
-            dialogFrame.append(youtubeFrame);
-            $('videoPlayerLoading').hidden = false;
+            renderYouTube(work);
             document.body.classList.add('media-open'); dialog.showModal(); syncPlayback(); return;
         }
         prepareFullscreen(work);
@@ -308,11 +328,11 @@
         });
     }
     function closePlayer() {
-        if (dialog.open || (!dialogMedia && !youtubeFrame)) return;
+        if (dialog.open || (!dialogMedia && !youtubeFrame && !youtubeNotice)) return;
         playbackSession += 1; hdStarting = false;
         const time = dialogMedia?.currentTime;
         dialogMedia?.pause();
-        youtubeFrame?.remove(); youtubeFrame = null; $('videoYouTubeLink').hidden = true; hdPlayer.pause(); hdPlayer.hidden = true;
+        youtubeFrame?.remove(); youtubeFrame = null; youtubeNotice?.remove(); youtubeNotice = null; $('videoYouTubeLink').hidden = true; hdPlayer.pause(); hdPlayer.hidden = true;
         restorePreview(time);
         dialogMedia = null; dialogWork = null;
         $('videoPlayerLoading').hidden = true; $('videoPlayerError').hidden = true;

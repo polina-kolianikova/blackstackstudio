@@ -9,3 +9,4 @@ exclude:
   - requirements-seo.txt
   - middleware.js
   - blackstack-studio.zip
+  - cases/template.html

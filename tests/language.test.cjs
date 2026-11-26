@@ -5,12 +5,13 @@ const vm = require('node:vm');
 const source = fs.readFileSync(require('node:path').join(__dirname, '../js/language.js'), 'utf8');
 const api = require('../js/language.js');
 
-function visit({url = 'https://blackstackstudio.com/', languages = ['ka-GE', 'en'], saved, legacy, blocked = false} = {}) {
+function visit({url = 'https://blackstackstudio.com/', languages = ['ka-GE', 'en'], saved, legacy, blocked = false, consent = true} = {}) {
   let redirected;
   const storage = new Map();
   if (saved !== undefined) storage.set(api.storageKey, saved);
   if (legacy !== undefined) storage.set('bs.lang', legacy);
   const window = {
+    BlackStackPrivacy: {allows: () => consent},
     document: {addEventListener() {}},
     navigator: {languages, language: languages[0]},
     location: {href: url, replace(target) { redirected = target; }},
@@ -65,4 +66,10 @@ test('switching language preserves the equivalent route', () => {
   assert.equal(api.localizedPath('/ka/montage/','ru'), '/montage/');
   assert.equal(api.localizedPath('/design/','uk'), '/uk/design/');
   assert.equal(api.localizedPath('/index.html','ka'), '/ka/');
+});
+test('language preferences are not read or written without permission', () => {
+  assert.equal(visit({saved:'ru',consent:false}).redirected,'https://blackstackstudio.com/ka/');
+  const explicit=visit({url:'https://blackstackstudio.com/?lang=ru',consent:false});
+  assert.equal(explicit.redirected,undefined);
+  assert.equal(explicit.storage.has(api.storageKey),false);
 });

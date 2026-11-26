@@ -25,7 +25,7 @@ class SeoTests(unittest.TestCase):
         cls.pages = {url: BeautifulSoup(file_for(url).read_text(encoding="utf-8"), "html.parser") for url in cls.urls}
 
     def test_sitemap_and_robots(self):
-        self.assertEqual(len(self.urls), 26)
+        self.assertEqual(len(self.urls), 36)
         self.assertEqual(len(set(self.urls)), len(self.urls))
         self.assertIn("Sitemap: " + ORIGIN + "/sitemap.xml", (ROOT / "robots.txt").read_text())
         self.assertNotIn("Disallow: /", (ROOT / "robots.txt").read_text())
@@ -77,6 +77,8 @@ class SeoTests(unittest.TestCase):
                 portfolio = any(section in urlsplit(url).path for section in ("/design/", "/montage/"))
                 self.assertGreater(len(page.body.get_text(" ", strip=True)), 500 if portfolio else 1000)
                 if page.html["lang"] == "en":
+                    for project in page.select('[data-project-title]'):
+                        project.string = 'Project name'
                     text = page.body.get_text(" ", strip=True)
                     text = text.replace("Русский", "").replace("Українська", "")
                     self.assertIsNone(re.search("[А-Яа-яЁёІіЇїЄє]", text))

@@ -41,6 +41,6 @@ test("selection covers the complete real brief without accessing either clipboar
 
 test("the downloadable file contains the exact visible template and a real download link", () => {
     assert.equal(download, text + "\n");
-    assert.match(html, /href="\/instagram\/brief-template\.txt" download="Бриф для разработки\.txt"/);
+    assert.match(html, /<a\b(?=[^>]*href="\/instagram\/brief-template\.txt")(?=[^>]*download="Бриф для разработки\.txt")[^>]*>/);
     assert.match(html, /id="select-template"[^>]*>Выделить текст<\/button>/);
 });
