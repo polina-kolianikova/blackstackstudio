@@ -111,7 +111,7 @@ def language_menu(lang, route):
     labels = {"ru": "Выбрать язык", "en": "Choose language", "uk": "Обрати мову", "ka": "ენის არჩევა"}
     links = "".join(f'<a data-language="{code}" href="{localized_route(code, route)}" hreflang="{code}" lang="{code}"'
                     f'{" aria-current=\"page\"" if code == lang else ""}>{names[code]}</a>' for code in LANGS)
-    return soup_of(f'''<details class="language-menu" data-ui="language"><summary aria-label="{labels[lang]}">
+    return soup_of(f'''<details class="language-menu" data-ui="language"><summary aria-label="{lang.upper()}, {labels[lang]}">
 <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/></svg>
 <span>{lang.upper()}</span><svg class="language-chevron" aria-hidden="true" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m2 4 4 4 4-4"/></svg>
 </summary><nav aria-label="{labels[lang]}">{links}</nav></details>''').details
@@ -148,7 +148,7 @@ def language_assets(soup, lang, route):
             script["src"] = path + "?v=spiral20261119"
         if path in {"/js/site.js", "/js/i18n.js", "/js/i18n-ka.js", "/js/video-runtime.js"}:
             script["src"] = path + "?v=contact20261120"
-        if path in {'/js/site.js', '/js/video-runtime.js', '/js/video-page.js'}:
+        if path in {'/js/site.js', '/js/i18n.js', '/js/i18n-ka.js', '/js/video-runtime.js', '/js/video-page.js', '/js/spiral-integration.js', '/js/three-scene.js'}:
             script['src'] = path + '?v=privacy20261127'
     for link in soup.select('link[href]'):
         if link["href"].split("?")[0] == "/css/spiral-integration.css":
@@ -289,7 +289,9 @@ def metadata(soup, lang, path, title, description, alternates=None, service=None
     graph = [
         {"@type": "Organization", "@id": ORIGIN + "/#organization", "name": "BlackStack Studio",
          "url": ORIGIN + "/", "logo": ORIGIN + "/assets/logo.png", "email": "blackstackst@gmail.com",
-         "sameAs": ["https://t.me/blackstack_manager2", "https://www.instagram.com/blackstack_studio/"]},
+         "description": I18N[lang]['hero.typed'],
+         "sameAs": ["https://www.instagram.com/blackstack_studio/"],
+         "contactPoint": {"@type":"ContactPoint", "contactType":"customer service", "email":"blackstackst@gmail.com", "url":"https://t.me/blackstack_manager2", "availableLanguage":list(LANGS)}},
         {"@type": "WebSite", "@id": ORIGIN + "/#website", "url": ORIGIN + "/",
          "name": "BlackStack Studio", "publisher": {"@id": ORIGIN + "/#organization"}, "inLanguage": list(LANGS)},
         {"@type": "WebPage", "@id": ORIGIN + path + "#webpage", "url": ORIGIN + path,
@@ -387,6 +389,17 @@ def home(lang):
         link = tag(soup, "a", href=path_for(lang, service["slug"]), **{"class": "service-link"})
         link.string = COPY[lang]["more"] + " →"
         article.append(link)
+    if not soup.select_one('main'):
+        first, last = soup.select_one('#hero'), soup.select_one('#contact')
+        main = tag(soup, 'main', id='mainContent')
+        first.insert_before(main)
+        node = first
+        while node is not None:
+            following = node.next_sibling
+            main.append(node.extract())
+            if node is last:
+                break
+            node = following
     for key, slug in (("footer.col1.1", "web-development"), ("footer.col1.2", "automation-ai"), ("footer.col1.4", "automation-ai")):
         soup.select_one(f'[data-i18n="{key}"]')["href"] = path_for(lang, slug)
     soup.select_one('[data-i18n="footer.col1.3"]')["href"] = "/design/"

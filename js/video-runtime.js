@@ -137,7 +137,7 @@ const I18N = {
         "faq.q4": "А если мне нужно срочно?",
         "faq.a4": "Срочно — это +40% к цене и сдвиг очереди. Возможно — почти всегда. На бриф отвечаем за час. Релиз — через 30 дней.",
         "faq.q5": "Как с NDA и кодом?",
-        "faq.a5": "Стандартное NDA на этапе брифа. Весь код твой с первого коммита. Доступ к репозиторию у тебя постоянный.",
+        "faq.a5": "Доступ к репозиторию предоставляем с первого коммита. Порядок передачи прав на код и материалы, условия NDA согласуем в договоре.",
 
         "contact.num":   "06 / Бриф",
         "contact.title": "Идея в продакшен за 30 дней",
@@ -331,7 +331,7 @@ const I18N = {
         "faq.q4": "What if I need it urgently?",
         "faq.a4": "Rush means +40%, and we move the queue. Almost always doable. Reply to brief in one hour. Production in 30 days.",
         "faq.q5": "NDA and code ownership?",
-        "faq.a5": "Standard NDA at brief stage. All code is yours from the first commit. You have permanent repo access.",
+        "faq.a5": "Repository access starts with the first commit. The agreement sets out transfer of rights to code and materials and any NDA terms.",
 
         "contact.num":   "06 / Brief",
         "contact.title": "Idea to production in 30 days",
@@ -525,7 +525,7 @@ const I18N = {
         "faq.q4": "А якщо мені потрібно терміново?",
         "faq.a4": "Терміново — це +40% до ціни й зрушення черги. Можливо — майже завжди. На бриф відповідаємо за годину. Реліз — за 30 днів.",
         "faq.q5": "Як з NDA та кодом?",
-        "faq.a5": "Стандартне NDA на етапі брифу. Весь код ваш з першого коміту. Доступ до репозиторію постійний.",
+        "faq.a5": "Доступ до репозиторію надаємо з першого коміту. Порядок передачі прав на код і матеріали та умови NDA погоджуємо в договорі.",
 
         "contact.num":   "06 / Бриф",
         "contact.title": "Ідея у продакшн за 30 днів",

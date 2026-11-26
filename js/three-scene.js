@@ -361,7 +361,7 @@
     }
 
     const script = document.createElement("script");
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
+    script.src = "/js/vendor/three-r128.min.js?v=20261127";
     script.async = true;
     script.onload = startScene;
     script.onerror = useStaticBackground;
