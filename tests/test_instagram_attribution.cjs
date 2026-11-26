@@ -66,6 +66,7 @@ test('source measurement requires permission and is removed on withdrawal',()=>{
     assert.equal(page.store.has(key),false);
     assert.equal(new URL(page.anchors[0].href).search,'');
     assert.notEqual(page.bot(),instagramBot);
+    assert.equal(page.bot('instagram'),'https://t.me/blackstackstudio_bot?start=web_ru_home_contact');
     page.choose(true);
     assert.equal(page.bot(),instagramBot);
     assert.equal(new URL(page.anchors[0].href).searchParams.get('utm_source'),'instagram');
@@ -73,6 +74,7 @@ test('source measurement requires permission and is removed on withdrawal',()=>{
     assert.equal(page.store.has(key),false);
     assert.equal(new URL(page.anchors[0].href).search,'');
     assert.notEqual(page.anchors[1].href,instagramBot);
+    assert.equal(page.bot('instagram'),'https://t.me/blackstackstudio_bot?start=web_ru_home_contact');
 });
 
 test("profile entry preserves generic source through proof, services and language changes", () => {

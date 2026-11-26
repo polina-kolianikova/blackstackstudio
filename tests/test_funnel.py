@@ -43,7 +43,7 @@ class FunnelTests(unittest.TestCase):
         page = BeautifulSoup((ROOT / "instagram/index.html").read_text(encoding="utf-8"), "html.parser")
         links = page.select('a[data-bot-link]')
         self.assertGreaterEqual(len(links), 1)
-        self.assertTrue(all(link["href"] == "https://t.me/blackstackstudio_bot?start=web_ru_home_instagram" for link in links))
+        self.assertTrue(all(link["href"] == "https://t.me/blackstackstudio_bot?start=web_ru_home_contact" for link in links))
         self.assertEqual(page.select_one('link[rel="canonical"]')["href"], "https://blackstackstudio.com/instagram/")
         self.assertIn("noindex", page.select_one('meta[name="robots"]')["content"])
         material = page.select_one("#brief-template").get_text()

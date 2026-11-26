@@ -150,6 +150,8 @@ def language_assets(soup, lang, route):
             script["src"] = path + "?v=contact20261120"
         if path in {'/js/site.js', '/js/i18n.js', '/js/i18n-ka.js', '/js/video-runtime.js', '/js/video-page.js', '/js/spiral-integration.js', '/js/three-scene.js'}:
             script['src'] = path + '?v=privacy20261127'
+        if path == '/js/site.js':
+            script['src'] = path + '?v=privacy20261127b'
     for link in soup.select('link[href]'):
         if link["href"].split("?")[0] == "/css/spiral-integration.css":
             link["href"] = "/css/spiral-integration.css?v=spiral20261119"
@@ -503,7 +505,7 @@ def main():
     instagram = soup_of((ROOT / 'instagram/index.html').read_text(encoding='utf-8'))
     language_assets(instagram, 'ru', '/')
     for link in instagram.select('[data-bot-link]'):
-        link['href'] = 'https://t.me/blackstackstudio_bot?start=web_ru_home_instagram'
+        link['href'] = 'https://t.me/blackstackstudio_bot?start=web_ru_home_contact'
     write('instagram/index.html', str(instagram))
     template = soup_of((ROOT / "cases/template.html").read_text(encoding="utf-8"))
     if not template.find("meta", attrs={"name": "robots"}):
