@@ -20,4 +20,7 @@ section.privacy-category{display:block}
 [data-privacy-settings]{font:inherit;color:inherit;text-align:left;background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;min-height:44px;padding:6px 0;white-space:normal}
 .video-privacy-notice{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:32px;background:#101315;text-align:center;overflow:auto;color:#f2f3f1;font:400 17px/1.6 Onest,"Noto Sans Georgian",Arial,sans-serif;z-index:8}
 .video-privacy-notice p{max-width:560px}.video-privacy-notice a{color:inherit;text-decoration:underline}
+.vplayer__frame{position:relative}
+.vplayer__top,.vplayer__youtube{z-index:10}
+.vplayer__close{min-height:44px}
 @media(max-width:600px){.privacy-banner{inset:auto 10px 10px;padding:16px}.privacy-banner h2{font-size:20px}.privacy-banner p{font-size:14px;margin-bottom:8px}.privacy-actions{gap:8px;margin:10px 0}.privacy-button{font-size:14px;flex:1 1 140px;padding:10px 12px}.privacy-dialog{padding:20px}.privacy-dialog h2{font-size:22px}.video-privacy-notice{padding:24px 18px;font-size:16px}}
